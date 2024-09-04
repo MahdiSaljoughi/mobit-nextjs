@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id             String     @id @default(uuid())
+  user_name      String?
+  email          String     @unique
+  phone          String?    @unique
+  role           Role       @default(USER)    
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String
+  bio            String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  // accounts Account[]
+}
+
+// model Account {
+//   id                       Int        @id @default(autoincrement())
+//   userId                   String
+//   type                     String
+//   provider                 String
+//   providerAccountId        String
+//   refresh_token            String?
+//   access_token             String?
+//   expires_at               Int?
+//   token_type               String?
+//   scope                    String?
+//   id_token                 String?
+//   session_state            String?
+//   refresh_token_expires_in Int?
+//   user                     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   createdAt                DateTime   @default(now())
+//   updatedAt                DateTime   @updatedAt
+
+//   @@unique([provider, providerAccountId])
+// }
+
+model Post {
+  id          Int    @id @unique @default(autoincrement())
+  title       String
+  description String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Product {
+  id          Int      @id @unique @default(autoincrement())
+  title       String
+  slug        String
+  price       Int
+  count       Int
+  description String
+  cat         String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
