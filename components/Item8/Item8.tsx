@@ -1,6 +1,6 @@
 export default function Item8() {
   return (
-    <div className="w-full flex items-center justify-evenly lg:justify-between flex-wrap gap-y-4 gap-x-2 sm:gap-x-10 text-[10px] xl:text-[12.8px] font-[fontd1]">
+    <div className="w-full flex items-center justify-evenly lg:justify-between flex-wrap gap-y-4 gap-x-2 sm:gap-x-10 text-[10px] xl:text-[12.8px]">
       <div className="flex flex-col items-center gap-y-3">
         <div className="bg-zinc-100 rounded-2xl block cursor-pointer">
           <img src="/images/item8/8mobile.svg" width="72" alt="mobile" />

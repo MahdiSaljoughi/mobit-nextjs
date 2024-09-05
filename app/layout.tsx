@@ -1,11 +1,9 @@
-"use client";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import MainFooter from "@/components/Footer/MainFooter";
 import MainHeader from "@/components/Header/MainHeader";
 import { Toaster } from "@/components/ui/sonner";
+import { CartContextProvider } from "@/contexts/cart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,25 +13,19 @@ export default function RootLayout({
   return (
     <html lang="en" dir="rtl">
       <head>
-        <title>توسعه داده شده با Next-js</title>
-        <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+        <title>فروشگاه اینترنتی مبیت</title>
+        <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
       </head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="font-[fontd3]">
+        <CartContextProvider>
+          <div className="font-[iran]">
             <MainHeader />
-            <main className="bg-zinc-50 dark:bg-zinc-900">{children}</main>
+            <main>{children}</main>
             <Toaster />
             <MainFooter />
           </div>
-        </ThemeProvider>
+        </CartContextProvider>
       </body>
     </html>
   );
 }
-// rfc

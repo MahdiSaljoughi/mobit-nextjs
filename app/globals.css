@@ -3,41 +3,20 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: fontd1;
-    src: url("/fonts/DanaFaNum-DemiBold.woff2") format("woff2")
-}
-
-@font-face {
-    font-family: fontd2;
-    src: url("/fonts/DanaFaNum-Medium.woff2") format("woff2")
-}
-
-@font-face {
-    font-family: fontd3;
-    src: url("/fonts/DanaFaNum-Regular.woff2") format("woff2")
-}
-
-@font-face {
-    font-family: fontm1;
-    src: url("/fonts/Morabba-Bold.woff2") format("woff2")
-}
-
-@font-face {
-    font-family: fontm2;
-    src: url("/fonts/Morabba-Medium.woff2") format("woff2")
-}
-
-@font-face {
-    font-family: fontm3;
-    src: url("/fonts/Morabba-Light.woff2") format("woff2")
+    font-family: iran;
+    src: url(/fonts/iran/woff2/IRANSansXFaNum-Bold.woff2);
 }
 
 .ltr {
     direction: ltr;
 }
 
+.rtl {
+    direction: rtl;
+}
+
 @layer components {
     .contain {
-        @apply py-10 mx-2 sm:mx-10 lg:mx-16 xl:mx-20 2xl:mx-32;
+        @apply py-10 mx-2 sm:mx-10 lg:mx-16 xl:mx-20 2xl:mx-56;
     }
 }

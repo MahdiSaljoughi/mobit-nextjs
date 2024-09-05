@@ -1,6 +1,4 @@
-// import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 import Prisma from "@/lib/prisma";
 
 export async function GET() {
@@ -9,28 +7,28 @@ export async function GET() {
   });
 }
 
-const prisma = new PrismaClient();
-
 export async function POST(request: Request) {
   try {
-    const data = await request.json(); // دریافت داده‌ها از body درخواست
+    // دریافت داده‌ها از body درخواست
+    const data = await request.json();
+    const { title, slug, price, count, description, cat, image, createBy } =
+      data;
 
     // انجام عملیات مورد نظر با داده‌ها
-    const { title, price, description, image } = data;
-
     // if (title.trim() === "" && typeof price !== "number") {
     //   return NextResponse.json({ message: "Invalid data" }, { status: 400 });
     // }
 
     const newProduct = await Prisma.product.create({
       data: {
-        price: data.price,
-        slug: data.slug,
-        cat: data.cat,
-        count: data.const,
-        title: data.title,
-        description: data.description,
-        image: data.image,
+        title,
+        slug,
+        price,
+        count,
+        description,
+        cat,
+        image,
+        createBy,
       },
     });
 
@@ -45,6 +43,72 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   } finally {
-    await prisma.$disconnect(); // قطع اتصال به پایگاه داده
+    await Prisma.$disconnect(); // قطع اتصال به پایگاه داده
+  }
+}
+
+export async function PUT(request: Request) {
+  try {
+    // استخراج داده‌ها از بدنه درخواست
+    const { id, title, slug, count, price, cat, description, image } =
+      await request.json();
+
+    // بررسی وجود ID
+    if (!id) {
+      return new Response("ID is required", { status: 400 });
+    }
+
+    // انجام عملیات به‌روزرسانی (مثلاً از پایگاه داده)
+    const updatedProduct = await Prisma.product.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        slug,
+        price,
+        count,
+        description,
+        cat,
+        image,
+      },
+    });
+
+    if (updatedProduct) {
+      return new Response(JSON.stringify(updatedProduct), { status: 200 });
+    } else {
+      return new Response("Product not found", { status: 404 });
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return new Response("Internal Server Error", { status: 500 });
+  }
+}
+
+export async function DELETE(request: Request) {
+  try {
+    // استخراج ID از URL یا body درخواست
+    const { id } = await request.json(); // فرض بر این است که ID در بدنه درخواست ارسال می‌شود
+
+    if (!id) {
+      return new Response("ID is required", { status: 400 });
+    }
+
+    // انجام عملیات حذف (مثلاً از پایگاه داده)
+    // فرض کنید که شما یک تابع deleteProduct دارید که محصول را حذف می‌کند
+    const result = await Prisma.product.delete({
+      where: {
+        id,
+      },
+    });
+
+    if (result) {
+      return new Response("Product deleted successfully", { status: 200 });
+    } else {
+      return new Response("Product not found", { status: 404 });
+    }
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    return new Response("Internal Server Error", { status: 500 });
   }
 }
