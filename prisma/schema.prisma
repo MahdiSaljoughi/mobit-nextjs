@@ -7,18 +7,18 @@ datasource db {
   url      = env("NEXT_PUBLIC_DATABASE_URL")
 }
 
-enum Role {
+enum Rule {
   USER
   ADMIN
 }
 
 model User {
   id        Int      @id @default(autoincrement())
-  user_name String?
+  user_name String?  @unique
   email     String   @unique
   phone     String?  @unique
   password  String
-  role      Role     @default(USER)
+  rule      Rule     @default(USER)
   // emailVerified  Boolean    @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -36,8 +36,8 @@ model Product {
   description String
   cat         String
   image       String
-  author      User     @relation(fields: [createdBy], references: [id])
-  createdBy   Int
+  author      User     @relation(fields: [createdBy], references: [user_name])
+  createdBy   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -47,8 +47,8 @@ model Post {
   title       String
   description String
   image       String
-  author      User     @relation(fields: [createdBy], references: [id])
-  createdBy   Int
+  author      User     @relation(fields: [createdBy], references: [user_name])
+  createdBy   String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

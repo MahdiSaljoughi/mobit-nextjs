@@ -5,7 +5,7 @@ const LogoutButton = () => {
   const handleLogout = () => {
     signOut({
       redirect: true,
-      callbackUrl: `${window.location.origin}/auth/sign-in`,
+      callbackUrl: `${window.location.origin}/sign-in`,
     });
   };
 

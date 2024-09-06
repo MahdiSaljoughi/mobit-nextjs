@@ -49,7 +49,7 @@ export function EditUser() {
                 phone: "",
                 image: "",
                 bio: "",
-                role: "",
+                rule: "",
               }}
               validationSchema={Yup.object({
                 email: Yup.string()
@@ -59,7 +59,7 @@ export function EditUser() {
                 phone: Yup.string().required("این فیلد الزامی است ."),
                 image: Yup.string().required("این فیلد الزامی است ."),
                 bio: Yup.string().required("این فیلد الزامی است ."),
-                role: Yup.string().required("این فیلد الزامی است ."),
+                rule: Yup.string().required("این فیلد الزامی است ."),
               })}
               onSubmit={async (values, { setSubmitting, resetForm }) => {
                 setSubmitting(true);

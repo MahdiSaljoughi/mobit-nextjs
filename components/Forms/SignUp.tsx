@@ -17,12 +17,12 @@ export default function SignUp() {
       <Formik
         initialValues={{
           email: "",
-          hashedPassword: "",
+          password: "",
           user_name: "",
         }}
         validationSchema={Yup.object({
           email: Yup.string().required("ایمل الزامی است ."),
-          hashedPassword: Yup.string().required("رمز عبور الزامی است ."),
+          password: Yup.string().required("رمز عبور الزامی است ."),
           user_name: Yup.string().required("نام کاربری الزامی است ."),
         })}
         onSubmit={async (values, { setSubmitting }) => {
@@ -41,13 +41,13 @@ export default function SignUp() {
 
             // clear form
             values.email = "";
-            values.hashedPassword = "";
+            values.password = "";
             values.user_name = "";
 
             // toast
             toast("حساب شما با موفقیت ایجاد شد");
 
-            router.replace("/auth/sign-in");
+            router.replace("/sign-in");
           } catch (error) {
             toast("خطا ! لطفا مقادیر را به درستی وارد کنید .");
           }
@@ -83,15 +83,15 @@ export default function SignUp() {
             className="text-rose-500"
           />
 
-          <label htmlFor="hashedPassword">رمز عبور</label>
+          <label htmlFor="password">رمز عبور</label>
           <Field
-            name="hashedPassword"
+            name="password"
             type="password"
             className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
             placeholder="رمز عبور"
           />
           <ErrorMessage
-            name="hashedPassword"
+            name="password"
             component="div"
             className="text-rose-500"
           />

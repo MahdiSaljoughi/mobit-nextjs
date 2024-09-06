@@ -12,7 +12,7 @@ import Image from "next/image";
 export default function CartPage() {
   const { state, dispatch } = useContext(CartContext);
 
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
   const {
     cart: { cartItems },
@@ -21,8 +21,8 @@ export default function CartPage() {
     dispatch({ type: "REMOVE_ITEM", payload: item });
   }
   const router = useRouter();
-  // session?.user
-  if (true) {
+
+  if (session?.user) {
     return (
       <>
         <div
@@ -121,13 +121,13 @@ export default function CartPage() {
   } else {
     return (
       <>
-        <div className="py-52 flex flex-col justify-center items-center gap-y-10 contain">
-          <span className="block text-2xl font-[fontd1]">
+        <div className="min-h-[1000px] flex flex-col justify-center items-center gap-y-10 contain">
+          <span className="block text-2xl">
             لطفا ابتدا به حساب کاربری خود وارد شوید .
           </span>
           <Link
-            href="/auth/sign-in"
-            className="bg-orange-400 px-10 py-2 rounded-2xl inline-block text-white"
+            href="/sign-in"
+            className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
           >
             ورود
           </Link>
