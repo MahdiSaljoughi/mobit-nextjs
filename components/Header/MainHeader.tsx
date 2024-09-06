@@ -2,9 +2,16 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { useContext } from "react";
+import { CartContext } from "@/contexts/cart";
 
 export default function MainHeader() {
   const { data: session } = useSession();
+
+  const { state } = useContext(CartContext);
+  const {
+    cart: { cartItems },
+  } = state;
   const dataMegaMenu = [
     {
       title: "موبایل و تبلت",
@@ -235,7 +242,9 @@ export default function MainHeader() {
                         <path d="M197.83-84.65q-47.96 0-80.57-32.61-32.61-32.61-32.61-80.57v-564.34q0-47.96 32.61-80.57 32.61-32.61 80.57-32.61h564.34q47.96 0 80.57 32.61 32.61 32.61 32.61 80.57v564.34q0 47.96-32.61 80.57-32.61 32.61-80.57 32.61H197.83Zm516.15-113.18h48.19v-48.19l-48.19 48.19Zm-490.48 0h54.48l120-120h108.69l-120 120h54.72l120-120h108.94l-120 120h54.71l120-120h37.13v-444.34H197.83v481.32l36.74-36.98H343.5l-120 120ZM427-502l-84.24 83q-15 15-36.51 15.38-21.52.38-37.01-15.62-15.24-15-15.24-36.88Q254-478 269.24-493l118.13-118.13q16.86-17.2 39.58-17.2t39.68 17.2L507-571l110.24-110q15-15 36.63-15.38 21.64-.38 37.13 15.62 15 15 15 36.76 0 21.76-15 36.76L546.63-462.63q-17.13 16.96-40.22 16.96-23.08 0-40.04-16.96L427-502ZM197.83-197.83v-564.34 564.34Z" />
                       </svg>
                     </span>
-                    <Link href="/">پیشنهادهای شگفت انگیز</Link>
+                    <Link href="https://www.mobit.ir/promotion">
+                      پیشنهادهای شگفت انگیز
+                    </Link>
                     <span className="bg-white w-0 lg:group-hover/under:w-[130px] xl:group-hover/under:w-[155px] 2xl:group-hover/under:w-[160px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                   </div>
                 </Link>
@@ -278,7 +287,7 @@ export default function MainHeader() {
                     <span className="bg-white w-0 lg:group-hover/under:w-[100px] xl:group-hover/under:w-[120px] 2xl:group-hover/under:w-[125px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                   </div>
                 </Link>
-                <Link href="/">
+                <Link href="https://mobithamkar.ir/search/category-mobilephone">
                   <div className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
                     <span>
                       <svg
@@ -326,7 +335,7 @@ export default function MainHeader() {
             <div>
               <Link
                 href={session?.user ? "/dashbord" : "/sign-in"}
-                className="flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1"
+                className="flex items-center gap-x-2"
               >
                 <span>
                   <svg
@@ -349,7 +358,11 @@ export default function MainHeader() {
             <div>
               <Link
                 href="/cart"
-                className="flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1"
+                className={
+                  cartItems.length !== 0
+                    ? "flex items-center gap-x-1"
+                    : "flex items-center gap-x-2"
+                }
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +375,11 @@ export default function MainHeader() {
                     d="m239.71 74.14l-25.64 92.28A24.06 24.06 0 0 1 191 184H92.16A24.06 24.06 0 0 1 69 166.42L33.92 40H16a8 8 0 0 1 0-16h24a8 8 0 0 1 7.71 5.86L57.19 64H232a8 8 0 0 1 7.71 10.14M88 200a16 16 0 1 0 16 16a16 16 0 0 0-16-16m104 0a16 16 0 1 0 16 16a16 16 0 0 0-16-16"
                   />
                 </svg>
-                <span>سبدخرید</span>
+                <span className={cartItems.length === 0 ? "" : "pt-0.5"}>
+                  {cartItems.length === 0
+                    ? "سبد خرید"
+                    : `${cartItems.length} کالا `}
+                </span>
               </Link>
             </div>
           </div>
@@ -550,7 +567,7 @@ export default function MainHeader() {
         </div>
         <div>
           <Link
-            href="/"
+            href="/cart"
             className="flex flex-col items-center justify-center gap-y-1"
           >
             <svg
@@ -571,7 +588,7 @@ export default function MainHeader() {
         </div>
         <div>
           <Link
-            href="/auth"
+            href={session?.user ? "/dashbord" : "/sign-in"}
             className="flex flex-col items-center justify-center gap-y-1"
           >
             <svg
@@ -585,7 +602,9 @@ export default function MainHeader() {
                 d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
               />
             </svg>
-            <span className="text-zinc-500">ورود</span>
+            <span className="text-zinc-500">
+              {session?.user ? "پروفایل" : "ورود"}
+            </span>
           </Link>
         </div>
       </div>

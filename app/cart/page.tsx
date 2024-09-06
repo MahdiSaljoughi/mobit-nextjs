@@ -25,13 +25,7 @@ export default function CartPage() {
   if (session?.user) {
     return (
       <>
-        <div
-          className={
-            cartItems.length === 0
-              ? ""
-              : "contain min-h-[1000px]"
-          }
-        >
+        <div className={cartItems.length === 0 ? "" : "contain min-h-[900px]"}>
           {cartItems.length === 0 ? (
             <>
               <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
@@ -94,10 +88,11 @@ export default function CartPage() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-teal-500/20 sticky top-20 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
-                  <div className="bg-teal-400 dark:bg-teal-600 text-white w-full mx-10 rounded-xl flex items-center justify-center p-4 text-lg">
+                <div className="bg-zinc-100 sticky top-20 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
+                  <span>اطلاعات پرداخت</span>
+                  <div className="w-full mx-10 rounded-xl flex items-center justify-center p-4 text-lg">
                     <span>
-                      مبلغ کل :{" "}
+                      مبلغ قابل پرداخت :{" "}
                       {cartItems
                         .reduce(
                           (acc: any, cur: any) => acc + cur.qty * cur.price,
@@ -108,10 +103,10 @@ export default function CartPage() {
                     </span>
                   </div>
                   <button
-                    className="rounded-xl bg-teal-400 dark:bg-teal-600 hover:bg-teal-500 dark:hover:bg-teal-500 text-white px-4 py-2 w-full transition-colors"
+                    className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-full transition-colors"
                     onClick={() => router.push("login?redirect=/shipping")}
                   >
-                    تکمیل خرید
+                    ادامه
                   </button>
                 </div>
               </div>
@@ -124,7 +119,7 @@ export default function CartPage() {
     return (
       <>
         <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
-          <span className="block text-2xl">
+          <span className="block text-lg md:text-2xl text-center">
             لطفا ابتدا به حساب کاربری خود وارد شوید.
           </span>
           <Link
