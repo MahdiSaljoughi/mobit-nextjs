@@ -7,6 +7,11 @@
     src: url(/fonts/iran/woff2/IRANSansXFaNum-Bold.woff2);
 }
 
+@font-face {
+    font-family: iranr;
+    src: url(/fonts/iran/woff2/IRANSansXFaNum-Regular.woff2);
+}
+
 .ltr {
     direction: ltr;
 }
@@ -19,4 +24,10 @@
     .contain {
         @apply py-10 mx-2 sm:mx-10 lg:mx-16 xl:mx-20 2xl:mx-56;
     }
+}
+
+.transition-transform-2 {
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 400ms;
 }

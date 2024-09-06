@@ -217,7 +217,7 @@ export default function MainHeader() {
                                   <Link
                                     key={index1}
                                     href={child.link}
-                                    className="inline-block hover:text-[#377DFF] text-[#3F434D] text-[12px] mb-3"
+                                    className="inline-block hover:text-[#377DFF] text-[#3F434D] text-[12px] mb-3 border-r-4 border-blue-500 pr-2 rounded-[4px] py-0.5"
                                   >
                                     {child.title}
                                   </Link>
@@ -378,7 +378,10 @@ export default function MainHeader() {
                 <span className={cartItems.length === 0 ? "" : "pt-0.5"}>
                   {cartItems.length === 0
                     ? "سبد خرید"
-                    : `${cartItems.length} کالا `}
+                    : `${cartItems.reduce(
+                        (acc: any, cur: any) => acc + cur.qty,
+                        0
+                      )} کالا `}
                 </span>
               </Link>
             </div>

@@ -29,7 +29,7 @@ export default function CartPage() {
           {cartItems.length === 0 ? (
             <>
               <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
-                <span className="block text-2xl">سبد خرید شما خالی است.</span>
+                <span className="block text-lg md:text-2xl">سبد خرید شما خالی است.</span>
                 <Link
                   href="/products"
                   className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
@@ -45,20 +45,23 @@ export default function CartPage() {
                   {cartItems.map((item: any) => (
                     <div
                       key={item.id}
-                      className="border dark:border-zinc-700 bg-white dark:bg-zinc-800 rounded-3xl flex flex-col lg:flex-row lg:items-center justify-between w-full p-4"
+                      className="border-b pb-2 lg:pb-4 flex flex-col lg:flex-row lg:items-center justify-between w-full"
                     >
                       <Link
                         href={`/products/${item.slug}`}
-                        className="flex item-center"
+                        className="flex item-center gap-x-4"
                       >
-                        <Image
-                          src={item.image}
-                          width={100}
-                          height={100}
-                          alt={item.title}
-                        />
-                        <div className="pt-8">
-                          <span className="block text-lg">{item.title}</span>
+                        <div className="bg-zinc-100 w-60 sm:w-40 p-2 rounded-xl">
+                          <Image
+                            src={item.image}
+                            width={100}
+                            height={100}
+                            alt={item.title}
+                            className="mx-auto"
+                          />
+                        </div>
+                        <div className="pt-2">
+                          <span className="text-sm line-clamp-2 leading-7">{item.title}</span>
                         </div>
                       </Link>
                       <div className="flex flex-row-reverse justify-between lg:flex-col items-center lg:items-stretch">
@@ -66,7 +69,7 @@ export default function CartPage() {
                           {item.price.toLocaleString()} تومان
                         </span>
                         <div className="flex items-center gap-x-4 justify-between pl-2 pr-3 py-2 lg:p-2 lg:pr-4 bg-zinc-100 dark:bg-zinc-700 rounded-xl">
-                          <span>{item.qty} عدد</span>
+                          <span className="text-sm">{item.qty} عدد</span>
                           <button
                             onClick={() => removeItemHandler(item)}
                             className="bg-red-500/20 p-1 rounded-lg text-red-500"
@@ -91,7 +94,7 @@ export default function CartPage() {
                 <div className="bg-zinc-100 sticky top-20 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
                   <span>اطلاعات پرداخت</span>
                   <div className="w-full mx-10 rounded-xl flex items-center justify-center p-4 text-lg">
-                    <span>
+                    <span className="text-sm">
                       مبلغ قابل پرداخت :{" "}
                       {cartItems
                         .reduce(

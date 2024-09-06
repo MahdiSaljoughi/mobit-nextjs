@@ -33,7 +33,7 @@ export default function AddToCart({ product }: any) {
 
   return (
     <button
-      className="rounded-xl bg-blue-500 text-white px-4 py-2.5 text-sm"
+      className="rounded-xl bg-blue-500 text-white px-4 py-2.5 text-sm md:w-full"
       onClick={addToCartHandler}
     >
       افزودن به سبد خرید

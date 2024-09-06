@@ -18,22 +18,31 @@ interface ProductProps {
 
 export default function Product({ item }: ProductProps) {
   return (
-    <div className="rounded-xl block transition-colors">
-      <Link href={`/products/${item.slug}`} className="bg-zinc-100 block rounded-2xl p-8">
-        <img src={item.image} alt={item.title} className="rounded-xl w-full hover:scale-105 transition-transform" />
-      </Link>
-      <Link href={`/products/${item.slug}`} className="block mt-4 text-right">
-        <h2 className="line-clamp-2">{item.title}</h2>
-      </Link>
-      <div className="flex items-center justify-end pb-4 h-14">
-        {item.count > 0 ? (
-          <span>{`${item.price.toLocaleString()} تومان `}</span>
-        ) : (
-          <span className="text-red-500 text-sm bg-red-400/20 p-1.5 rounded-xl inline-block">
-            ناموجود
-          </span>
-        )}
+    <Link
+      href={`/products/${item.slug}`}
+      className="rounded-2xl group/product hover:shadow-lg p-4 transition-colors flex gap-x-3 lg:flex-col"
+    >
+      <div className="w-60 lg:w-full bg-zinc-100 rounded-2xl p-2 lg:p-8">
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-full lg:w-40 group-hover/product:scale-110 transition-transform-2 mx-auto"
+        />
       </div>
-    </div>
+      <div className="flex flex-col justify-between gap-y-2">
+        <div className="lg:pt-4 text-right h-[56px] lg:h-[74px]">
+          <h2 className="leading-6 lg:leading-7 line-clamp-2 text-[12px] lg:text-sm">{item.title}</h2>
+        </div>
+        <div>
+          {item.count > 0 ? (
+            <span className="text-[12px] lg:text-sm block text-left">{`${item.price.toLocaleString()} تومان `}</span>
+          ) : (
+            <span className="text-red-500 text-[12px] lg:text-sm block text-center">
+              ناموجود
+            </span>
+          )}
+        </div>
+      </div>
+    </Link>
   );
 }
