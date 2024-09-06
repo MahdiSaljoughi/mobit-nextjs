@@ -18,14 +18,14 @@ interface ProductProps {
 
 export default function Product({ item }: ProductProps) {
   return (
-    <div className="rounded-xl block bg-white dark:bg-zinc-800 hover:shadow-lg transition-colors font-[fontd1]">
-      <Link href={`/products/${item.slug}`}>
-        <img src={item.image} alt={item.title} className="rounded-xl w-full" />
+    <div className="rounded-xl block transition-colors">
+      <Link href={`/products/${item.slug}`} className="bg-zinc-100 block rounded-2xl p-8">
+        <img src={item.image} alt={item.title} className="rounded-xl w-full hover:scale-105 transition-transform" />
       </Link>
-      <Link href={`/products/${item.slug}`} className="min-h-20 block">
-        <h2 className="text-center line-clamp-2">{item.title}</h2>
+      <Link href={`/products/${item.slug}`} className="block mt-4 text-right">
+        <h2 className="line-clamp-2">{item.title}</h2>
       </Link>
-      <div className="flex items-center justify-center pb-4 h-14">
+      <div className="flex items-center justify-end pb-4 h-14">
         {item.count > 0 ? (
           <span>{`${item.price.toLocaleString()} تومان `}</span>
         ) : (

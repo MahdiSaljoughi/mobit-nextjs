@@ -27,16 +27,18 @@ export default function CartPage() {
       <>
         <div
           className={
-            cartItems.length === 0 ? "contain min-h-[1000px]" : "contain min-h-[1000px]"
+            cartItems.length === 0
+              ? ""
+              : "contain min-h-[1000px]"
           }
         >
           {cartItems.length === 0 ? (
             <>
-              <div className="flex flex-col gap-y-10 items-center justify-center py-40">
+              <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
                 <span className="block text-2xl">سبد خرید شما خالی است.</span>
                 <Link
                   href="/products"
-                  className="bg-blue-500 block py-2 px-8 rounded-xl text-white"
+                  className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
                 >
                   شروع خرید
                 </Link>
@@ -121,9 +123,9 @@ export default function CartPage() {
   } else {
     return (
       <>
-        <div className="min-h-[1000px] flex flex-col justify-center items-center gap-y-10 contain">
+        <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
           <span className="block text-2xl">
-            لطفا ابتدا به حساب کاربری خود وارد شوید .
+            لطفا ابتدا به حساب کاربری خود وارد شوید.
           </span>
           <Link
             href="/sign-in"

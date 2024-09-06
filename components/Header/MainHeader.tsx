@@ -1,32 +1,151 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-
-import { useTheme } from "next-themes";
-
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { useSession } from "next-auth/react";
 
 export default function MainHeader() {
-  const pathname = usePathname();
-
-  const { setTheme } = useTheme();
-  const links = [
+  const { data: session } = useSession();
+  const dataMegaMenu = [
     {
-      id: 1,
-      title: "صفحه اصلی",
-      route: "/",
+      title: "موبایل و تبلت",
+      link: "isLinkMobile",
+      img: "/images/megamenu/mobile.svg",
+      child: [
+        { title: "گوشی موبایل", link: "mobileLink", BIF: true },
+        { title: "شیائومی", link: "#" },
+        { title: "سامسونگ", link: "#" },
+        { title: "اپل", link: "#" },
+        { title: "هواوی", link: "#" },
+        { title: "نوکیا", link: "#" },
+        { title: "آنر", link: "#" },
+        { title: "گوشی های ساده", link: "#" },
+        { title: "گلس گوشی موبایل (محافظ صفحه نمایش)", link: "#" },
+        { title: "کیف و کاور گوشی", link: "#" },
+        { title: "کابل و مبدل", link: "#" },
+        { title: "کارت حافظه گوشی موبایل", link: "#" },
+        { title: "پایه نگه دارنده تبلت و گوشی", link: "#" },
+        { title: "شارژر گوشی", link: "#" },
+        { title: "هدفون,هدست,هندزفری", link: "#", BIF: true },
+        { title: "باتری گوشی", link: "#" },
+        { title: "پاور بانک (شارژر همراه)", link: "#", BIF: true },
+        { title: "محافظ لنز دوربین گوشی موبایل", link: "#" },
+        { title: "لوازم جانبی موبایل", link: "#", BIF: true },
+        { title: "قلم هوشمند", link: "#" },
+        { title: "کیف و کاور هندزفری", link: "#" },
+        { title: "تبلت", link: "#", BIF: true },
+      ],
     },
     {
-      id: 2,
-      title: "محصولات",
-      route: "/products",
+      title: "لوازم جانبی موبایل",
+      link: "isLinkMobile",
+      img: "/images/megamenu/janebi.webp",
+      child: [
+        { title: "برند گوشی", link: "mobileLink", BIF: true },
+        { title: "لوازم جانبی اپل", link: "#" },
+        { title: "لوازم جانبی سامسونگ", link: "#" },
+        { title: "لوازم جانبی شیائومی", link: "#" },
+        { title: "لوازم جانبی هواوی و آنر", link: "#" },
+        { title: "لوازم جانبی نوکیا", link: "#" },
+        { title: "لوازم جانبی جی پلاس", link: "#" },
+        { title: "لوازم جانبی متورولا", link: "#" },
+        { title: "دسته بندی محصولات", link: "#", BIF: true },
+        { title: "شارژر", link: "#" },
+        { title: "کابل و مبدل", link: "#" },
+        { title: "پاور بانک", link: "#" },
+        { title: "باتری گوشی موبایل", link: "#" },
+        { title: "کارت حافظه گوشی موبایل", link: "#" },
+        { title: "کاور و کیف گوشی موبایل", link: "#" },
+        { title: "محافظ لنز گوشی موبایل", link: "#" },
+        { title: "پایه نگهدارنده گوشی موبایل", link: "#" },
+        { title: "گلس و محافظ صفحه گوشی موبایل", link: "#" },
+        { title: "هدفون و هندزفری", link: "#" },
+        { title: "کیف و کاور هندزفری", link: "#" },
+        { title: "اسپیکر بلوتوثی", link: "#" },
+        { title: "ساعت هوشمند", link: "#" },
+      ],
+    },
+    {
+      title: "لپ تاپ و کامپیوتر",
+      link: "isLinkMobile",
+      img: "/images/megamenu/laptop.svg",
+      child: [
+        { title: "لپ تاپ", link: "#", BIF: true },
+        { title: "کامپیوتر کوچک", link: "#", BIF: true },
+        { title: "کامپیوتر All-in-One", link: "#", BIF: true },
+        { title: "قطعات اصلی", link: "#", BIF: true },
+        { title: "پردازنده", link: "#" },
+        { title: "مادربورد", link: "#" },
+        { title: "رم کامپیوتر", link: "#" },
+        { title: "منبع تغذیه", link: "#" },
+        { title: "کارت گرافیک", link: "#" },
+        { title: "کیس", link: "#" },
+        { title: "هارد دیسک", link: "#" },
+        { title: "درایو نوری", link: "#" },
+        { title: "فن - خنک کننده", link: "#" },
+        { title: "مانیتور", link: "#", BIF: true },
+        { title: "اسپیکر", link: "#", BIF: true },
+        { title: "جانبی کامپیوتر و لپ تاپ", link: "#", BIF: true },
+        { title: "کیبورد", link: "#" },
+        { title: "ماوس", link: "#" },
+        { title: "مواس پد", link: "#" },
+        { title: "کیف هارد", link: "#" },
+        { title: "کابل تبدیل و مبدل", link: "#" },
+        { title: "کیف و کوله", link: "#" },
+        { title: "پایه خنک کننده", link: "#" },
+        { title: "براکت هارداینترنال", link: "#" },
+        { title: "سایر قطعات جانبی", link: "#" },
+        { title: "فلش مموری", link: "#", BIF: true },
+        { title: "ذخیره ساز اطلاعات", link: "#", BIF: true },
+        { title: "حافظه اکسترنال", link: "#" },
+        { title: "حافظه SSD", link: "#" },
+        { title: "تجهیزات شبکه", link: "#", BIF: true },
+        { title: "دوربین مداربسته", link: "#", BIF: true },
+        { title: "نرم افزار", link: "#", BIF: true },
+      ],
+    },
+    {
+      title: "گجت های هوشمند",
+      link: "isLinkMobile",
+      img: "/images/megamenu/gajet.svg",
+      child: [
+        { title: "ساعت هوشمند", link: "#", BIF: true },
+        { title: "مچ بند هوشمند", link: "#", BIF: true },
+        { title: "لوازم جانبی شیایومی", link: "#", BIF: true },
+        {
+          title: "لوازم جانبی مچ بند و ساعت هوشمند",
+          link: "#",
+          BIF: true,
+        },
+      ],
+    },
+    {
+      title: "لوازم صوتی و تصویری",
+      link: "isLinkMobile",
+      img: "/images/megamenu/soti.svg",
+      child: [
+        { title: "تلوزیون", link: "#", BIF: true },
+        { title: "سینمای خانگی و ساندبار", link: "#", BIF: true },
+        { title: "لوازم جانبی صوتی و تصویری", link: "#", BIF: true },
+        { title: "رادیو", link: "#", BIF: true },
+      ],
+    },
+    {
+      title: "ماشین های اداری",
+      link: "isLinkMobile",
+      img: "/images/megamenu/mashin.svg",
+      child: [
+        { title: "پرینتر", link: "#", BIF: true },
+        { title: "پرینتر لیبل زن و لوازم جانبی", link: "#", BIF: true },
+      ],
+    },
+    {
+      title: "کنسول بازی",
+      link: "isLinkMobile",
+      img: "/images/megamenu/console.svg",
+      child: [
+        { title: "کنسول بازی خانگی", link: "#", BIF: true },
+        { title: "تجهیزات جانبی کنسول بازی", link: "#", BIF: true },
+      ],
     },
   ];
 
@@ -47,7 +166,7 @@ export default function MainHeader() {
             <div className="hidden lg:block">
               <div className="flex items-center 2xl:gap-x-8 xl:gap-x-5 lg:gap-x-4 xl:ml-16 lg:ml-8">
                 <div className="group/menu py-6">
-                  <div>
+                  <>
                     <div className="flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1 cursor-pointer">
                       <span>
                         <svg
@@ -64,29 +183,43 @@ export default function MainHeader() {
                       <span className="block">دسته بندی ها</span>
                       <span className="bg-white w-0 lg:group-hover/menu:w-[80px] xl:group-hover/menu:w-[95px] 2xl:group-hover/menu:w-[105px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                     </div>
-                  </div>
-
+                  </>
                   <div className="relative hidden group-hover/menu:block transition-all">
-                    <div className="bg-white w-[240px] h-[388px] text-[#3F434D] text-[13px] absolute top-6 py-3 rounded-br-xl shadow-md transition-all duration-1000">
-                      <div
-                        v-for="D1 in dataMenu"
-                        key="D1.id"
-                        className="flex items-center gap-x-2 group/list hover:border-t-[1px] px-3 py-1.5 hover:border-b-[1px] border-zinc-700/10 hover:bg-gray-50 hover:text-[#377DFF]"
-                      >
-                        <img src="D1.img" alt="img" className="w-10" />
-                        {/* <a>{ D1.name }</a> */}
-                        <div className="hidden group-hover/list:block cursor-default bg-white w-[512px] h-[388px] absolute top-0 mr-[228px] rounded-bl-xl shadow-md py-3 pl-10 pr-3">
-                          <div className="grid grid-cols-2 py-2 pr-2">
-                            <div v-for="child in D1.children" key="child.id">
-                              {/* <a
-                            className="{ borderR: true }"
-                            className="inline-block hover:text-[#377DFF] text-[#3F434D] text-[12px] mb-3"
-                            >{{ child.name }}</a
-                          > */}
+                    <div className="bg-white w-[240px] h[388px] text-[#3F434D] text-[13px] absolute top-6 py-3 rounded-br-xl shadow-md transition-all duration-1000">
+                      {dataMegaMenu.map((item, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center gap-x-2 group/list border-y-[1px] border-white/0 hover:border-zinc-700/10 px-3 py-1.5 hover:bg-gray-50 hover:text-[#377DFF]"
+                        >
+                          <img
+                            src={item.img}
+                            alt={item.title}
+                            className="w-10"
+                          />
+                          <Link href={item.link}>{item.title}</Link>
+                          <div className="hidden group-hover/list:block cursor-default bg-white w-[512px] h-[402px] absolute top-0 mr-[228px] rounded-bl-xl shadow-md py-3 pl-10 pr-3">
+                            <div
+                              className={
+                                index === 2
+                                  ? "grid grid-cols-3 py-2 pr-2"
+                                  : "grid grid-cols-2 py-2 pr-2"
+                              }
+                            >
+                              <>
+                                {item.child.map((child, index1) => (
+                                  <Link
+                                    key={index1}
+                                    href={child.link}
+                                    className="inline-block hover:text-[#377DFF] text-[#3F434D] text-[12px] mb-3"
+                                  >
+                                    {child.title}
+                                  </Link>
+                                ))}
+                              </>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -102,7 +235,7 @@ export default function MainHeader() {
                         <path d="M197.83-84.65q-47.96 0-80.57-32.61-32.61-32.61-32.61-80.57v-564.34q0-47.96 32.61-80.57 32.61-32.61 80.57-32.61h564.34q47.96 0 80.57 32.61 32.61 32.61 32.61 80.57v564.34q0 47.96-32.61 80.57-32.61 32.61-80.57 32.61H197.83Zm516.15-113.18h48.19v-48.19l-48.19 48.19Zm-490.48 0h54.48l120-120h108.69l-120 120h54.72l120-120h108.94l-120 120h54.71l120-120h37.13v-444.34H197.83v481.32l36.74-36.98H343.5l-120 120ZM427-502l-84.24 83q-15 15-36.51 15.38-21.52.38-37.01-15.62-15.24-15-15.24-36.88Q254-478 269.24-493l118.13-118.13q16.86-17.2 39.58-17.2t39.68 17.2L507-571l110.24-110q15-15 36.63-15.38 21.64-.38 37.13 15.62 15 15 15 36.76 0 21.76-15 36.76L546.63-462.63q-17.13 16.96-40.22 16.96-23.08 0-40.04-16.96L427-502ZM197.83-197.83v-564.34 564.34Z" />
                       </svg>
                     </span>
-                    <Link href='/'>پیشنهادهای شگفت انگیز</Link>
+                    <Link href="/">پیشنهادهای شگفت انگیز</Link>
                     <span className="bg-white w-0 lg:group-hover/under:w-[130px] xl:group-hover/under:w-[155px] 2xl:group-hover/under:w-[160px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                   </div>
                 </Link>
@@ -141,7 +274,7 @@ export default function MainHeader() {
                         />
                       </svg>
                     </span>
-                    <Link href='/mag'>اخبار و مقلات روز</Link>
+                    <Link href="/mag">اخبار و مقلات روز</Link>
                     <span className="bg-white w-0 lg:group-hover/under:w-[100px] xl:group-hover/under:w-[120px] 2xl:group-hover/under:w-[125px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                   </div>
                 </Link>
@@ -192,7 +325,7 @@ export default function MainHeader() {
           <div className="hidden lg:flex items-center 2xl:gap-x-10 lg:gap-x-4 mx-5">
             <div>
               <Link
-                href="/sign-in"
+                href={session?.user ? "/dashbord" : "/sign-in"}
                 className="flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1"
               >
                 <span>
@@ -208,7 +341,9 @@ export default function MainHeader() {
                     />
                   </svg>
                 </span>
-                <span>ورود / ثبت نام</span>
+                <span>
+                  {session?.user ? session.user.username : "ورود / ثبت نام"}
+                </span>
               </Link>
             </div>
             <div>
@@ -253,7 +388,7 @@ export default function MainHeader() {
             </div>
             <div className="mx-auto">
               <Link href="/">
-                <img src="/public/images/logos/mobit.png" width="110" alt="" />
+                <img src="/images/logos/mobit.png" width="110" alt="logo" />
               </Link>
             </div>
           </div>
