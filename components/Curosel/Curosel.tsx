@@ -34,12 +34,7 @@ export function Curosel() {
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
   return (
-    <Carousel
-      plugins={[plugin.current]}
-      className="w-full rounded-none ltr"
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
-    >
+    <Carousel plugins={[plugin.current]} className="w-full rounded-none ltr">
       <CarouselContent>
         {itmes.map((item, index) => (
           <CarouselItem key={index}>

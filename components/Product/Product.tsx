@@ -20,7 +20,7 @@ export default function Product({ item }: ProductProps) {
   return (
     <Link
       href={`/products/${item.slug}`}
-      className="rounded-2xl group/product hover:shadow-lg p-4 transition-colors flex gap-x-3 lg:flex-col"
+      className="rounded-2xl group/product p-4 transition-colors flex gap-x-3 lg:flex-col"
     >
       <div className="w-60 lg:w-full bg-zinc-100 rounded-2xl p-2 lg:p-8">
         <img

@@ -28,7 +28,7 @@ export default async function ProductPage({
             <div className="w-full rounded-2xl">
               <div className="flex flex-col gap-y-4 md:gap-8">
                 <div className="flex gap-4 flex-wrap lg:flex-nowrap">
-                  <div className="rounded-xl bg-zinc-100 dark:bg-zinc-700 w-full lg:max-w-96">
+                  <div className="rounded-xl bg-zinc-100 w-full lg:max-w-96">
                     <div className="w-full max-w-96 mx-auto p-8">
                       <img
                         src={product?.image}
@@ -75,7 +75,7 @@ export default async function ProductPage({
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-96 lg:h-36 bg-zinc-100 border dark:border-zinc-700 dark:bg-zinc-800 lg:rounded-2xl py-4 px-2 md:p-4 fixed bottom-0 inset-x-0 lg:sticky lg:top-20">
+            <div className="w-full lg:w-96 lg:h-36 bg-zinc-100 lg:rounded-2xl py-4 px-2 md:p-4 fixed bottom-0 inset-x-0 lg:sticky lg:top-20">
               {product.count > 0 ? (
                 <div className="flex flex-row-reverse md:flex-col gap-3 items-center justify-between">
                   <div className="flex items-center gap-x-1">

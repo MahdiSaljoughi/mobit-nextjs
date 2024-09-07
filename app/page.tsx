@@ -1,26 +1,36 @@
 import { Curosel } from "@/components/Curosel/Curosel";
 import Item8 from "@/components/Item8/Item8";
+import Carosel from "@/components/Product/Carosel";
+import prismadb from "@/lib/prisma";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const product = await prismadb.product.findMany();
   return (
     <>
       <main className="min-h-[900px] flex flex-col gap-y-2">
         <Curosel />
-        <section className="contain flex flex-col gap-y-8">
+        <section className="py-10 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 2xl:mx-32 flex flex-col gap-y-10">
+          
           <Item8 />
 
-          <Link href="/" className="block">
-            <div className="w-full rounded-2xl bg-red-400 text-center py-4 text-white">
-              پیشنهاد ویژه مبیت
-            </div>
-          </Link>
+          <div>
+            <Link href="/" className="block">
+              <div className="w-full rounded-2xl bg-red-400 text-center py-4 text-white">
+                پیشنهاد ویژه مبیت
+              </div>
+            </Link>
+            <Carosel product={product} />
+          </div>
 
-          <Link href="/" className="block">
-            <div className="w-full rounded-2xl bg-zinc-100 p-4">
-              پربازدید های ماه
-            </div>
-          </Link>
+          <div>
+            <Link href="/" className="block">
+              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+                پربازدید های ماه
+              </div>
+            </Link>
+            <Carosel product={product} />
+          </div>
 
           <div className="flex flex-col md:flex-row gap-x-2">
             <Link href="/" className="block">
@@ -31,17 +41,38 @@ export default function Home() {
             </Link>
           </div>
 
-          <Link href="/" className="block">
-            <div className="w-full rounded-2xl bg-zinc-100 p-4">
-              پرفروش های ماه
-            </div>
-          </Link>
+          <div>
+            <Link href="/" className="block">
+              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+                پرفروش های ماه
+              </div>
+            </Link>
+            <Carosel product={product} />
+          </div>
 
-          <Link href="/" className="block">
-            <div className="w-full rounded-2xl bg-zinc-100 p-4">
-              جدید ترین محصولات
-            </div>
-          </Link>
+          <div>
+            <Link href="/" className="block">
+              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+                جدید ترین محصولات
+              </div>
+            </Link>
+            <Carosel product={product} />
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-2">
+            <Link href="/" className="block">
+              <img src="/images/4img1.jpg" alt="img" />
+            </Link>
+            <Link href="/" className="block">
+              <img src="/images/4img2.jpg" alt="img" />
+            </Link>
+            <Link href="/" className="block">
+              <img src="/images/4img3.jpg" alt="img" />
+            </Link>
+            <Link href="/" className="block">
+              <img src="/images/4img4.jpg" alt="img" />
+            </Link>
+          </div>
         </section>
       </main>
     </>
