@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "sonner";
 
-export default function FormAddProduct({ id }: any) {
+export default function FormAddProduct({ user_name }: any) {
 
   return (
     <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl">
@@ -33,7 +33,7 @@ export default function FormAddProduct({ id }: any) {
 
           // تبدیل price و count به عدد
           const productData = {
-            createBy: Number(id),
+            createdBy: user_name,
             ...values,
             price: Number(values.price),
             count: Number(values.count),
