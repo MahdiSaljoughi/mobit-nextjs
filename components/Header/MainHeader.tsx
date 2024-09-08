@@ -531,7 +531,7 @@ export default function MainHeader() {
         </div>
       </div>
 
-      <div className="lg:hidden flex justify-between items-center bg-white text-zinc-400/80 fixed bottom-0 w-full px-10 py-3 sm:px-20 shadow-black shadow-md text-[10px] sm:text-xs">
+      <div className="lg:hidden flex justify-between items-center bg-white text-zinc-400/80 fixed bottom-0 w-full px-10 py-4 sm:px-20 shadow-black shadow-md text-[10px] sm:text-xs z-50">
         <div>
           <Link
             href="/"

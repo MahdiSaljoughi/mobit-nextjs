@@ -11,7 +11,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { email, password, user_name } = await request.json();
+    const { email, password, user_name, phone } = await request.json();
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
         email,
         password: hashedPassword,
         user_name,
+        phone
       },
     });
 

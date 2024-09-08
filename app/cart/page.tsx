@@ -91,7 +91,7 @@ export default function CartPage() {
                     </div>
                   ))}
                 </div>
-                <div className="bg-zinc-100 sticky top-20 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
+                <div className="bg-zinc-100 sticky top-24 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
                   <span>اطلاعات پرداخت</span>
                   <div className="w-full mx-10 rounded-xl flex items-center justify-center p-4 text-lg">
                     <span className="text-sm">

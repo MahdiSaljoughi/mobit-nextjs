@@ -59,7 +59,7 @@ export default async function Home() {
             <Carosel product={product} />
           </div>
 
-          <div className="flex flex-col md:flex-row gap-2">
+          <div className="flex flex-col md:flex-row gap-2 items-center w-full">
             <Link href="/" className="block">
               <img src="/images/4img1.jpg" alt="img" />
             </Link>

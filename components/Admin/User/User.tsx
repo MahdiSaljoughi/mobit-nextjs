@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Prisma from "@/lib/prisma";
 import { EditUser } from "@/components/Edit/EditUser";
 
@@ -7,11 +6,10 @@ export default async function AdminUser() {
 
   return (
     <>
-      <div className="border dark:border-zinc-700 bgwhite py-10 rounded-3xl w-full overflow-auto">
+      <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl w-full overflow-auto">
         <table className="w-full">
           <thead>
             <tr className="text-blue-500">
-              {/* <th>تصویر</th> */}
               <th>شماره</th>
               <th>نام کاربری</th>
               <th>ایمیل</th>
@@ -24,19 +22,9 @@ export default async function AdminUser() {
               <tr
                 key={index}
                 className={
-                  index % 2 === 0
-                    ? "text-center"
-                    : "text-center bg-blue-500/20"
+                  index % 2 === 0 ? "text-center" : "text-center bg-blue-500/20"
                 }
               >
-                {/* <td className="flex items-center justify-center">
-                  <Image
-                    src={user.image}
-                    width={60}
-                    height={60}
-                    alt={user.email}
-                  />
-                </td> */}
                 <td className="p-4">{user.id}</td>
                 <td>{user.user_name ? user.user_name : "وارد نشده"}</td>
                 <td>{user.email}</td>
@@ -45,7 +33,6 @@ export default async function AdminUser() {
                 <td>
                   <EditUser />
                 </td>
-                <td>حذف</td>
               </tr>
             ))}
           </tbody>

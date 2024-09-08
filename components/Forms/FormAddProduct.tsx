@@ -7,8 +7,8 @@ import { toast } from "sonner";
 export default function FormAddProduct({ id }: any) {
 
   return (
-    <div className="w-full">
-      <span className="block text-xl">فرم افزودن محصول</span>
+    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl">
+      <span className="block md:text-xl">فرم افزودن محصول</span>
       <Formik
         initialValues={{
           title: "",
@@ -66,7 +66,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="title"
               type="text"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="title"
@@ -78,7 +78,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="price"
               type="number"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="price"
@@ -90,7 +90,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="cat"
               type="text"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="cat"
@@ -102,7 +102,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="slug"
               type="text"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="slug"
@@ -114,7 +114,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="count"
               type="number"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="count"
@@ -126,7 +126,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="description"
               type="text"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="description"
@@ -138,7 +138,7 @@ export default function FormAddProduct({ id }: any) {
             <Field
               name="image"
               type="text"
-              className="outline-none py-3 px-4 rounded-xl ring-2 ring-orange-300 bg-white/0"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
               name="image"
@@ -148,7 +148,7 @@ export default function FormAddProduct({ id }: any) {
 
             <button
               type="submit"
-              className={`bg-teal-400 hover:bg-teal-500 dark:bg-teal-500 dark:hover:bg-teal-400 rounded-xl px-10 py-2 text-white transition-colors ${
+              className={`bg-blue-500 hover:bg-blue-600 rounded-2xl px-10 py-2 text-white transition-colors ${
                 isSubmitting ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={isSubmitting}
