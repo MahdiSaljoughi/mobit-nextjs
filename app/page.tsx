@@ -16,18 +16,18 @@ export default async function Home() {
 
           <div>
             <Link href="/" className="block">
-              <div className="w-full rounded-2xl bg-red-400 text-center py-4 text-white">
+              <p className="w-full rounded-2xl bg-red-400 text-center py-4 text-white">
                 پیشنهاد ویژه مبیت
-              </div>
+              </p>
             </Link>
             <Carosel product={product} />
           </div>
 
           <div>
             <Link href="/" className="block">
-              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+              <p className="w-full rounded-2xl bg-zinc-100 p-4">
                 پربازدید های ماه
-              </div>
+              </p>
             </Link>
             <Carosel product={product} />
           </div>
@@ -43,18 +43,18 @@ export default async function Home() {
 
           <div>
             <Link href="/" className="block">
-              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+              <p className="w-full rounded-2xl bg-zinc-100 p-4">
                 پرفروش های ماه
-              </div>
+              </p>
             </Link>
             <Carosel product={product} />
           </div>
 
           <div>
             <Link href="/" className="block">
-              <div className="w-full rounded-2xl bg-zinc-100 p-4">
+              <p className="w-full rounded-2xl bg-zinc-100 p-4">
                 جدید ترین محصولات
-              </div>
+              </p>
             </Link>
             <Carosel product={product} />
           </div>

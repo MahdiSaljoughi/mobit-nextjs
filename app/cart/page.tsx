@@ -29,7 +29,9 @@ export default function CartPage() {
           {cartItems.length === 0 ? (
             <>
               <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
-                <span className="block text-lg md:text-2xl">سبد خرید شما خالی است.</span>
+                <span className="block text-lg md:text-2xl">
+                  سبد خرید شما خالی است.
+                </span>
                 <Link
                   href="/products"
                   className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
@@ -51,7 +53,7 @@ export default function CartPage() {
                         href={`/products/${item.slug}`}
                         className="flex item-center gap-x-4"
                       >
-                        <div className="bg-zinc-100 w-60 sm:w-40 p-2 rounded-xl">
+                        <span className="block bg-zinc-100 w-60 sm:w-40 p-2 rounded-xl">
                           <Image
                             src={item.image}
                             width={100}
@@ -59,10 +61,10 @@ export default function CartPage() {
                             alt={item.title}
                             className="mx-auto"
                           />
-                        </div>
-                        <div className="pt-2">
-                          <span className="text-sm line-clamp-2 leading-7">{item.title}</span>
-                        </div>
+                        </span>
+                        <span className="block pt-2 text-sm line-clamp-2 leading-7">
+                          {item.title}
+                        </span>
                       </Link>
                       <div className="flex flex-row-reverse justify-between lg:flex-col items-center lg:items-stretch">
                         <span className="p-5 text-right">
@@ -107,7 +109,7 @@ export default function CartPage() {
                   </div>
                   <button
                     className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-full transition-colors"
-                    onClick={() => router.push("login?redirect=/shipping")}
+                    onClick={() => router.push("/shipping")}
                   >
                     ادامه
                   </button>

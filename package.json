@@ -1,6 +1,6 @@
 {
-  "name": "coffee",
-  "version": "0.1.0",
+  "name": "mobit",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev",

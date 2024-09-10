@@ -44,13 +44,11 @@ export default function Carosel({ product }: any) {
         }}
       >
         {product.map((product: any, index: any) => (
-          <>
-            <SwiperSlide key={index}>
-              <div className="p-2">
-                <Product item={product} />
-              </div>
-            </SwiperSlide>
-          </>
+          <SwiperSlide key={index}>
+            <div className="p-2">
+              <Product item={product} />
+            </div>
+          </SwiperSlide>
         ))}
         <div className="flex items-center justify-between lg:justify-center w-full">
           <button className="swiper-button-prev-custom">
@@ -65,9 +63,9 @@ export default function Carosel({ product }: any) {
                 <path
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m15 19l-7-7l7-7"
                 />
               </svg>
@@ -84,9 +82,9 @@ export default function Carosel({ product }: any) {
                 <path
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m15 19l-7-7l7-7"
                 />
               </svg>

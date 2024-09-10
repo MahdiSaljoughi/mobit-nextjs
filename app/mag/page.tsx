@@ -21,9 +21,9 @@ export default async function page() {
                       alt={post.title}
                       className="h-full sm:h-auto object-cover md:mx-0 sm:mx-auto"
                     />
-                    <div className="absolute inset-0 w-full h-full hidden md:flex-center invisible opacity-0 group-hover:opacity-100 group-hover:visible bg-gradient-to-r from-orange-200/50 to-orange-300/80 transition-all delay-75">
+                    <span className="absolute inset-0 w-full h-full hidden md:flex justify-center invisible opacity-0 group-hover:opacity-100 group-hover:visible bg-gradient-to-r from-orange-200/50 to-orange-300/80 transition-all delay-75">
                       <img src="/logo.svg" alt="logo" className="w-1/2" />
-                    </div>
+                    </span>
                   </Link>
                 </div>
                 <div className="w-full flex flex-col sm:flex-row items-start justify-between">

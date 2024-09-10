@@ -156,19 +156,33 @@ export default function MainHeader() {
     },
   ];
 
+  const openMenu = () => {
+    const menu = document.getElementById("menu");
+    const overlay = document.getElementById("overlay");
+    menu?.classList.remove("hidden");
+    overlay?.classList.remove("hidden");
+  };
+
+  const closeMenu = () => {
+    const menu = document.getElementById("menu");
+    const overlay = document.getElementById("overlay");
+    menu?.classList.add("hidden");
+    overlay?.classList.add("hidden");
+  };
+
   return (
     <>
       <header className="hidden lg:block bg-[#1C39BB] px-1.5 w-full sticky top-0 text-white shadow-md lg:text-[11px] xl:text-[12.8px] z-50">
         <div className="flex lg:justify-between items-center">
           <div className="items-center lg:mx-0 hidden lg:flex">
             <Link href="/">
-              <div className="2xl:ml-10 xl:ml-7 lg:ml-5 flex items-center">
+              <span className="2xl:ml-10 xl:ml-7 lg:ml-5 flex items-center">
                 <img
                   src="/images/logos/LogoType.png"
                   className="2xl:w-[94px] xl:w-[70px] lg:w-[50px] w-20"
                   alt="logo-type-mobit"
                 />
-              </div>
+              </span>
             </Link>
             <div className="hidden lg:block">
               <div className="flex items-center 2xl:gap-x-8 xl:gap-x-5 lg:gap-x-4 xl:ml-16 lg:ml-8">
@@ -230,8 +244,8 @@ export default function MainHeader() {
                     </div>
                   </div>
                 </div>
-                <Link href="/">
-                  <div className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
+                <Link href="https://www.mobit.ir/promotion">
+                  <span className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
                     <span>
                       <svg
                         className="xl:w-[20px] xl:h-[20px] lg:w-[14px] lg:h-[14px]"
@@ -242,14 +256,12 @@ export default function MainHeader() {
                         <path d="M197.83-84.65q-47.96 0-80.57-32.61-32.61-32.61-32.61-80.57v-564.34q0-47.96 32.61-80.57 32.61-32.61 80.57-32.61h564.34q47.96 0 80.57 32.61 32.61 32.61 32.61 80.57v564.34q0 47.96-32.61 80.57-32.61 32.61-80.57 32.61H197.83Zm516.15-113.18h48.19v-48.19l-48.19 48.19Zm-490.48 0h54.48l120-120h108.69l-120 120h54.72l120-120h108.94l-120 120h54.71l120-120h37.13v-444.34H197.83v481.32l36.74-36.98H343.5l-120 120ZM427-502l-84.24 83q-15 15-36.51 15.38-21.52.38-37.01-15.62-15.24-15-15.24-36.88Q254-478 269.24-493l118.13-118.13q16.86-17.2 39.58-17.2t39.68 17.2L507-571l110.24-110q15-15 36.63-15.38 21.64-.38 37.13 15.62 15 15 15 36.76 0 21.76-15 36.76L546.63-462.63q-17.13 16.96-40.22 16.96-23.08 0-40.04-16.96L427-502ZM197.83-197.83v-564.34 564.34Z" />
                       </svg>
                     </span>
-                    <Link href="https://www.mobit.ir/promotion">
-                      پیشنهادهای شگفت انگیز
-                    </Link>
+                    <span>پیشنهادهای شگفت انگیز</span>
                     <span className="bg-white w-0 lg:group-hover/under:w-[130px] xl:group-hover/under:w-[155px] 2xl:group-hover/under:w-[160px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
-                  </div>
+                  </span>
                 </Link>
-                <Link href="/">
-                  <div className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
+                <Link href="/mag">
+                  <span className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
                     <span>
                       <svg
                         className="xl:w-[24px] xl:h-[24px] lg:w-[16px] lg:h-[16px]"
@@ -261,8 +273,8 @@ export default function MainHeader() {
                           cy="22.616"
                           fill="none"
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           rx="8.879"
                           ry="17.083"
                           transform="rotate(-21.248 33.164 22.616)"
@@ -270,25 +282,25 @@ export default function MainHeader() {
                         <path
                           fill="none"
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="m37.026 38.831l-26.928-1.447A5.6 5.6 0 0 1 4.5 31.786c0-1.544.772-3.089 1.737-4.15L25.444 7.657"
                         />
                         <path
                           fill="none"
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M19.46 37.866c-1.93-.193-4.536-3.185-6.177-7.431c-1.64-4.15-1.737-8.011-.58-9.555m26.349 0l-9.555 8.3c2.8 4.922 6.37 7.818 8.88 6.853c3.088-1.255 3.378-8.011.675-15.153m-1.64-3.764l-9.652 8.396a7 7 0 0 1-.29-.772c-2.895-7.431-2.605-14.38.483-15.635c2.703-.965 6.563 2.51 9.459 8.01ZM19.942 38.06c0 2.026-1.64 3.57-3.764 3.57s-3.764-1.544-3.764-3.474v-.483"
                         />
                       </svg>
                     </span>
-                    <Link href="/mag">اخبار و مقلات روز</Link>
+                    <span>اخبار و مقلات روز</span>
                     <span className="bg-white w-0 lg:group-hover/under:w-[100px] xl:group-hover/under:w-[120px] 2xl:group-hover/under:w-[125px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
-                  </div>
+                  </span>
                 </Link>
                 <Link href="https://mobithamkar.ir/search/category-mobilephone">
-                  <div className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
+                  <span className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +315,7 @@ export default function MainHeader() {
                     </span>
                     <span>همکار و قیمت عمده</span>
                     <span className="bg-white w-0 lg:group-hover/under:w-[112px] xl:group-hover/under:w-[140px] 2xl:group-hover/under:w-[145px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
-                  </div>
+                  </span>
                 </Link>
               </div>
             </div>
@@ -392,10 +404,10 @@ export default function MainHeader() {
       <div className="lg:hidden inline-block sticky top-0 bg-[#1C39BB] w-full sm:px-5 z-30 h-[127px] text-zinc-600">
         <div
           id="menu"
-          className="hidden fixed right-0 w-[310px] h-screen bg-white shadow-xl z-[100]"
+          className="hidden fixed right-0 w-[310px] h-screen bg-white shadow-xl z-50"
         >
           <div className="bg-[#1C39BB] w-full h-[60px] flex items-center pr-1.5 pl-[15px]">
-            <div>
+            <div onClick={closeMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
@@ -433,8 +445,8 @@ export default function MainHeader() {
                   <path
                     fill="currentColor"
                     stroke="currentColor"
-                    stroke-linejoin="round"
-                    stroke-width="1"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
                     d="M20.6 5.26a2.51 2.51 0 0 0-2.48-2.2H5.885a2.51 2.51 0 0 0-2.48 2.19l-.3 2.47a3.4 3.4 0 0 0 1.16 2.56v8.16a2.5 2.5 0 0 0 2.5 2.5h10.47a2.5 2.5 0 0 0 2.5-2.5v-8.16A3.4 3.4 0 0 0 20.9 7.72Zm-6.59 14.68h-4v-4.08a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5Zm4.73-1.5a1.5 1.5 0 0 1-1.5 1.5h-2.23v-4.08a2.5 2.5 0 0 0-2.5-2.5h-1a2.5 2.5 0 0 0-2.5 2.5v4.08H6.765a1.5 1.5 0 0 1-1.5-1.5v-7.57a3.2 3.2 0 0 0 1.24.24a3.36 3.36 0 0 0 2.58-1.19a.24.24 0 0 1 .34 0a3.36 3.36 0 0 0 2.58 1.19A3.4 3.4 0 0 0 14.6 9.92a.22.22 0 0 1 .16-.07a.24.24 0 0 1 .17.07a3.36 3.36 0 0 0 2.58 1.19a3.2 3.2 0 0 0 1.23-.24Zm-1.23-8.33a2.39 2.39 0 0 1-1.82-.83a1.2 1.2 0 0 0-.92-.43h-.01a1.2 1.2 0 0 0-.92.42a2.476 2.476 0 0 1-3.65 0a1.24 1.24 0 0 0-1.86 0A2.405 2.405 0 0 1 4.1 7.78l.3-2.4a1.52 1.52 0 0 1 1.49-1.32h12.23a1.5 1.5 0 0 1 1.49 1.32l.29 2.36a2.39 2.39 0 0 1-2.395 2.37Z"
                   />
                 </svg>
@@ -453,8 +465,8 @@ export default function MainHeader() {
                     <path
                       fill="currentColor"
                       stroke="currentColor"
-                      stroke-linejoin="round"
-                      stroke-width="3"
+                      strokeLinejoin="round"
+                      strokeWidth="3"
                       d="M18 6H8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Zm0 22H8a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V30a2 2 0 0 0-2-2ZM40 6H30a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2Zm0 22H30a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V30a2 2 0 0 0-2-2Z"
                     />
                   </svg>
@@ -477,12 +489,14 @@ export default function MainHeader() {
         </div>
         <div
           id="overlay"
-          className="hidden sm:fixed w-full h-screen bg-black/10"
+          onClick={closeMenu}
+          className="hidden fixed w-full h-screen bg-black/30"
         ></div>
 
         <div className="flex items-center justify-between mt-4">
           <div className="w-9 flex justify-end">
             <svg
+              onClick={openMenu}
               className="text-white"
               xmlns="http://www.w3.org/2000/svg"
               width="28px"
@@ -497,41 +511,39 @@ export default function MainHeader() {
           </div>
 
           <Link href="/" className="w-40 mr-14">
-            <div>
+            <span className="block">
               <img
                 src="/images/logos/LogoType.png"
                 className="w-[70px]"
                 alt="Logo"
               />
-            </div>
+            </span>
           </Link>
           <div></div>
         </div>
 
-        <div>
-          <div className="relative rounded-md mx-3">
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
-              <span>
-                <svg
-                  className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 -960 960 960"
-                  fill="#fff"
-                >
-                  <path d="M375.57-295.85q-119.65 0-202.79-83.14-83.13-83.15-83.13-202.82 0-119.67 83.15-202.77 83.14-83.09 202.81-83.09t202.77 83.13q83.1 83.13 83.1 202.78 0 45.48-12.26 85.76-12.26 40.28-35.31 71.57l217.05 217.28q15.95 16.19 15.95 39.5t-16.19 39.52q-16.15 15.96-39.49 15.96-23.34 0-39.53-15.96L536-344.17q-29.87 22.04-72.53 35.18-42.67 13.14-87.9 13.14Zm-.1-113.17q72.99 0 122.91-49.83 49.92-49.82 49.92-122.81 0-72.99-49.92-122.92-49.92-49.92-122.91-49.92t-122.82 49.92q-49.82 49.93-49.82 122.92 0 72.99 49.82 122.81 49.83 49.83 122.82 49.83Z" />
-                </svg>
-              </span>
-            </div>
-            <input
-              type="text"
-              placeholder="جستجو در مبیت"
-              className="outline-none mx-auto text-white sm:my-5 mt-4 lg:hidden block w-full h-[50px] placeholder:text-zinc-400 placeholder:tracking-tight bg-[#ffffff00] bg-gradient-to-l from-[#ffffff17] focus:ring-2 ring-blue-700 sm:rounded-[18px] rounded-[16px] pl-10 sm:pr-14 pr-12"
-            />
+        <div className="relative rounded-md mx-3">
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4">
+            <span>
+              <svg
+                className="w-[20px] h-[20px] sm:w-[24px] sm:h-[24px]"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 -960 960 960"
+                fill="#fff"
+              >
+                <path d="M375.57-295.85q-119.65 0-202.79-83.14-83.13-83.15-83.13-202.82 0-119.67 83.15-202.77 83.14-83.09 202.81-83.09t202.77 83.13q83.1 83.13 83.1 202.78 0 45.48-12.26 85.76-12.26 40.28-35.31 71.57l217.05 217.28q15.95 16.19 15.95 39.5t-16.19 39.52q-16.15 15.96-39.49 15.96-23.34 0-39.53-15.96L536-344.17q-29.87 22.04-72.53 35.18-42.67 13.14-87.9 13.14Zm-.1-113.17q72.99 0 122.91-49.83 49.92-49.82 49.92-122.81 0-72.99-49.92-122.92-49.92-49.92-122.91-49.92t-122.82 49.92q-49.82 49.93-49.82 122.92 0 72.99 49.82 122.81 49.83 49.83 122.82 49.83Z" />
+              </svg>
+            </span>
           </div>
+          <input
+            type="text"
+            placeholder="جستجو در مبیت"
+            className="outline-none mx-auto text-white sm:my-5 mt-4 lg:hidden block w-full h-[50px] placeholder:text-zinc-400 placeholder:tracking-tight bg-[#ffffff00] bg-gradient-to-l from-[#ffffff17] focus:ring-2 ring-blue-700 sm:rounded-[18px] rounded-[16px] pl-10 sm:pr-14 pr-12"
+          />
         </div>
       </div>
 
-      <div className="lg:hidden flex justify-between items-center bg-white text-zinc-400/80 fixed bottom-0 w-full px-10 py-4 sm:px-20 shadow-black shadow-md text-[10px] sm:text-xs z-50">
+      <div className="lg:hidden flex justify-between items-center bg-white text-zinc-400/80 fixed bottom-0 w-full px-10 py-4 sm:px-20 shadow-black shadow-md text-[10px] sm:text-xs z-10">
         <div>
           <Link
             href="/"
