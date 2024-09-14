@@ -16,14 +16,12 @@ export default function SignUp() {
       </div>
       <Formik
         initialValues={{
-          email: "",
+          phone: "",
           password: "",
-          user_name: "",
         }}
         validationSchema={Yup.object({
-          email: Yup.string().required("ایمل الزامی است ."),
+          phone: Yup.string().required("شماره تماس الزامی است ."),
           password: Yup.string().required("رمز عبور الزامی است ."),
-          user_name: Yup.string().required("نام کاربری الزامی است ."),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
@@ -40,9 +38,8 @@ export default function SignUp() {
             setSubmitting(false);
 
             // clear form
-            values.email = "";
+            values.phone = "";
             values.password = "";
-            values.user_name = "";
 
             // toast
             toast("حساب شما با موفقیت ایجاد شد");
@@ -57,28 +54,15 @@ export default function SignUp() {
           <div>
             <span className="text-xl">ثبت نام در مبیت</span>
           </div>
-          <label htmlFor="email">ایمیل</label>
+          <label htmlFor="phone">شماره تماس</label>
           <Field
-            name="email"
-            type="email"
-            className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
-            placeholder="ایمیل"
-          />
-          <ErrorMessage
-            name="email"
-            component="div"
-            className="text-rose-500"
-          />
-
-          <label htmlFor="user_name">نام کاربری</label>
-          <Field
-            name="user_name"
+            name="phone"
             type="text"
             className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
-            placeholder="نام کاربری"
+            placeholder="09120000000"
           />
           <ErrorMessage
-            name="user_name"
+            name="phone"
             component="div"
             className="text-rose-500"
           />

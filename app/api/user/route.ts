@@ -11,16 +11,14 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { email, password, user_name, phone } = await request.json();
+    const { password, phone } = await request.json();
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await Prisma.user.create({
       data: {
-        email,
         password: hashedPassword,
-        user_name,
         phone
       },
     });
@@ -42,7 +40,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
   try {
     // استخراج داده‌ها از بدنه درخواست
-    const { id, email, user_name, phone, image, bio, rule } =
+    const { id, email, userName, phone, role } =
       await request.json();
 
     // بررسی وجود ID
@@ -57,9 +55,9 @@ export async function PUT(request: Request) {
       },
       data: {
         email,
-        user_name,
+        userName,
         phone,
-        rule,
+        role,
       },
     });
 

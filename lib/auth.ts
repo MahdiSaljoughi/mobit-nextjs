@@ -16,20 +16,20 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "ایمیل",
-          type: "email",
-          placeholder: "example@gmail.com",
+        phone: {
+          label: "شماره تماس",
+          type: "text",
+          placeholder: "0912000000",
         },
         password: { label: "رمز عبور", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
+        if (!credentials?.phone || !credentials.password) {
           return null;
         }
         const existingUser = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
+            phone: credentials.phone,
           },
         });
         if (!existingUser) {
@@ -42,19 +42,19 @@ export const authOptions: NextAuthOptions = {
         if (!passwordMatch) {
           return null;
         }
-        if (existingUser.rule === "ADMIN") {
+        if (existingUser.role === "ADMIN") {
           return {
-            id: `${existingUser.id}`,
+            id: existingUser.id,
             email: existingUser.email,
-            username: `${existingUser.user_name}`,
-            rule: "ADMIN",
+            username: existingUser.userName,
+            role: "ADMIN",
           };
         } else {
           return {
-            id: `${existingUser.id}`,
+            id: existingUser.id,
             email: existingUser.email,
-            username: `${existingUser.user_name}`,
-            rule: "USER",
+            username: existingUser.userName,
+            role: "USER",
           };
         }
       },
@@ -67,7 +67,7 @@ export const authOptions: NextAuthOptions = {
           ...token,
           id: user.id,
           username: user.username,
-          rule: user.rule,
+          role: user.role,
         };
       }
       return token;
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
           ...session.user,
           id: token.id,
           username: token.username,
-          rule: token.rule,
+          role: token.role,
         },
       };
     },

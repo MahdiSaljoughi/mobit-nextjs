@@ -11,7 +11,6 @@ export default async function Home() {
       <main className="min-h-[900px] flex flex-col gap-y-2">
         <Curosel />
         <section className="py-10 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 2xl:mx-32 flex flex-col gap-y-10">
-          
           <Item8 />
 
           <div>
@@ -50,15 +49,6 @@ export default async function Home() {
             <Carosel product={product} />
           </div>
 
-          <div>
-            <Link href="/" className="block">
-              <p className="w-full rounded-2xl bg-zinc-100 p-4">
-                جدید ترین محصولات
-              </p>
-            </Link>
-            <Carosel product={product} />
-          </div>
-
           <div className="flex flex-col md:flex-row gap-2 items-center w-full">
             <Link href="/" className="block">
               <img src="/images/4img1.jpg" alt="img" />
@@ -72,6 +62,15 @@ export default async function Home() {
             <Link href="/" className="block">
               <img src="/images/4img4.jpg" alt="img" />
             </Link>
+          </div>
+
+          <div>
+            <Link href="/" className="block">
+              <p className="w-full rounded-2xl bg-zinc-100 p-4">
+                جدید ترین محصولات
+              </p>
+            </Link>
+            <Carosel product={product} />
           </div>
         </section>
       </main>

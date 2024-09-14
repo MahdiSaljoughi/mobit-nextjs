@@ -26,10 +26,10 @@ export default async function AdminUser() {
                 }
               >
                 <td className="p-4">{user.id}</td>
-                <td>{user.user_name ? user.user_name : "وارد نشده"}</td>
-                <td>{user.email}</td>
+                <td>{user.userName ? user.userName : "وارد نشده"}</td>
+                <td>{user.email ? user.email : "وارد نشده"}</td>
                 <td>{user.phone ? user.phone : "وارد نشده"}</td>
-                <td>{user.rule}</td>
+                <td>{user.role}</td>
                 <td>
                   <EditUser />
                 </td>

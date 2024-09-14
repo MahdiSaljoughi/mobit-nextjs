@@ -2,16 +2,14 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { useContext } from "react";
-import { CartContext } from "@/contexts/cart";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function MainHeader() {
   const { data: session } = useSession();
 
-  const { state } = useContext(CartContext);
-  const {
-    cart: { cartItems },
-  } = state;
+  const cartItems = useSelector((state: RootState) => state.cart.items);
+
   const dataMegaMenu = [
     {
       title: "موبایل و تبلت",
@@ -189,18 +187,24 @@ export default function MainHeader() {
                 <div className="group/menu py-6">
                   <>
                     <div className="flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1 cursor-pointer">
-                      <span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="xl:w-[20px] xl:h-[20px] lg:w-[14px] lg:h-[14px]"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            fill="currentColor"
-                            d="M14.116 20q-.667 0-1.141-.475t-.475-1.14v-4.27q0-.666.475-1.14t1.14-.475h4.27q.666 0 1.14.475t.475 1.14v4.27q0 .666-.475 1.14t-1.14.475zm0-8.5q-.667 0-1.141-.475t-.475-1.14v-4.27q0-.666.475-1.14T14.115 4h4.27q.666 0 1.14.475T20 5.615v4.27q0 .666-.475 1.14t-1.14.475zm-8.5 0q-.667 0-1.141-.475T4 9.885v-4.27q0-.666.475-1.14T5.615 4h4.27q.666 0 1.14.475t.475 1.14v4.27q0 .666-.475 1.14t-1.14.475zm0 8.5q-.667 0-1.141-.475T4 18.386v-4.27q0-.666.475-1.14t1.14-.475h4.27q.666 0 1.14.475t.475 1.14v4.27q0 .666-.475 1.14T9.885 20z"
-                          />
-                        </svg>
-                      </span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.5em"
+                        height="1.5em"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          fillRule="evenodd"
+                          d="M2 6.634a4.634 4.634 0 1 1 9.268 0a4.634 4.634 0 0 1-9.268 0m10.732 10.732a4.634 4.634 0 1 1 9.268 0a4.634 4.634 0 0 1-9.268 0"
+                          clipRule="evenodd"
+                        />
+                        <path
+                          fill="currentColor"
+                          d="M2 17.5c0-2.121 0-3.182.659-3.841S4.379 13 6.5 13s3.182 0 3.841.659S11 15.379 11 17.5s0 3.182-.659 3.841S8.621 22 6.5 22s-3.182 0-3.841-.659S2 19.621 2 17.5m11-11c0-2.121 0-3.182.659-3.841S15.379 2 17.5 2s3.182 0 3.841.659S22 4.379 22 6.5s0 3.182-.659 3.841S19.621 11 17.5 11s-3.182 0-3.841-.659S13 8.621 13 6.5"
+                        />
+                      </svg>
+
                       <span className="block">دسته بندی ها</span>
                       <span className="bg-white w-0 lg:group-hover/menu:w-[80px] xl:group-hover/menu:w-[95px] 2xl:group-hover/menu:w-[105px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                     </div>
@@ -248,12 +252,30 @@ export default function MainHeader() {
                   <span className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
                     <span>
                       <svg
-                        className="xl:w-[20px] xl:h-[20px] lg:w-[14px] lg:h-[14px]"
                         xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 -960 960 960"
-                        fill="#e8eaed"
+                        width="1.4em"
+                        height="1.4em"
+                        viewBox="0 0 24 24"
                       >
-                        <path d="M197.83-84.65q-47.96 0-80.57-32.61-32.61-32.61-32.61-80.57v-564.34q0-47.96 32.61-80.57 32.61-32.61 80.57-32.61h564.34q47.96 0 80.57 32.61 32.61 32.61 32.61 80.57v564.34q0 47.96-32.61 80.57-32.61 32.61-80.57 32.61H197.83Zm516.15-113.18h48.19v-48.19l-48.19 48.19Zm-490.48 0h54.48l120-120h108.69l-120 120h54.72l120-120h108.94l-120 120h54.71l120-120h37.13v-444.34H197.83v481.32l36.74-36.98H343.5l-120 120ZM427-502l-84.24 83q-15 15-36.51 15.38-21.52.38-37.01-15.62-15.24-15-15.24-36.88Q254-478 269.24-493l118.13-118.13q16.86-17.2 39.58-17.2t39.68 17.2L507-571l110.24-110q15-15 36.63-15.38 21.64-.38 37.13 15.62 15 15 15 36.76 0 21.76-15 36.76L546.63-462.63q-17.13 16.96-40.22 16.96-23.08 0-40.04-16.96L427-502ZM197.83-197.83v-564.34 564.34Z" />
+                        <g fill="none">
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeWidth="2.5"
+                            d="m9 15l6-6"
+                          />
+                          <path
+                            fill="currentColor"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            d="M15.5 14.5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0"
+                          />
+                          <path
+                            stroke="currentColor"
+                            strokeWidth="3"
+                            d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2s7.071 0 8.535 1.464C22 4.93 22 7.286 22 12s0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"
+                          />
+                        </g>
                       </svg>
                     </span>
                     <span>پیشنهادهای شگفت انگیز</span>
@@ -262,39 +284,30 @@ export default function MainHeader() {
                 </Link>
                 <Link href="/mag">
                   <span className="group/under flex items-center 2xl:gap-x-3 xl:gap-x-2 lg:gap-x-1">
-                    <span>
-                      <svg
-                        className="xl:w-[24px] xl:h-[24px] lg:w-[16px] lg:h-[16px]"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 48 48"
-                      >
-                        <ellipse
-                          cx="33.164"
-                          cy="22.616"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          rx="8.879"
-                          ry="17.083"
-                          transform="rotate(-21.248 33.164 22.616)"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.6em"
+                      height="1.6em"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none">
+                        <path
+                          fill="currentColor"
+                          d="m20.082 3.018l.026.75zm-3.582.47l-.215-.719zm-2.826 1.315l-.376-.65zM3.982 3.075l-.046.749zM7 3.488l.191-.726zm3.282 1.388l-.35.663zm3.346 15.193l.352.662zM17 18.634l-.191-.726zm2.985-.411l.047.749zm-9.613 1.846l-.352.662zM7 18.634l.191-.726zm-2.985-.411l-.047.749zm-1.265-2.08V4.999h-1.5v11.146zm20 0V4.934h-1.5v11.21zM20.056 2.269c-1.139.04-2.626.158-3.771.501l.43 1.437c.95-.284 2.274-.4 3.393-.439zm-3.771.501c-.995.298-2.114.88-2.987 1.385l.752 1.298c.85-.492 1.845-1 2.665-1.246zM3.936 3.824c.966.059 2.06.174 2.873.389l.382-1.45c-.96-.254-2.176-.376-3.163-.437zm2.873.389c.962.254 2.146.81 3.123 1.326l.7-1.326c-.995-.527-2.304-1.15-3.44-1.45zM13.98 20.73c.991-.528 2.219-1.11 3.211-1.372l-.382-1.45c-1.17.308-2.526.961-3.534 1.499zm3.211-1.372c.803-.212 1.882-.328 2.841-.388l-.094-1.497c-.98.062-2.179.183-3.13.434zm-6.466.048c-1.008-.537-2.363-1.19-3.534-1.499l-.382 1.45c.992.263 2.22.845 3.21 1.373zm-3.534-1.499c-.95-.25-2.15-.372-3.13-.434l-.093 1.497c.959.06 2.038.176 2.84.388zm14.059-1.764c0 .686-.568 1.284-1.312 1.33l.094 1.497c1.474-.092 2.718-1.291 2.718-2.827zm1.5-11.21c0-1.464-1.165-2.719-2.694-2.666l.052 1.5c.615-.022 1.142.484 1.142 1.165zm-21.5 11.21c0 1.536 1.244 2.735 2.718 2.828l.094-1.498c-.744-.046-1.312-.645-1.312-1.33zm12.025 3.264a2.72 2.72 0 0 1-2.55 0l-.705 1.323a4.22 4.22 0 0 0 3.96 0zm.023-15.254a2.77 2.77 0 0 1-2.665.059l-.701 1.326a4.27 4.27 0 0 0 4.118-.087zM2.75 4.998c0-.697.552-1.213 1.186-1.174l.092-1.498C2.47 2.231 1.25 3.5 1.25 4.998z"
                         />
                         <path
-                          fill="none"
                           stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="m37.026 38.831l-26.928-1.447A5.6 5.6 0 0 1 4.5 31.786c0-1.544.772-3.089 1.737-4.15L25.444 7.657"
+                          strokeWidth="2"
+                          d="M12 5.854V21"
                         />
                         <path
-                          fill="none"
                           stroke="currentColor"
                           strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.46 37.866c-1.93-.193-4.536-3.185-6.177-7.431c-1.64-4.15-1.737-8.011-.58-9.555m26.349 0l-9.555 8.3c2.8 4.922 6.37 7.818 8.88 6.853c3.088-1.255 3.378-8.011.675-15.153m-1.64-3.764l-9.652 8.396a7 7 0 0 1-.29-.772c-2.895-7.431-2.605-14.38.483-15.635c2.703-.965 6.563 2.51 9.459 8.01ZM19.942 38.06c0 2.026-1.64 3.57-3.764 3.57s-3.764-1.544-3.764-3.474v-.483"
+                          strokeWidth="2"
+                          d="m5 9l4 1m-4 3l4 1m10-1l-4 1m4-8.5v4.01c0 .276 0 .414-.095.47s-.224-.007-.484-.13l-1.242-.59c-.088-.042-.132-.062-.179-.062s-.091.02-.179.062l-1.242.59c-.26.123-.39.185-.484.13C15 9.923 15 9.785 15 9.51V6.95"
                         />
-                      </svg>
-                    </span>
+                      </g>
+                    </svg>
                     <span>اخبار و مقلات روز</span>
                     <span className="bg-white w-0 lg:group-hover/under:w-[100px] xl:group-hover/under:w-[120px] 2xl:group-hover/under:w-[125px] rounded-full h-[3px] transition-all ease-linear block absolute bottom-1"></span>
                   </span>
@@ -304,11 +317,14 @@ export default function MainHeader() {
                     <span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="xl:w-[24px] xl:h-[24px] lg:w-[16px] lg:h-[16px]"
+                        width="1.6em"
+                        height="1.6em"
                         viewBox="0 0 24 24"
                       >
                         <path
                           fill="currentColor"
+                          stroke="currentColor"
+                          strokeWidth="1.2"
                           d="M20.6 5.26a2.51 2.51 0 0 0-2.48-2.2H5.885a2.51 2.51 0 0 0-2.48 2.19l-.3 2.47a3.4 3.4 0 0 0 1.16 2.56v8.16a2.5 2.5 0 0 0 2.5 2.5h10.47a2.5 2.5 0 0 0 2.5-2.5v-8.16A3.4 3.4 0 0 0 20.9 7.72Zm-6.59 14.68h-4v-4.08a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5Zm4.73-1.5a1.5 1.5 0 0 1-1.5 1.5h-2.23v-4.08a2.5 2.5 0 0 0-2.5-2.5h-1a2.5 2.5 0 0 0-2.5 2.5v4.08H6.765a1.5 1.5 0 0 1-1.5-1.5v-7.57a3.2 3.2 0 0 0 1.24.24a3.36 3.36 0 0 0 2.58-1.19a.24.24 0 0 1 .34 0a3.36 3.36 0 0 0 2.58 1.19A3.4 3.4 0 0 0 14.6 9.92a.22.22 0 0 1 .16-.07a.24.24 0 0 1 .17.07a3.36 3.36 0 0 0 2.58 1.19a3.2 3.2 0 0 0 1.23-.24Zm-1.23-8.33a2.39 2.39 0 0 1-1.82-.83a1.2 1.2 0 0 0-.92-.43h-.01a1.2 1.2 0 0 0-.92.42a2.476 2.476 0 0 1-3.65 0a1.24 1.24 0 0 0-1.86 0A2.405 2.405 0 0 1 4.1 7.78l.3-2.4a1.52 1.52 0 0 1 1.49-1.32h12.23a1.5 1.5 0 0 1 1.49 1.32l.29 2.36a2.39 2.39 0 0 1-2.395 2.37Z"
                         />
                       </svg>
@@ -371,7 +387,7 @@ export default function MainHeader() {
               <Link
                 href="/cart"
                 className={
-                  cartItems.length !== 0
+                  cartItems.length > 0
                     ? "flex items-center gap-x-1"
                     : "flex items-center gap-x-2"
                 }
@@ -391,9 +407,9 @@ export default function MainHeader() {
                   {cartItems.length === 0
                     ? "سبد خرید"
                     : `${cartItems.reduce(
-                        (acc: any, cur: any) => acc + cur.qty,
+                        (acc, cur) => acc + cur.qunatity,
                         0
-                      )} کالا `}
+                      )} کالا`}
                 </span>
               </Link>
             </div>

@@ -9,7 +9,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { title, slug, price, count, description, cat, image, createdBy } =
+    const { title, slug, price, count, description, cat, image, createdBy,titleEng } =
       await request.json();
 
     const newProduct = await Prisma.product.create({
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
         cat,
         image,
         createdBy,
+        titleEng
       },
     });
 

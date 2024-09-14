@@ -7,39 +7,64 @@ datasource db {
   url      = env("NEXT_PUBLIC_DATABASE_URL")
 }
 
-enum Rule {
+enum Role {
   USER
   ADMIN
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  user_name String?  @unique
-  email     String   @unique
-  phone     String?  @unique
-  password  String
-  rule      Rule     @default(USER)
-  // emailVerified  Boolean    @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  product Product[]
-  post    Post[]
+  id            Int       @id @default(autoincrement())
+  userName      String?   @unique
+  firstName     String?
+  lastName      String?
+  email         String?   @unique
+  phone         String    @unique
+  password      String
+  role          Role      @default(USER)
+  emailVerified Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  product       Product[]
+  orders        Order[]
+  post          Post[]
 }
 
 model Product {
-  id          Int      @id @unique @default(autoincrement())
+  id          Int            @id @unique @default(autoincrement())
   title       String
+  titleEng    String
   slug        String
   price       Int
   count       Int
   description String
   cat         String
   image       String
-  author      User     @relation(fields: [createdBy], references: [user_name])
   createdBy   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  author      User           @relation(fields: [createdBy], references: [userName])
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  orders      OrderProduct[]
+}
+
+model Order {
+  id              Int            @id @unique @default(autoincrement())
+  customerId      Int
+  customer        User           @relation(fields: [customerId], references: [id])
+  products        OrderProduct[]
+  statusOrder     String
+  deliveryAddress String
+  paymentMethod   String
+  amountPaid      String
+  orderDate       DateTime       @default(now())
+}
+
+model OrderProduct {
+  id        Int     @id @unique @default(autoincrement())
+  orderId   Int
+  productId Int
+  quantity  Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  product   Product @relation(fields: [productId], references: [id])
 }
 
 model Post {
@@ -47,8 +72,8 @@ model Post {
   title       String
   description String
   image       String
-  author      User     @relation(fields: [createdBy], references: [user_name])
   createdBy   String
+  author      User     @relation(fields: [createdBy], references: [userName])
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

@@ -50,9 +50,9 @@ export default function Carosel({ product }: any) {
             </div>
           </SwiperSlide>
         ))}
-        <div className="flex items-center justify-between lg:justify-center w-full">
+        <div className="flex items-center justify-center w-full">
           <button className="swiper-button-prev-custom">
-            <div className="p-1.5 mb-4 rounded-xl shadow text-zinc-600 hover:scale-110 transition-transform-2 mx-2 bg-zinc-50">
+            <div className="p-1.5 lg:p-2 mb-1 rounded-xl lg:rounded-2xl text-zinc-500 hover:scale-110 transition-transform-2 mx-2 border">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1.5em"
@@ -72,7 +72,7 @@ export default function Carosel({ product }: any) {
             </div>
           </button>
           <button className="swiper-button-next-custom">
-            <div className="p-1.5 mb-4 rounded-xl shadow text-zinc-600 hover:scale-110 transition-transform-2 mx-2 bg-zinc-50">
+            <div className="p-1.5 lg:p-2 mb-1 rounded-xl lg:rounded-2xl text-zinc-500 hover:scale-110 transition-transform-2 mx-2 border">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1.5em"

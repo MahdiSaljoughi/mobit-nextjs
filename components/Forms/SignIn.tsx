@@ -18,18 +18,18 @@ export default function SignIn() {
       </div>
       <Formik
         initialValues={{
-          email: "",
-          hashedPassword: "",
+          phone: "",
+          password: "",
         }}
         validationSchema={Yup.object({
-          email: Yup.string().required("ایمل الزامی است ."),
-          hashedPassword: Yup.string().required("رمز عبور الزامی است ."),
+          phone: Yup.string().required("شماره تماس الزامی است ."),
+          password: Yup.string().required("رمز عبور الزامی است ."),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
           const signInData = await signIn("credentials", {
-            email: values.email,
-            password: values.hashedPassword,
+            phone: values.phone,
+            password: values.password,
             redirect: false,
           });
           if (signInData?.error) {
@@ -39,8 +39,8 @@ export default function SignIn() {
             setSubmitting(false);
 
             //clear form
-            values.email = "";
-            values.hashedPassword = "";
+            values.phone = "";
+            values.password = "";
             toast("با موفقیت وارد شدید .");
             router.replace("/dashbord");
           }
@@ -50,28 +50,28 @@ export default function SignIn() {
           <div>
             <span className="text-xl">ورود به مبیت</span>
           </div>
-          <label htmlFor="email">ایمیل</label>
+          <label htmlFor="phone">شماره تماس</label>
           <Field
-            name="email"
-            type="email"
+            name="phone"
+            type="text"
             className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
-            placeholder="ایمیل"
+            placeholder="09120000000"
           />
           <ErrorMessage
-            name="email"
+            name="phone"
             component="div"
             className="text-rose-500"
           />
 
-          <label htmlFor="hashedPassword">رمز عبور</label>
+          <label htmlFor="password">رمز عبور</label>
           <Field
-            name="hashedPassword"
+            name="password"
             type="password"
             className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
             placeholder="رمز عبور"
           />
           <ErrorMessage
-            name="hashedPassword"
+            name="password"
             component="div"
             className="text-rose-500"
           />

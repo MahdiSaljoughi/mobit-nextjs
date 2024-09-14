@@ -4,22 +4,21 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 
 interface IRegisterBody {
-  email: string;
   password: string;
-  user_name: string;
+  phone: string;
 }
 
 export async function POST(request: Request) {
   try {
     const data: IRegisterBody = await request.json();
-    if (!data.email || !data.password || !data.user_name) {
+    if (!data.phone || !data.password) {
       return NextResponse.json({
         message: "please fill all the fields",
       });
     }
     const user = await prisma.user.findFirst({
       where: {
-        email: data.email,
+        phone: data.phone,
       },
     });
     if (user) return NextResponse.json({ message: "user already exists" });
@@ -27,9 +26,8 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(data.password, salt);
     const newUser = await prisma.user.create({
       data: {
-        email: data.email,
+        phone: data.phone,
         password: hashedPassword,
-        user_name: data.user_name,
       },
     });
     return NextResponse.json({

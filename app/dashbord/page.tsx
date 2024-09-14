@@ -26,7 +26,7 @@ import {
 export default async function AdminPanel() {
   const session = await getServerSession(authOptions);
   if (session?.user) {
-    if (session?.user.rule === "ADMIN") {
+    if (session?.user.role === "ADMIN") {
       return (
         <>
           <div className="bg-zinc-900 text-zinc-300">

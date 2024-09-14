@@ -1,25 +1,18 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-
-import { useContext } from "react";
-import { CartContext } from "@/contexts/cart";
-
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import AddToCart from "@/components/AddToCart/AddToCart";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 
 export default function CartPage() {
-  const { state, dispatch } = useContext(CartContext);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const { data: session } = useSession();
 
-  const {
-    cart: { cartItems },
-  } = state;
-  function removeItemHandler(item: any) {
-    dispatch({ type: "REMOVE_ITEM", payload: item });
-  }
   const router = useRouter();
 
   if (session?.user) {
@@ -70,49 +63,56 @@ export default function CartPage() {
                         <span className="p-5 text-right">
                           {item.price.toLocaleString()} تومان
                         </span>
-                        <div className="flex items-center gap-x-4 justify-between pl-2 pr-3 py-2 lg:p-2 lg:pr-4 bg-zinc-100 dark:bg-zinc-700 rounded-xl">
-                          <span className="text-sm">{item.qty} عدد</span>
-                          <button
-                            onClick={() => removeItemHandler(item)}
-                            className="bg-red-500/20 p-1 rounded-lg text-red-500"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="1.2em"
-                              height="1.2em"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"
-                              />
-                            </svg>
-                          </button>
-                        </div>
+                        <AddToCart id={item.id} />
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="bg-zinc-100 sticky top-24 rounded-2xl h-40 lg:w-[500px] flex flex-col items-center justify-between p-4">
-                  <span>اطلاعات پرداخت</span>
-                  <div className="w-full mx-10 rounded-xl flex items-center justify-center p-4 text-lg">
-                    <span className="text-sm">
-                      مبلغ قابل پرداخت :{" "}
-                      {cartItems
-                        .reduce(
-                          (acc: any, cur: any) => acc + cur.qty * cur.price,
-                          0
-                        )
-                        .toLocaleString()}{" "}
-                      تومان
-                    </span>
+                <div>
+                  <div className="bg-zinc-100 sticky top-24 rounded-2xl lg:w-96 flex flex-col gap-y-4 justify-between p-4">
+                    <span className="text-zinc-600 block">اطلاعات پرداخت</span>
+                    <div className="flex items-center justify-between w-full text-sm">
+                      <span className="block">مبلغ کالاها</span>
+                      <span>
+                        {cartItems
+                          .reduce(
+                            (acc, cur) => acc + cur.price * cur.qunatity,
+                            0
+                          )
+                          .toLocaleString()}
+
+                        <span className="text-gray-500 text-xs mr-0.5">
+                          تومان
+                        </span>
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between w-full">
+                      <span className="block text-sm">هزینه ارسال</span>
+                      <span className="block text-sm text-zinc-500">
+                        در مرحله بعد مشخص می شود
+                      </span>
+                    </div>
+                    <div className="w-full flex items-center justify-between border-t pt-4">
+                      <span className="text-sm">مبلغ قابل پرداخت :</span>
+                      <span>
+                        {cartItems
+                          .reduce(
+                            (acc, cur) => acc + cur.price * cur.qunatity,
+                            0
+                          )
+                          .toLocaleString()}
+                        <span className="text-gray-500 text-xs mr-0.5">
+                          تومان
+                        </span>
+                      </span>
+                    </div>
+                    <button
+                      className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white p-2.5 w-full transition-colors"
+                      onClick={() => router.push("/shipping")}
+                    >
+                      ادامه
+                    </button>
                   </div>
-                  <button
-                    className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 w-full transition-colors"
-                    onClick={() => router.push("/shipping")}
-                  >
-                    ادامه
-                  </button>
                 </div>
               </div>
             </>

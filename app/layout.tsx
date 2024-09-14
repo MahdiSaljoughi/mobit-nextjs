@@ -4,7 +4,8 @@ import "./globals.css";
 import MainFooter from "@/components/Footer/MainFooter";
 import MainHeader from "@/components/Header/MainHeader";
 import { Toaster } from "@/components/ui/sonner";
-import { CartContextProvider } from "@/contexts/cart";
+import { Provider } from "react-redux";
+import { store } from "@/store/store";
 import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
@@ -18,14 +19,14 @@ export default function RootLayout({
       </head>
       <body>
         <SessionProvider>
-          <CartContextProvider>
+          <Provider store={store}>
             <div className="font-[iran]">
               <MainHeader />
               <main>{children}</main>
               <Toaster />
               <MainFooter />
             </div>
-          </CartContextProvider>
+          </Provider>
         </SessionProvider>
       </body>
     </html>

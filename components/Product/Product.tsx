@@ -3,6 +3,7 @@ interface ProductItem {
   slug: string;
   image: string;
   title: string;
+  titleEng: string;
   price: number;
   id: number;
   count: number;
