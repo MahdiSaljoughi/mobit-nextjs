@@ -23,6 +23,7 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "رمز عبور", type: "password" },
       },
+      // @ts-ignore
       async authorize(credentials) {
         if (!credentials?.phone || !credentials.password) {
           return null;
