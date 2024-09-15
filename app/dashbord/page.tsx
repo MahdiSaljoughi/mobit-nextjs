@@ -6,22 +6,13 @@ import FormAddProduct from "@/components/Forms/FormAddProduct";
 import FormAddUser from "@/components/Forms/FormAddUser";
 import AdminProducst from "@/components/Admin/Product/Product";
 import AdminUser from "@/components/Admin/User/User";
-
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import AdminOrder from "@/components/Admin/Order/Order";
 
 export default async function AdminPanel() {
   const session = await getServerSession(authOptions);
@@ -40,17 +31,18 @@ export default async function AdminPanel() {
                   <span className="block md:text-lg text-center md:text-right">{`ادمین ${session?.user.username} عزیز خوش آمدید.`}</span>
                 </div>
                 <div>
+                  <AdminOrder />
+                </div>
+                <div>
                   <AdminProducst />
                 </div>
                 <div>
-                  <FormAddProduct user_name={session.user.username} />
+                  {/* <FormAddProduct user_name={session.user.username} /> */}
                 </div>
                 <div>
                   <AdminUser />
                 </div>
-                <div>
-                  <FormAddUser />
-                </div>
+                <div>{/* <FormAddUser /> */}</div>
               </div>
             </div>
           </div>

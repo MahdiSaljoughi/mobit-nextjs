@@ -2,9 +2,8 @@
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { toast } from "sonner";
 import Link from "next/link";
-
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
@@ -22,27 +21,45 @@ export default function SignIn() {
           password: "",
         }}
         validationSchema={Yup.object({
-          phone: Yup.string().required("شماره تماس الزامی است ."),
-          password: Yup.string().required("رمز عبور الزامی است ."),
+          phone: Yup.string().required("شماره موبایل الزامی است."),
+          password: Yup.string().required("رمز عبور الزامی است."),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
+          
           const signInData = await signIn("credentials", {
             phone: values.phone,
             password: values.password,
             redirect: false,
           });
+
+          console.log(signInData);
+
           if (signInData?.error) {
             // console.log(signInData.error);
-            toast("خطا ! لطفا مقادیر را به درستی وارد کنید .");
+            toast.error("خطا لطفا مقادیر را به درستی وارد کنید.", {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+                fontSize: "12px",
+              },
+            });
           } else {
-            setSubmitting(false);
-
             //clear form
             values.phone = "";
             values.password = "";
-            toast("با موفقیت وارد شدید .");
-            router.replace("/dashbord");
+
+            toast.success("", {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+                fontSize: "12px",
+              },
+            });
+
+            // router.replace("/dashbord");
           }
         }}
       >
@@ -50,7 +67,7 @@ export default function SignIn() {
           <div>
             <span className="text-xl">ورود به مبیت</span>
           </div>
-          <label htmlFor="phone">شماره تماس</label>
+          <label htmlFor="phone">شماره موبایل *</label>
           <Field
             name="phone"
             type="text"
@@ -63,7 +80,7 @@ export default function SignIn() {
             className="text-rose-500"
           />
 
-          <label htmlFor="password">رمز عبور</label>
+          <label htmlFor="password">رمز عبور *</label>
           <Field
             name="password"
             type="password"

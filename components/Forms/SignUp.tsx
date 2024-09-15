@@ -2,9 +2,9 @@
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function SignUp() {
   const router = useRouter();
@@ -17,36 +17,61 @@ export default function SignUp() {
       <Formik
         initialValues={{
           phone: "",
+          userName: `کاربر-${Math.floor(Math.random() * 1000)}`,
           password: "",
         }}
         validationSchema={Yup.object({
-          phone: Yup.string().required("شماره تماس الزامی است ."),
-          password: Yup.string().required("رمز عبور الزامی است ."),
+          phone: Yup.string().required("شماره موبایل الزامی است."),
+          password: Yup.string().required("رمز عبور الزامی است."),
         })}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(false);
-
           try {
-            await fetch("/api/auth/sign-up", {
+            const response = await fetch("/api/auth/sign-up", {
               method: "POST",
-              body: JSON.stringify(values),
               headers: {
                 "Content-Type": "application/json",
               },
+              body: JSON.stringify(values),
             });
 
-            setSubmitting(false);
+            const data = await response.json();
 
-            // clear form
-            values.phone = "";
-            values.password = "";
+            if (data.status === 409) {
+              toast.error(data.message, {
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                  fontSize: "12px",
+                },
+              });
+            }
+            if (data.status === 201) {
+              // clear form
+              values.phone = "";
+              values.userName = "";
+              values.password = "";
 
-            // toast
-            toast("حساب شما با موفقیت ایجاد شد");
-
-            router.replace("/sign-in");
+              toast.success(data.message, {
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                  fontSize: "12px",
+                },
+              });
+              router.push("/sign-in");
+            }
           } catch (error) {
-            toast("خطا ! لطفا مقادیر را به درستی وارد کنید .");
+            toast.error("خطا لطفا مقادیر را به درستی وارد کنید.", {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+                fontSize: "12px",
+              },
+            });
           }
         }}
       >
@@ -54,7 +79,7 @@ export default function SignUp() {
           <div>
             <span className="text-xl">ثبت نام در مبیت</span>
           </div>
-          <label htmlFor="phone">شماره تماس</label>
+          <label htmlFor="phone">شماره موبایل *</label>
           <Field
             name="phone"
             type="text"
@@ -67,7 +92,14 @@ export default function SignUp() {
             className="text-rose-500"
           />
 
-          <label htmlFor="password">رمز عبور</label>
+          <label htmlFor="userName">نام کاربری</label>
+          <Field
+            name="userName"
+            type="text"
+            className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
+          />
+
+          <label htmlFor="password">رمز عبور *</label>
           <Field
             name="password"
             type="password"
@@ -85,6 +117,7 @@ export default function SignUp() {
           >
             ثبت نام
           </button>
+          {/* {message && <p className="text-center text-rose-500">{message}</p>} */}
         </Form>
       </Formik>
       <div className="flex items-center gap-x-2 justify-center mt-6">

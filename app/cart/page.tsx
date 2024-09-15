@@ -21,16 +21,18 @@ export default function CartPage() {
         <div className={cartItems.length === 0 ? "" : "contain min-h-[900px]"}>
           {cartItems.length === 0 ? (
             <>
-              <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
-                <span className="block text-lg md:text-2xl">
-                  سبد خرید شما خالی است.
-                </span>
-                <Link
-                  href="/products"
-                  className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
-                >
-                  شروع خرید
-                </Link>
+              <div className="min-h-[900px] contain">
+                <div className="fixed inset-0 w-full flex flex-col justify-center items-center gap-y-4">
+                  <span className="block text-lg md:text-2xl">
+                    سبد خرید شما خالی است.
+                  </span>
+                  <Link
+                    href="/products"
+                    className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
+                  >
+                    شروع خرید
+                  </Link>
+                </div>
               </div>
             </>
           ) : (
@@ -42,6 +44,7 @@ export default function CartPage() {
                       key={item.id}
                       className="border-b pb-2 lg:pb-4 flex flex-col lg:flex-row lg:items-center justify-between w-full"
                     >
+                      {item.qunatity + "dhshohvdos"}
                       <Link
                         href={`/products/${item.slug}`}
                         className="flex item-center gap-x-4"
@@ -123,16 +126,18 @@ export default function CartPage() {
   } else {
     return (
       <>
-        <div className="min-h-[900px] flex flex-col justify-center items-center gap-y-10 contain">
-          <span className="block text-lg md:text-2xl text-center">
-            لطفا ابتدا به حساب کاربری خود وارد شوید.
-          </span>
-          <Link
-            href="/sign-in"
-            className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
-          >
-            ورود
-          </Link>
+        <div className="min-h-screen">
+          <div className="fixed inset-0 flex flex-col justify-center items-center gap-y-10 contain">
+            <span className="block text-lg md:text-2xl text-center">
+              لطفا ابتدا به حساب کاربری خود وارد شوید.
+            </span>
+            <Link
+              href="/sign-in"
+              className="bg-blue-500 px-10 py-2 rounded-2xl inline-block text-white"
+            >
+              ورود
+            </Link>
+          </div>
         </div>
       </>
     );

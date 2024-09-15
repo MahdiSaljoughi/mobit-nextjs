@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "@/store/cart-slice";
 import { RootState } from "@/store/store";
+import toast from "react-hot-toast";
 
 export default function AddToCart({
   id,
@@ -21,11 +22,35 @@ export default function AddToCart({
 
   const addToCartHandler = () => {
     dispatch(addToCart({ id, title, price, count, titleEng, slug, image }));
-    router.push("/cart");
+    if (cartItems.find((x) => x.id === id)) {
+      null;
+    } else {
+      toast.success("کالا به سبدخرید اضافه شد", {
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+          fontSize: "12px",
+        },
+      });
+      router.push("/cart");
+    }
   };
 
   const removeFromCartHandler = () => {
     dispatch(removeFromCart(id));
+    cartItems.find((item) => {
+      if (item.id === id) return item.qunatity > 1;
+    })
+      ? null
+      : toast.error("کالا از سبدخرید حذف شد", {
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+            fontSize: "12px",
+          },
+        });
   };
 
   return (

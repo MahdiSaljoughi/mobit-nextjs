@@ -3,10 +3,10 @@
 import "./globals.css";
 import MainFooter from "@/components/Footer/MainFooter";
 import MainHeader from "@/components/Header/MainHeader";
-import { Toaster } from "@/components/ui/sonner";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -23,7 +23,7 @@ export default function RootLayout({
             <div className="font-[iran]">
               <MainHeader />
               <main>{children}</main>
-              <Toaster />
+              <Toaster position="top-center" reverseOrder={false} />
               <MainFooter />
             </div>
           </Provider>

@@ -6,7 +6,7 @@ export default async function ProducstPage() {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full min-h-screen">
         <div className="contain">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-6">
             {products.map((product, index) => (
