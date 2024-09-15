@@ -50,7 +50,7 @@ export default function SignIn() {
             values.phone = "";
             values.password = "";
 
-            toast.success("", {
+            toast.success("با موفقیت وارد شدید", {
               style: {
                 borderRadius: "10px",
                 background: "#333",
@@ -59,7 +59,7 @@ export default function SignIn() {
               },
             });
 
-            // router.replace("/dashbord");
+            router.replace("/dashbord");
           }
         }}
       >
