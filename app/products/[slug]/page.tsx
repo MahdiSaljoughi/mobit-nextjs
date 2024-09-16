@@ -1,17 +1,13 @@
-import Prisma from "@/lib/prisma";
+import prismadb from "@/lib/prisma";
 import AddToCart from "@/components/AddToCart/AddToCart";
+import MainFooter from "@/components/Footer/MainFooter";
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const product = await Prisma.product.findFirst({
+export default async function page({ params }: { params: { slug: string } }) {
+  const product = await prismadb.product.findFirst({
     where: {
       slug: params.slug,
     },
   });
-
 
   // product not found
   if (!product) {
@@ -37,12 +33,17 @@ export default async function ProductPage({
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col gap-y-4 w-full">
-                    <h1 className="text-sm md:text-base line-clamp-2">
+                  <div className="flex flex-col gap-y-6 md:gap-y-4 w-full">
+                    <h1 className="text-sm md:text-base line-clamp-2 leading-7">
                       {product?.title}
                     </h1>
-                    <span className="w-full h-[1px] bg-zinc-200"></span>
-                    <span className="text-sm">{`دسته بندی : ${product.cat}`}</span>
+                    <div className="flex flex-col md:flex-row md:items-center gap-y-4 gap-x-2">
+                      <span className="md:text-nowrap text-left md:text-right block text-xs text-zinc-400">
+                        {product.titleEng}
+                      </span>
+                      <span className="w-full h-0.5 bg-zinc-200"></span>
+                    </div>
+                    <span className="text-xs text-zinc-600">{`دسته بندی : ${product.cat}`}</span>
                   </div>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between w-full gap-x-10">
@@ -67,7 +68,7 @@ export default async function ProductPage({
                   </div>
                   <div className="w-full">
                     {/* ... */}
-                    <p className="w-full leading-7 font-[iranr] text-sm">
+                    <p className="w-full leading-8 font-[iranr] text-sm">
                       {product?.description}
                     </p>
                     {/* ... */}
@@ -154,6 +155,7 @@ export default async function ProductPage({
             </div>
           </div>
         </div>
+        <MainFooter />
       </>
     );
   }

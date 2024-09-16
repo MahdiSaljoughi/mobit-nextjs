@@ -1,7 +1,6 @@
 "use client";
 
 import "./globals.css";
-import MainFooter from "@/components/Footer/MainFooter";
 import MainHeader from "@/components/Header/MainHeader";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
@@ -24,7 +23,6 @@ export default function RootLayout({
               <MainHeader />
               <main>{children}</main>
               <Toaster position="top-center" reverseOrder={false} />
-              <MainFooter />
             </div>
           </Provider>
         </SessionProvider>

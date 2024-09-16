@@ -1,3 +1,4 @@
+import MainFooter from "@/components/Footer/MainFooter";
 import Product from "@/components/Product/Product";
 import Prisma from "@/lib/prisma";
 
@@ -17,6 +18,7 @@ export default async function ProducstPage() {
           </div>
         </div>
       </div>
+      <MainFooter />
     </>
   );
 }

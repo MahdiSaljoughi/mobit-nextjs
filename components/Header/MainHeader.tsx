@@ -355,6 +355,7 @@ export default function MainHeader() {
               <input
                 type="text"
                 placeholder="جستجو در مبیت"
+                name="y"
                 className="outline-none hidden lg:block placeholder:text-white xl:placeholder:text-xs lg:placeholder:text-[9px] bg-[#fff0] bg-gradient-to-l from-white/15 2xl:w-[400px] xl:w-[310px] lg:w-[200px] w-[90%] 2xl:h-[42px] xl:h-[33px] lg:h-[24px] focus:ring-2 ring-white xl:rounded-[12px] lg:rounded-[6px] pl-10 xl:pr-16 2xl:pr-[75px] lg:pr-10 shadow-sm"
               />
             </div>
@@ -554,6 +555,7 @@ export default function MainHeader() {
           <input
             type="text"
             placeholder="جستجو در مبیت"
+            name="x"
             className="outline-none mx-auto text-white sm:my-5 mt-4 lg:hidden block w-full h-[50px] placeholder:text-zinc-400 placeholder:tracking-tight bg-[#ffffff00] bg-gradient-to-l from-[#ffffff17] focus:ring-2 ring-blue-700 sm:rounded-[18px] rounded-[16px] pl-10 sm:pr-14 pr-12"
           />
         </div>

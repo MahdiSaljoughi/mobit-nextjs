@@ -33,7 +33,7 @@ model Product {
   id          Int            @id @unique @default(autoincrement())
   title       String
   titleEng    String
-  slug        String
+  slug        String         @unique
   price       Int
   count       Int
   description String

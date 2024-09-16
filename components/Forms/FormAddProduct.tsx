@@ -1,17 +1,19 @@
 "use client";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
-import { toast } from "sonner";
 
-export default function FormAddProduct({ user_name }: any) {
-
+export default function FormAddProduct({ userName }: any) {
+  const router = useRouter();
   return (
-    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl">
-      <span className="block md:text-xl">فرم افزودن محصول</span>
+    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl bg-zinc-800 text-zinc-100">
+      <span className="block md:text-xl text-blue-500">فرم افزودن محصول</span>
       <Formik
         initialValues={{
           title: "",
+          titleEng: "",
           price: "",
           slug: "",
           count: "",
@@ -33,7 +35,7 @@ export default function FormAddProduct({ user_name }: any) {
 
           // تبدیل price و count به عدد
           const productData = {
-            createdBy: user_name,
+            createdBy: userName,
             ...values,
             price: Number(values.price),
             count: Number(values.count),
@@ -52,9 +54,25 @@ export default function FormAddProduct({ user_name }: any) {
             resetForm();
 
             // Toast
-            toast("محصول جدید با موفقیت ایجاد شد .");
+            toast.success("محصول جدید با موفقیت ایجاد شد", {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+                fontSize: "12px",
+              },
+            });
+
+            setInterval(() => window.location.reload(), 2000);
           } catch (error) {
-            toast(`خطا : ${error}`);
+            toast.error("خطا", {
+              style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+                fontSize: "12px",
+              },
+            });
           } finally {
             setSubmitting(false);
           }
@@ -66,7 +84,19 @@ export default function FormAddProduct({ user_name }: any) {
             <Field
               name="title"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
+            />
+            <ErrorMessage
+              name="title"
+              component="div"
+              className="text-rose-500"
+            />
+
+            <label htmlFor="title">عنوان محصول انگلیسی</label>
+            <Field
+              name="titleEng"
+              type="text"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="title"
@@ -78,7 +108,7 @@ export default function FormAddProduct({ user_name }: any) {
             <Field
               name="price"
               type="number"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="price"
@@ -86,11 +116,11 @@ export default function FormAddProduct({ user_name }: any) {
               className="text-rose-500"
             />
 
-            <label htmlFor="cat">کته گوری</label>
+            <label htmlFor="cat">دسته بندی</label>
             <Field
               name="cat"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="cat"
@@ -102,7 +132,7 @@ export default function FormAddProduct({ user_name }: any) {
             <Field
               name="slug"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="slug"
@@ -114,7 +144,7 @@ export default function FormAddProduct({ user_name }: any) {
             <Field
               name="count"
               type="number"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="count"
@@ -125,8 +155,9 @@ export default function FormAddProduct({ user_name }: any) {
             <label htmlFor="description">توضیحات</label>
             <Field
               name="description"
+              as="textarea"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700 min-h-96"
             />
             <ErrorMessage
               name="description"
@@ -138,7 +169,7 @@ export default function FormAddProduct({ user_name }: any) {
             <Field
               name="image"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-700"
             />
             <ErrorMessage
               name="image"

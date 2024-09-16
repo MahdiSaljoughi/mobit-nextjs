@@ -1,4 +1,5 @@
 import { Curosel } from "@/components/Curosel/Curosel";
+import MainFooter from "@/components/Footer/MainFooter";
 import Item8 from "@/components/Item8/Item8";
 import Carosel from "@/components/Product/Carosel";
 import prismadb from "@/lib/prisma";
@@ -74,6 +75,7 @@ export default async function Home() {
           </div>
         </section>
       </main>
+      <MainFooter />
     </>
   );
 }

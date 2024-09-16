@@ -2,25 +2,21 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LogoutButton from "@/components/LogoutButton/LogoutButton";
-import FormAddProduct from "@/components/Forms/FormAddProduct";
-import FormAddUser from "@/components/Forms/FormAddUser";
-import AdminProducst from "@/components/Admin/Product/Product";
-import AdminUser from "@/components/Admin/User/User";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import AdminOrder from "@/components/Admin/Order/Order";
 
 export default async function AdminPanel() {
   const session = await getServerSession(authOptions);
+
   if (session?.user) {
     if (session?.user.role === "ADMIN") {
       return (
         <>
-          <div className="bg-zinc-900 text-zinc-300">
+          <div className="bg-zinc-900 text-zinc-100">
             <div className="min-h-screen p-4 pb-20 lg:p-4">
               <div className="flex flex-col gap-y-10">
                 <div>
@@ -30,18 +26,9 @@ export default async function AdminPanel() {
                   </div>
                   <span className="block md:text-lg text-center md:text-right">{`ادمین ${session?.user.username} عزیز خوش آمدید.`}</span>
                 </div>
-                <div>
-                  <AdminOrder />
-                </div>
-                <div>
-                  <AdminProducst />
-                </div>
-                <div>
-                  {/* <FormAddProduct user_name={session.user.username} /> */}
-                </div>
-                <div>
-                  <AdminUser />
-                </div>
+                <Link href="/dashbord/product">محصولات</Link>
+                <Link href="/dashbord/order">سفارشات</Link>
+                <Link href="/dashbord/user">کاربران</Link>
                 <div>{/* <FormAddUser /> */}</div>
               </div>
             </div>
@@ -167,7 +154,10 @@ export default async function AdminPanel() {
                           بگیرید.
                         </p>
                       </button>
-                      <div className="hover:bg-zinc-100 w-full text-xs flex items-center gap-x-3 rounded-2xl transition-colors cursor-pointer">
+                      <Link
+                        href={"/dashbord/order"}
+                        className="hover:bg-zinc-100 w-full text-xs flex items-center gap-x-3 rounded-2xl transition-colors cursor-pointer"
+                      >
                         <div className="bg-blue-400/40 p-3 rounded-2xl">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +177,7 @@ export default async function AdminPanel() {
                           </svg>
                         </div>
                         <span>سفارشات</span>
-                      </div>
+                      </Link>
                       <div className="hover:bg-zinc-100 w-full text-xs flex items-center gap-x-3 rounded-2xl transition-colors cursor-pointer">
                         <div className="bg-blue-400/40 p-3 rounded-2xl">
                           <svg

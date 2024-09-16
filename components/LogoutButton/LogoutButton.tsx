@@ -12,7 +12,7 @@ const LogoutButton = () => {
   return (
     <button
       onClick={handleLogout}
-      className="text-red-500 flex items-center gap-x-2 bg-red-500/30 rounded-2xl p-2 ring-red-500"
+      className="text-red-500 flex items-center gap-x-2 bg-red-500/20 rounded-xl px-6 py-2 text-sm"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -20,6 +20,7 @@ const LogoutButton = () => {
         height="1.4em"
         viewBox="0 0 24 24"
         color="currentColor"
+        className="rotate-180"
       >
         <path
           fill="currentColor"

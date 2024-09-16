@@ -33,8 +33,6 @@ export default function SignIn() {
             redirect: false,
           });
 
-          console.log(signInData);
-
           if (signInData?.error) {
             // console.log(signInData.error);
             toast.error("خطا لطفا مقادیر را به درستی وارد کنید.", {
