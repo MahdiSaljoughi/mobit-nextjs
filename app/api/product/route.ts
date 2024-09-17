@@ -73,13 +73,13 @@ export async function PUT(request: Request) {
     }
 
     if (
-      !title &&
-      !titleEng &&
-      !slug &&
-      !count &&
-      !price &&
-      !cat &&
-      !description &&
+      !title ||
+      !titleEng ||
+      !slug ||
+      !count ||
+      !price ||
+      !cat ||
+      !description ||
       !image
     ) {
       return NextResponse.json({

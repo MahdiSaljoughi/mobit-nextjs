@@ -1,15 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Prisma from "@/lib/prisma";
-import { EditUser } from "@/components/Edit/EditUser";
 
 export default async function AdminOrder() {
   const orders = await Prisma.order.findMany();
   return (
     <>
-      <div>Order</div>
-
-      <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl w-full overflow-auto">
+      <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl w-full overflow-auto text-zinc-100">
         <table className="w-full">
           <thead>
             <tr className="text-blue-500 text-xs md:text-base">
@@ -49,7 +46,7 @@ export default async function AdminOrder() {
                 {/* <td>{product.count}</td> */}
                 {/* <td className="text-xs md:text-base">{product.cat}</td> */}
                 <td>
-                  <EditUser />
+                  {/* */}
                 </td>
               </tr>
             ))}

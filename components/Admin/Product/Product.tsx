@@ -69,46 +69,55 @@ export default function Product({ product }: any) {
 
   return (
     <>
-      <div className="p-4 min-h-screen">
-        <div className="border p-8 rounded-2xl">
-          <Link
-            href={"/dashbord/product"}
-            className="inline-flex items-center gap-x-2 bg-green-500/20 text-green-500 px-6 py-2 rounded-xl hover:ring-4 ring-green-500/50 transition-all"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.5em"
-              height="1.5em"
-              viewBox="0 0 24 24"
+      <div className="p-4">
+        <img
+          src="/images/logos/mobit.png"
+          alt="logo-mobit"
+          className="w-40 mx-auto"
+        />
+      </div>
+      <div className="p-4 min-h-screen text-zinc-100">
+        <div className="border border-zinc-700 p-8 rounded-2xl">
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={handelDeleteProduct}
+              className="text-red-500 bg-red-500/30 px-6 py-2 rounded-xl flex items-center gap-x-2 hover:ring-4 ring-red-500/50 transition-all"
             >
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M20 12H4m0 0l6-6m-6 6l6 6"
-              />
-            </svg>
-            <span>بازگشت</span>
-          </Link>
-          <button
-            onClick={handelDeleteProduct}
-            className="text-red-500 bg-red-500/30 px-6 py-2 rounded-xl flex items-center gap-x-2 hover:ring-4 ring-red-500/50 transition-all mt-4"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.4em"
-              height="1.4em"
-              viewBox="0 0 24 24"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.4em"
+                height="1.4em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"
+                />
+              </svg>
+              <span>حذف محصول</span>
+            </button>
+            <Link
+              href={"/dashbord/product"}
+              className="inline-flex items-center gap-x-2 bg-green-500/20 text-green-500 px-6 py-2 rounded-xl hover:ring-4 ring-green-500/50 transition-all"
             >
-              <path
-                fill="currentColor"
-                d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"
-              />
-            </svg>
-            <span>حذف محصول</span>
-          </button>
+              <span>بازگشت</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M20 12H4m0 0l6-6m-6 6l6 6"
+                />
+              </svg>
+            </Link>
+          </div>
           <Formik
             initialValues={{
               id: product.id,
@@ -177,30 +186,8 @@ export default function Product({ product }: any) {
             }}
           >
             <Form>
-              <button
-                type="submit"
-                className="flex items-center gap-x-2 bg-blue-500/20 text-blue-500 px-6 py-2 rounded-xl hover:ring-4 ring-blue-500/50 transition-all my-4"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.5em"
-                  height="1.5em"
-                  viewBox="0 0 24 24"
-                >
-                  <g fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="12" cy="12" r="10" opacity="0.5" />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m8.5 12.5l2 2l5-5"
-                    />
-                  </g>
-                </svg>
-                <span>ویرایش و بروزرسانی</span>
-              </button>
-
-              <div className="flex items-center flex-col gap-8 border p-4 rounded-xl shadow-sm">
-                <div className="flex items-center justify-between w-full border-b pb-4">
+              <div className="flex items-center flex-col gap-8 border border-zinc-700 p-4 rounded-xl shadow-sm">
+                <div className="flex items-center justify-between w-full border-b border-zinc-700 pb-4">
                   <div>
                     <span className="block">id</span>
                     <span className="block">{product?.id}</span>
@@ -227,7 +214,7 @@ export default function Product({ product }: any) {
                 </div>
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center justify-center gap-4">
-                    <div className="bg-zinc-100 p-4 rounded-xl">
+                    <div className="bg-zinc-800 p-4 rounded-xl">
                       <span className="block">تصویر</span>
                       <Image
                         src={product!.image}
@@ -238,7 +225,7 @@ export default function Product({ product }: any) {
                       <Field
                         name="image"
                         type="text"
-                        className="outline-none py-2 px-4 rounded-xl bg-white focus:ring-4 ring-blue-500/50 transition-all"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-700 focus:ring-4 ring-blue-500/50 transition-all"
                         placeholder="/images/products/..."
                       />
                     </div>
@@ -250,7 +237,7 @@ export default function Product({ product }: any) {
                           name="title"
                           as="textarea"
                           type="text"
-                          className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                          className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                         />
                       </div>
                       <div className="w-full">
@@ -259,7 +246,7 @@ export default function Product({ product }: any) {
                           name="titleEng"
                           as="textarea"
                           type="text"
-                          className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                          className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                         />
                       </div>
 
@@ -269,7 +256,7 @@ export default function Product({ product }: any) {
                           name="slug"
                           as="textarea"
                           type="text"
-                          className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                          className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                         />
                       </div>
                     </div>
@@ -281,7 +268,7 @@ export default function Product({ product }: any) {
                       <Field
                         name="price"
                         type="number"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
                       />
                     </div>
 
@@ -290,7 +277,7 @@ export default function Product({ product }: any) {
                       <Field
                         name="cat"
                         type="text"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
                       />
                     </div>
 
@@ -299,7 +286,7 @@ export default function Product({ product }: any) {
                       <Field
                         name="count"
                         type="number"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
                       />
                     </div>
                   </div>
@@ -311,9 +298,31 @@ export default function Product({ product }: any) {
                     as="textarea"
                     name="description"
                     type="textera"
-                    className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full min-h-96"
+                    className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full min-h-96"
                   />
                 </div>
+
+                <button
+                  type="submit"
+                  className="flex items-center gap-x-2 bg-blue-500/20 text-blue-500 px-6 py-2 rounded-xl hover:ring-4 ring-blue-500/50 transition-all"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5em"
+                    height="1.5em"
+                    viewBox="0 0 24 24"
+                  >
+                    <g fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10" opacity="0.5" />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="m8.5 12.5l2 2l5-5"
+                      />
+                    </g>
+                  </svg>
+                  <span>ویرایش و بروزرسانی</span>
+                </button>
               </div>
             </Form>
           </Formik>

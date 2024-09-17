@@ -1,23 +1,23 @@
-import AdminProducst from "@/components/Admin/Product/Product";
+import AdminUser from "@/components/Admin/User/User";
 import prismadb from "@/lib/prisma";
 
 export default async function page({ params }: { params: { id: number } }) {
-  const product = await prismadb.product.findUnique({
+  const user = await prismadb.user.findUnique({
     where: {
       id: Number(params.id),
     },
   });
-  if (!product) {
+  if (!user) {
     return (
       <div className="min-h-[900px] flex items-center justify-center">
-        <span className="block text-2xl text-red-400">کالا یافت نشد!</span>
+        <span className="block text-2xl text-red-400">کاربر یافت نشد!</span>
       </div>
     );
   } else {
     return (
       <>
-        <div className="bg-zinc-900">
-          <AdminProducst product={product} />
+        <div className="bg-zinc-900 min-h-screen">
+          <AdminUser user={user} />
         </div>
       </>
     );

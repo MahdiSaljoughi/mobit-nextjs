@@ -1,44 +1,68 @@
 "use client";
 
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
-import { toast } from "sonner";
 
 export default function FormAddUser() {
   return (
-    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl">
-      <span className="block md:text-xl">فرم افزودن کاربر</span>
+    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl text-zinc-100">
+      <span className="block md:text-xl text-blue-500">فرم افزودن کاربر</span>
       <Formik
         initialValues={{
           email: "",
           password: "",
-          user_name: "",
+          userName: "",
           phone: "",
         }}
         validationSchema={Yup.object({
           email: Yup.string()
-            .email("ایمیل معتبر نیست .")
-            .required("این فیلد الزامی است ."),
-          password: Yup.string().required("این فیلد الزامی است ."),
-          user_name: Yup.string().required("این فیلد الزامی است ."),
-          phone: Yup.string().required("این فیلد الزامی است ."),
+            .email("ایمیل معتبر نیست.")
+            .required("این فیلد الزامی است."),
+          password: Yup.string().required("این فیلد الزامی است."),
+          userName: Yup.string().required("این فیلد الزامی است."),
+          phone: Yup.string().required("این فیلد الزامی است."),
         })}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           setSubmitting(true);
 
           try {
-            await fetch("/api/user", {
+            const response = await fetch("/api/user", {
               method: "POST",
               body: JSON.stringify(values),
               headers: {
                 "Content-Type": "application/json",
               },
             });
-            // Clear form
-            resetForm();
 
-            // Toast
-            toast("کاربر جدید با موفقیت ایجاد شد .");
+            const data = await response.json();
+
+            if (data.status === 201) {
+              // Clear form
+              resetForm();
+
+              toast.success(data.message, {
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                  fontSize: "12px",
+                },
+              });
+
+              setInterval(() => window.location.reload(), 2000);
+            }
+
+            if (data.status === 409) {
+              toast.error(data.message, {
+                style: {
+                  borderRadius: "10px",
+                  background: "#333",
+                  color: "#fff",
+                  fontSize: "12px",
+                },
+              });
+            }
           } catch (error) {
             toast(`خطا : ${error}`);
           } finally {
@@ -72,14 +96,14 @@ export default function FormAddUser() {
               className="text-rose-500"
             />
 
-            <label htmlFor="user_name">نام کاربری</label>
+            <label htmlFor="userName">نام کاربری</label>
             <Field
-              name="user_name"
+              name="userName"
               type="text"
               className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
             />
             <ErrorMessage
-              name="user_name"
+              name="userName"
               component="div"
               className="text-rose-500"
             />

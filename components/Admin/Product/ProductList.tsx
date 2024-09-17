@@ -15,25 +15,6 @@ export default async function AdminProducst() {
         <FormAddProduct userName={session?.user.username} />
       </div>
       <div className="border border-zinc-700 text-zinc-100 rounded-3xl w-full overflow-auto">
-        {/* <button className="flex items-center gap-x-2 bg-blue-500/20 text-blue-500 px-6 py-2 rounded-xl hover:ring-4 ring-blue-500/50 transition-all mr-4 mt-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5em"
-            height="1.5em"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 5v14m-7-7h14"
-            />
-          </svg>
-          <span>افزودن محصول</span>
-        </button> */}
-
         <div className="flex items-center w-full justify-between p-4 text-blue-500">
           <span className="flex- 1 text-center mr-4">کد</span>
           <span className="flex- 1 text-center mr-6">تصویر</span>

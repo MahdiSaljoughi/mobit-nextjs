@@ -16,20 +16,70 @@ export default async function AdminPanel() {
     if (session?.user.role === "ADMIN") {
       return (
         <>
-          <div className="bg-zinc-900 text-zinc-100">
-            <div className="min-h-screen p-4 pb-20 lg:p-4">
-              <div className="flex flex-col gap-y-10">
-                <div>
-                  <div className="flex items-center justify-between mb-8 md:mb-4">
-                    <span className="block text-lg md:text-2xl">پنل ادمین</span>
-                    <LogoutButton />
-                  </div>
-                  <span className="block md:text-lg text-center md:text-right">{`ادمین ${session?.user.username} عزیز خوش آمدید.`}</span>
+          <div className="bg-zinc-950 text-zinc-100 flex relative min-h-screen">
+            <div className="w-80 bg-zinc-900 fixed right-0 inset-y-0 z-10 lg:static">
+              <div className="mt-32 lg:mt-0 flex flex-col gap-4 p-4">
+                <div className="-my-2">
+                  <img
+                    src="/images/logos/mobit.png"
+                    alt="logo-mobit"
+                    className="w-40 mx-auto"
+                  />
                 </div>
-                <Link href="/dashbord/product">محصولات</Link>
-                <Link href="/dashbord/order">سفارشات</Link>
-                <Link href="/dashbord/user">کاربران</Link>
-                <div>{/* <FormAddUser /> */}</div>
+                <Link
+                  href="/dashbord/product"
+                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                >
+                  محصولات
+                </Link>
+                <Link
+                  href="/dashbord/order"
+                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                >
+                  سفارشات
+                </Link>
+                <Link
+                  href="/dashbord/user"
+                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                >
+                  کاربران
+                </Link>
+                <Link
+                  href="/dashbord/"
+                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                >
+                  مشتریان
+                </Link>
+              </div>
+
+              {/*  */}
+              <div className="mt-4">
+                <img
+                  src="/icon.png"
+                  alt="logo-mobit"
+                  className="w-10 mx-auto"
+                />
+              </div>
+            </div>
+            <div className="p-4 lg:p-8 w-full">
+              <div className="rounded-2xl p-4 bg-zinc-900">
+                <div className="flex flex-col gap-y-10">
+                  <div>
+                    <div className="flex items-center justify-between mb-8 md:mb-4">
+                      <span className="block text-lg md:text-2xl">
+                        پنل ادمین
+                      </span>
+                      <img
+                        src="/images/logos/mobit.svg"
+                        alt="logo-mobit"
+                        className="w-20 md:w-40 mx-auto pt-4"
+                      />
+                      <LogoutButton />
+                    </div>
+                    <span className="block md:text-lg text-center md:text-right">{`ادمین ${session?.user.username} عزیز خوش آمدید.`}</span>
+                  </div>
+                  <div>...</div>
+                </div>
               </div>
             </div>
           </div>

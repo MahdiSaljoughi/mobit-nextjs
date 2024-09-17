@@ -1,5 +1,4 @@
-import AdminUser from "@/components/Admin/User/User";
-import FormAddUser from "@/components/Forms/FormAddUser";
+import AdminUserList from "@/components/Admin/User/UserList";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -12,11 +11,38 @@ export default async function page() {
         <div className="py-6 bg-blue-500 text-center text-white">
           <span>کاربران</span>
         </div>
-        <div className="min-h-screen p-4 pb-20 lg:p-4">
-          <div className="mb-4">
-            <FormAddUser />
+        <div className="min-h-screen p-4 lg:p-8 bg-zinc-900">
+          <div className="p-4 pt-0">
+            <img
+              src="/images/logos/mobit.png"
+              alt="logo-mobit"
+              className="w-40 mx-auto"
+            />
           </div>
-          <AdminUser />
+          <div className="flex items-center justify-end mb-4">
+            <Link
+              href={"/dashbord"}
+              className="flex items-center gap-x-2 bg-green-500/20 text-green-500 px-6 py-2 rounded-xl hover:ring-4 ring-green-500/50 transition-all"
+            >
+              <span>بازگشت</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.5em"
+                height="1.5em"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M20 12H4m0 0l6-6m-6 6l6 6"
+                />
+              </svg>
+            </Link>
+          </div>
+          <AdminUserList />
         </div>
       </>
     );
