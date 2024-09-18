@@ -3,27 +3,11 @@ import Prisma from "@/lib/prisma";
 import axios from "axios";
 
 export default async function AdminOrderList() {
-  const ordersFetch = await axios({
-    method: "get",
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`,
-  });
+  const ordersFetch = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`
+  );
 
   const orders = JSON.parse(ordersFetch.data.orders);
-
-  const orderDetails = await Promise.all(
-    orders.map(async (order: any) => {
-      const user = await Prisma.user.findUnique({
-        where: {
-          id: order.customerId,
-        },
-      });
-      return {
-        ...order,
-        userId: user?.id,
-        userName: user?.userName,
-      };
-    })
-  );
 
   return (
     <>
@@ -32,7 +16,6 @@ export default async function AdminOrderList() {
           <thead>
             <tr className="text-blue-500 text-xs md:text-base text-center">
               <td>کد</td>
-              <td>نام کاربری مشتری</td>
               <td>کد مشتری</td>
               <td>وضعیت</td>
               <td>روش پرداخت</td>
@@ -49,17 +32,6 @@ export default async function AdminOrderList() {
                 }
               >
                 <td className="p-4">{order.id}</td>
-                <td>
-                  {orderDetails.map((user) => (
-                    <Link
-                      key={user.userId}
-                      href={`/dashbord/user/${user.userId}`}
-                      className="text-blue-400 hover:text-blue-500 transition-colors"
-                    >
-                      <span>{user.userName}</span>
-                    </Link>
-                  ))}
-                </td>
                 <td>{order.customerId}</td>
                 <td>{order.statusOrder}</td>
                 <td>{order.paymentMethod}</td>

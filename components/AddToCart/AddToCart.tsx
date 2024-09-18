@@ -117,7 +117,7 @@ export default function AddToCart({
         </div>
       ) : (
         <button
-          className="rounded-xl bg-blue-500 text-white px-4 py-2.5 text-sm md:w-full border-2 border-zinc-50"
+          className="rounded-xl bg-blue-500 hover:bg-blue-600 transition-all hover:ring-4 ring-blue-500/50 text-white px-4 py-2.5 text-sm md:w-full"
           onClick={addToCartHandler}
         >
           افزودن به سبد خرید

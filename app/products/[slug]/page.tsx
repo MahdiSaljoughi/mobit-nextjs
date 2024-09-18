@@ -1,13 +1,13 @@
-import prismadb from "@/lib/prisma";
+import axios from "axios";
 import AddToCart from "@/components/AddToCart/AddToCart";
 import MainFooter from "@/components/Footer/MainFooter";
 
 export default async function page({ params }: { params: { slug: string } }) {
-  const product = await prismadb.product.findFirst({
-    where: {
-      slug: params.slug,
-    },
-  });
+  const productsFetch = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+  );
+  const products = JSON.parse(productsFetch.data.products);
+  const product = products.find((x: any) => x.slug === params.slug);
 
   // product not found
   if (!product) {

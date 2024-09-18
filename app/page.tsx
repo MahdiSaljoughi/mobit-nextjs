@@ -1,12 +1,16 @@
+import axios from "axios";
+import Link from "next/link";
 import { Curosel } from "@/components/Curosel/Curosel";
-import MainFooter from "@/components/Footer/MainFooter";
 import Item8 from "@/components/Item8/Item8";
 import Carosel from "@/components/Product/Carosel";
-import prismadb from "@/lib/prisma";
-import Link from "next/link";
+import MainFooter from "@/components/Footer/MainFooter";
 
 export default async function Home() {
-  const product = await prismadb.product.findMany();
+  const productsFetch = await axios.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+  );
+  const product = JSON.parse(productsFetch.data.products);
+
   return (
     <>
       <main className="min-h-[900px] flex flex-col gap-y-2">

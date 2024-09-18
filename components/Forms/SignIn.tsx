@@ -34,7 +34,6 @@ export default function SignIn() {
           });
 
           if (signInData?.error) {
-            // console.log(signInData.error);
             toast.error("خطا لطفا مقادیر را به درستی وارد کنید.", {
               style: {
                 borderRadius: "10px",

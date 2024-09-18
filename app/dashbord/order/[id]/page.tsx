@@ -1,17 +1,19 @@
-import prismadb from "@/lib/prisma";
 import AdminOrder from "@/components/Admin/Order/Order";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import axios from "axios";
 import Link from "next/link";
 
 export default async function page({ params }: { params: { id: number } }) {
   const session = await getServerSession(authOptions);
 
-  const order = await prismadb.order.findUnique({
-    where: {
-      id: Number(params.id),
-    },
+  const ordersFetch = await axios({
+    method: "get",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`,
   });
+  const orders = JSON.parse(ordersFetch.data.orders);
+  const order = orders.find((x: any) => x.id === Number(params.id));
+
   // if (session?.user)
   if (session?.user.role === "ADMIN") {
     if (!order) {

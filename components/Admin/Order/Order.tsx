@@ -1,22 +1,63 @@
-// "use client";
+"use client";
 
+import axios from "axios";
 import Link from "next/link";
-import prismadb from "@/lib/prisma";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-export default async function Order({ order }: any) {
-  const user = await prismadb.user.findUnique({
-    where: {
-      id: order.customerId,
-    },
-  });
+interface User {
+  id: number;
+  userName: string;
+}
 
-  const orderDetails = {
-    ...order,
-    userId: user?.id,
-    userName: user?.userName,
+interface Order {
+  id: number;
+  customerId: number;
+  statusOrder: string;
+  paymentMethod: string;
+  amountPaid: number;
+  orderDate: string;
+  deliveryAddress: string;
+}
+
+export default function Order({ order }: { order: Order }) {
+  const [user, setUser] = useState<User | null>(null); // نوع user را مشخص کنید
+
+  const ordersFetch = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
+      );
+      const data: User[] = JSON.parse(response.data.users);
+      const foundUser = data.find((x) => x.id === order.customerId);
+      setUser(foundUser || null); // اگر کاربر پیدا نشد، null را تنظیم کنید
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      toast.error("خطا در دریافت اطلاعات کاربر");
+    }
   };
 
-  const handelDeleteOrder = async () => {};
+  useEffect(() => {
+    ordersFetch();
+  }, []);
+
+  const router = useRouter();
+
+  const handelDeleteOrder = async () => {
+    toast.success("سفارش با موفقیت حذف شد", {
+      style: {
+        borderRadius: "10px",
+        background: "#333",
+        color: "#fff",
+        fontSize: "12px",
+      },
+    });
+
+    router.replace("/dashbord/order");
+
+    setInterval(() => window.location.reload(), 2000);
+  };
 
   return (
     <>
@@ -29,7 +70,10 @@ export default async function Order({ order }: any) {
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
-          <button className="text-red-500 bg-red-500/30 px-6 py-2 rounded-xl flex items-center gap-x-2 hover:ring-4 ring-red-500/50 transition-all">
+          <button
+            onClick={handelDeleteOrder}
+            className="text-red-500 bg-red-500/30 px-6 py-2 rounded-xl flex items-center gap-x-2 hover:ring-4 ring-red-500/50 transition-all"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.4em"
@@ -75,27 +119,51 @@ export default async function Order({ order }: any) {
                 <td>وضعیت</td>
                 <td>روش پرداخت</td>
                 <td>مبلغ پرداختی</td>
+                <td>محصولات</td>
                 <td>تاریخ</td>
-                <td>زمان</td>
               </tr>
             </thead>
             <tbody className="w-full">
               <tr className="text-center">
                 <td className="p-4">{order.id}</td>
                 <td>
-                  <Link
-                    href={`/dashbord/user/${orderDetails.userId}`}
-                    className="text-blue-400 hover:text-blue-500 transition-colors"
-                  >
-                    <span>{orderDetails.userName}</span>
-                  </Link>
+                  {user ? (
+                    <Link
+                      href={`/dashbord/user/${user.id}`}
+                      className="text-blue-400 hover:text-blue-500 transition-colors"
+                    >
+                      <span>{user.userName}</span>
+                    </Link>
+                  ) : (
+                    <span>کاربر پیدا نشد</span>
+                  )}
                 </td>
                 <td>{order.customerId}</td>
                 <td>{order.statusOrder}</td>
                 <td>{order.paymentMethod}</td>
                 <td>{order.amountPaid}</td>
-                <td>{order.orderDate.toLocaleDateString()}</td>
-                <td>{order.orderDate.toLocaleTimeString()}</td>
+                <td>
+                  <Link
+                    href={`/dashbord/order/product-order/${order.id}`}
+                    className="flex items-center justify-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1.5em"
+                      height="1.5em"
+                      viewBox="0 0 24 24"
+                    >
+                      <g fill="none" stroke="currentColor" strokeWidth="2">
+                        <path
+                          d="M3.275 15.296C2.425 14.192 2 13.639 2 12c0-1.64.425-2.191 1.275-3.296C4.972 6.5 7.818 4 12 4s7.028 2.5 8.725 4.704C21.575 9.81 22 10.361 22 12c0 1.64-.425 2.191-1.275 3.296C19.028 17.5 16.182 20 12 20s-7.028-2.5-8.725-4.704Z"
+                          opacity="0.5"
+                        />
+                        <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z" />
+                      </g>
+                    </svg>
+                  </Link>
+                </td>
+                <td>{order.orderDate}</td>
               </tr>
             </tbody>
           </table>

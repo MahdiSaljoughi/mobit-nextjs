@@ -3,9 +3,19 @@ import bcrypt from "bcrypt";
 import prismadb from "@/lib/prisma";
 
 export async function GET() {
-  return NextResponse.json({
-    msg: "User Api GET",
-  });
+  try {
+    const users = await prismadb.user.findMany();
+    return NextResponse.json({
+      users: JSON.stringify(users),
+      msg: "User Api GET",
+      status: 200,
+    });
+  } catch (error) {
+    return NextResponse.json({
+      msg: "Error fetching Users",
+      status: 500,
+    });
+  }
 }
 
 export async function POST(request: Request) {
@@ -115,9 +125,7 @@ export async function PUT(request: Request) {
       });
     }
 
-    if (
-      !email || !userName || !firstName || !lastName || !phone || !role
-    ) {
+    if (!email || !userName || !firstName || !lastName || !phone || !role) {
       return NextResponse.json({
         message: "لطفا تمام فیلد ها را پر کنید",
         messageEng: "Please fill in all fields",
