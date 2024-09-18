@@ -81,7 +81,7 @@ export default function SignIn() {
           <label htmlFor="password">رمز عبور *</label>
           <Field
             name="password"
-            type="password"
+            type="text"
             className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-2 ring-blue-500"
             placeholder="رمز عبور"
           />

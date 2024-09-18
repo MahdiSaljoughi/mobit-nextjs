@@ -1,30 +1,30 @@
-import AdminUser from "@/components/Admin/User/User";
-import { authOptions } from "@/lib/auth";
 import prismadb from "@/lib/prisma";
+import AdminOrder from "@/components/Admin/Order/Order";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 
 export default async function page({ params }: { params: { id: number } }) {
   const session = await getServerSession(authOptions);
 
-  const user = await prismadb.user.findUnique({
+  const order = await prismadb.order.findUnique({
     where: {
       id: Number(params.id),
     },
   });
-
+  // if (session?.user)
   if (session?.user.role === "ADMIN") {
-    if (!user) {
+    if (!order) {
       return (
         <div className="min-h-[900px] flex items-center justify-center">
-          <span className="block text-2xl text-red-400">کاربر یافت نشد!</span>
+          <span className="block text-2xl text-red-400">سفارش یافت نشد!</span>
         </div>
       );
     } else {
       return (
         <>
           <div className="bg-zinc-900 min-h-screen">
-            <AdminUser user={user} />
+            <AdminOrder order={order} />
           </div>
         </>
       );

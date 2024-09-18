@@ -360,7 +360,7 @@ export default function MainHeader() {
               />
             </div>
           </div>
-          <div className="hidden lg:flex items-center 2xl:gap-x-10 lg:gap-x-4 mx-5">
+          <div className="hidden lg:flex items-center gap-x-5 ml-5">
             <div>
               <Link
                 href={session?.user ? "/dashbord" : "/sign-in"}
@@ -369,8 +369,9 @@ export default function MainHeader() {
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="xl:w-[20px] xl:h-[20px] lg:w-[14px] lg:h-[14px]"
                     viewBox="0 0 24 24"
+                    width="1.4rem"
+                    height="1.4rem"
                   >
                     <circle cx="12" cy="6" r="4" fill="currentColor" />
                     <path
@@ -395,15 +396,25 @@ export default function MainHeader() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="1.6em"
-                  height="1.6em"
-                  viewBox="0 0 256 256"
+                  width="1.4rem"
+                  height="1.4rem"
+                  viewBox="0 0 24 24"
+                  className="rounded-full"
                 >
                   <path
+                    d="M21 4H3a1 1 0 0 0-1 1v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a1 1 0 0 0-1-1zm-9 9c-3.309 0-6-2.691-6-6h2c0 2.206 1.794 4 4 4s4-1.794 4-4h2c0 3.309-2.691 6-6 6z"
                     fill="currentColor"
-                    d="m239.71 74.14l-25.64 92.28A24.06 24.06 0 0 1 191 184H92.16A24.06 24.06 0 0 1 69 166.42L33.92 40H16a8 8 0 0 1 0-16h24a8 8 0 0 1 7.71 5.86L57.19 64H232a8 8 0 0 1 7.71 10.14M88 200a16 16 0 1 0 16 16a16 16 0 0 0-16-16m104 0a16 16 0 1 0 16 16a16 16 0 0 0-16-16"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="6"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
                   />
                 </svg>
+
                 <span className={cartItems.length === 0 ? "" : "pt-0.5"}>
                   {cartItems.length === 0
                     ? "سبد خرید"

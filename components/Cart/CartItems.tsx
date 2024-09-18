@@ -17,7 +17,7 @@ export default function CartItems() {
       {cartItems.length === 0 ? (
         <>
           <div className="min-h-[900px] contain">
-            <div className="fixed inset-0 w-full flex flex-col justify-center items-center gap-y-4">
+            <div className="fixed inset-0 w-full flex flex-col justify-center items-center gap-y-10">
               <span className="block text-lg md:text-2xl">
                 سبد خرید شما خالی است.
               </span>

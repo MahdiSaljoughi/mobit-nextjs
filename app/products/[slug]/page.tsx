@@ -155,7 +155,9 @@ export default async function page({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
-        <MainFooter />
+        <div className="mb-36 md:mb-48 lg:mb-0">
+          <MainFooter />
+        </div>
       </>
     );
   }

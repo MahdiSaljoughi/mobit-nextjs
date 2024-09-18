@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const products = await Prisma.product.findMany();
     return NextResponse.json({
-      products: products,
+      products: JSON.stringify(products),
       msg: "Product Api GET",
       status: 200,
     });
@@ -76,7 +76,6 @@ export async function PUT(request: Request) {
       !title ||
       !titleEng ||
       !slug ||
-      !count ||
       !price ||
       !cat ||
       !description ||

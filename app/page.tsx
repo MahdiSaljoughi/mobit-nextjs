@@ -23,15 +23,6 @@ export default async function Home() {
             <Carosel product={product} />
           </div>
 
-          <div>
-            <Link href="/" className="block">
-              <p className="w-full rounded-2xl bg-zinc-100 p-4">
-                پربازدید های ماه
-              </p>
-            </Link>
-            <Carosel product={product} />
-          </div>
-
           <div className="flex flex-col md:flex-row gap-x-2">
             <Link href="/" className="block">
               <img src="/images/poster-w-home-1.webp" alt="img" />
@@ -44,7 +35,7 @@ export default async function Home() {
           <div>
             <Link href="/" className="block">
               <p className="w-full rounded-2xl bg-zinc-100 p-4">
-                پرفروش های ماه
+                پربازدید های ماه
               </p>
             </Link>
             <Carosel product={product} />

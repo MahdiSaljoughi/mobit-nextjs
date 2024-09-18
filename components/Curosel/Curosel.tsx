@@ -15,19 +15,39 @@ import {
 export function Curosel() {
   const itmes = [
     {
-      src: "/images/poster/pgif.gif",
-      src_mobile: "/images/poster/posterMobileSaat.jpg",
-      alt: "poster",
+      src: "/images/poster/1.jpg",
+      src_mobile: "/images/poster/1mobile.jpg",
+      alt: "poster1",
     },
     {
-      src: "/images/poster/p1.jpg",
-      src_mobile: "/images/poster/posterMobileTcl.jpg",
+      src: "/images/poster/2.jpg",
+      src_mobile: "/images/poster/2mobile.webp",
       alt: "poster2",
     },
     {
-      src: "/images/poster/p2.jpg",
-      src_mobile: "/images/poster/posterMobileHonor.webp",
+      src: "/images/poster/3.gif",
+      src_mobile: "/images/poster/3mobile.jpg",
       alt: "poster3",
+    },
+    {
+      src: "/images/poster/4.webp",
+      src_mobile: "/images/poster/4mobile.webp",
+      alt: "poster4",
+    },
+    {
+      src: "/images/poster/5.webp",
+      src_mobile: "/images/poster/5mobile.webp",
+      alt: "poster5",
+    },
+    {
+      src: "/images/poster/6.webp",
+      src_mobile: "/images/poster/6mobile.webp",
+      alt: "poster6",
+    },
+    {
+      src: "/images/poster/7.webp",
+      src_mobile: "/images/poster/7mobile.webp",
+      alt: "poster7",
     },
   ];
   const plugin = React.useRef(

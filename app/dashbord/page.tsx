@@ -278,9 +278,9 @@ export default async function AdminPanel() {
   } else {
     return (
       <>
-        <div className="min-h-[1000px] flex flex-col justify-center items-center gap-y-10 contain">
-          <span className="block text-2xl">
-            لطفا ابتدا به حساب کاربری خود وارد شوید .
+        <div className="min-h-screen flex flex-col justify-center items-center gap-y-10 contain fixed inset-0">
+          <span className="block text-xl text-center">
+            لطفا ابتدا به حساب کاربری خود وارد شوید.
           </span>
           <Link
             href="/sign-in"

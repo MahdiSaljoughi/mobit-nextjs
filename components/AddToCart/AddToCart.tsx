@@ -43,7 +43,7 @@ export default function AddToCart({
       if (item.id === id) return item.qunatity > 1;
     })
       ? null
-      : toast.error("کالا از سبدخرید حذف شد", {
+      : toast.success("کالا از سبدخرید حذف شد", {
           style: {
             borderRadius: "10px",
             background: "#333",
