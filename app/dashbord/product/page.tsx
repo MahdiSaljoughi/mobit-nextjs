@@ -11,7 +11,7 @@ export default async function page() {
         <div className="py-6 bg-blue-500 text-center text-white">
           <span>محصولات</span>
         </div>
-        <div className="min-h-screen p-4 lg:p-8 lg:pt-0 bg-zinc-900">
+        <div className="min-h-screen p-4 pb-10 lg:pt-0 bg-zinc-900">
           <div className="p-4">
             <img
               src="/images/logos/mobit.png"

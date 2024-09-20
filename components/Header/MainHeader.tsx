@@ -170,7 +170,7 @@ export default function MainHeader() {
 
   return (
     <>
-      <header className="hidden lg:block bg-[#1C39BB] px-1.5 w-full sticky top-0 text-white shadow-md lg:text-[11px] xl:text-[12.8px] z-50">
+      <header className="hidden lg:block bg-[#1C39BB] px-2 py-1 w-full sticky top-0 text-white shadow-md lg:text-[11px] xl:text-[12.8px] z-50">
         <div className="flex lg:justify-between items-center">
           <div className="items-center lg:mx-0 hidden lg:flex">
             <Link href="/">
@@ -385,46 +385,44 @@ export default function MainHeader() {
                 </span>
               </Link>
             </div>
-            <div>
-              <Link
-                href="/cart"
-                className={
-                  cartItems.length > 0
-                    ? "flex items-center gap-x-1"
-                    : "flex items-center gap-x-2"
-                }
+            <Link
+              href="/cart"
+              className={
+                cartItems.length > 0
+                  ? "flex items-center gap-x-1"
+                  : "flex items-center gap-x-2"
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1.4rem"
+                height="1.4rem"
+                viewBox="0 0 24 24"
+                className="rounded-full"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="1.4rem"
-                  height="1.4rem"
-                  viewBox="0 0 24 24"
-                  className="rounded-full"
-                >
-                  <path
-                    d="M21 4H3a1 1 0 0 0-1 1v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a1 1 0 0 0-1-1zm-9 9c-3.309 0-6-2.691-6-6h2c0 2.206 1.794 4 4 4s4-1.794 4-4h2c0 3.309-2.691 6-6 6z"
-                    fill="currentColor"
-                  />
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
+                <path
+                  d="M21 4H3a1 1 0 0 0-1 1v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a1 1 0 0 0-1-1zm-9 9c-3.309 0-6-2.691-6-6h2c0 2.206 1.794 4 4 4s4-1.794 4-4h2c0 3.309-2.691 6-6 6z"
+                  fill="currentColor"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
 
-                <span className={cartItems.length === 0 ? "" : "pt-0.5"}>
-                  {cartItems.length === 0
-                    ? "سبد خرید"
-                    : `${cartItems.reduce(
-                        (acc, cur) => acc + cur.qunatity,
-                        0
-                      )} کالا`}
-                </span>
-              </Link>
-            </div>
+              <span className={cartItems.length === 0 ? "" : "pt-0.5"}>
+                {cartItems.length === 0
+                  ? "سبد خرید"
+                  : `${cartItems.reduce(
+                      (acc, cur) => acc + cur.quantity,
+                      0
+                    )} کالا`}
+              </span>
+            </Link>
           </div>
         </div>
       </header>

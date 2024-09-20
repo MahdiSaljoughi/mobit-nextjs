@@ -44,12 +44,6 @@ export default async function AdminPanel() {
                 >
                   کاربران
                 </Link>
-                <Link
-                  href="/dashbord/"
-                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
-                >
-                  مشتریان
-                </Link>
               </div>
 
               {/*  */}
@@ -266,7 +260,7 @@ export default async function AdminPanel() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full h-[700px] border">
+                <div className="w-full bg-white border rounded-2xl">
                   <div></div>
                 </div>
               </div>

@@ -72,7 +72,7 @@ export default function CartItems() {
                   <span className="block">مبلغ کالاها</span>
                   <span>
                     {cartItems
-                      .reduce((acc, cur) => acc + cur.price * cur.qunatity, 0)
+                      .reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
                       .toLocaleString()}
 
                     <span className="text-gray-500 text-xs mr-0.5">تومان</span>
@@ -88,7 +88,7 @@ export default function CartItems() {
                   <span className="text-sm">مبلغ قابل پرداخت :</span>
                   <span>
                     {cartItems
-                      .reduce((acc, cur) => acc + cur.price * cur.qunatity, 0)
+                      .reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
                       .toLocaleString()}
                     <span className="text-gray-500 text-xs mr-0.5">تومان</span>
                   </span>

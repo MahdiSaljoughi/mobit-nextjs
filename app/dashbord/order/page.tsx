@@ -1,4 +1,5 @@
 import AdminOrderList from "@/components/Admin/Order/OrderList";
+import Orders from "@/components/OrderUser/Orders";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
@@ -50,11 +51,41 @@ export default async function page() {
     } else {
       return (
         <>
-          <div className="min-h-[900px] flex flex-col gap-y-4 items-center justify-center">
-            <span>سفارشات من</span>
-            <Link href="/" className="block text-blue-500">
-              بازگشت به صفحه اصلی
-            </Link>
+          <div className="min-h-[900px]">
+            <div className="bg-blue-600 m-3 lg:m-6 rounded-2xl">
+              <img
+                src="/images/logos/mobit.png"
+                alt="logo-mobit"
+                className="w-28 mx-auto"
+              />
+            </div>
+            <div className="mx-3 lg:mx-auto lg:container">
+              <div className="flex items-center justify-between mb-4">
+                <span className="block text-blue-500">سفارشات من</span>
+                <Link
+                  href={"/dashbord"}
+                  className="flex items-center gap-x-2 bg-green-500/20 text-green-500 px-6 py-2 rounded-xl hover:ring-4 ring-green-500/50 transition-all"
+                >
+                  <span className="hidden lg:block">بازگشت</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5em"
+                    height="1.5em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M20 12H4m0 0l6-6m-6 6l6 6"
+                    />
+                  </svg>
+                </Link>
+              </div>
+              <Orders userId={session?.user.id} />
+            </div>
           </div>
         </>
       );

@@ -22,7 +22,7 @@ interface Order {
 }
 
 export default function Order({ order }: { order: Order }) {
-  const [user, setUser] = useState<User | null>(null); // نوع user را مشخص کنید
+  const [user, setUser] = useState<User | null>(null);
 
   const ordersFetch = async () => {
     try {
@@ -31,7 +31,7 @@ export default function Order({ order }: { order: Order }) {
       );
       const data: User[] = JSON.parse(response.data.users);
       const foundUser = data.find((x) => x.id === order.customerId);
-      setUser(foundUser || null); // اگر کاربر پیدا نشد، null را تنظیم کنید
+      setUser(foundUser || null);
     } catch (error) {
       console.error("Error fetching orders:", error);
       toast.error("خطا در دریافت اطلاعات کاربر");
@@ -61,7 +61,7 @@ export default function Order({ order }: { order: Order }) {
 
   return (
     <>
-      <div className="p-4">
+      <div className="p-4 pb-0">
         <img
           src="/images/logos/mobit.png"
           alt="logo-mobit"
@@ -109,7 +109,7 @@ export default function Order({ order }: { order: Order }) {
             </svg>
           </Link>
         </div>
-        <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl text-zinc-100">
+        <div className="py-4 md:py-8 rounded-3xl text-zinc-100 bg-slate-950">
           <table className="w-full">
             <thead>
               <tr className="text-blue-500 text-xs md:text-base text-center">
@@ -117,9 +117,8 @@ export default function Order({ order }: { order: Order }) {
                 <td>نام کاربری مشتری</td>
                 <td>کد مشتری</td>
                 <td>وضعیت</td>
-                <td>روش پرداخت</td>
                 <td>مبلغ پرداختی</td>
-                <td>محصولات</td>
+                <td>روش پرداخت</td>
                 <td>تاریخ</td>
               </tr>
             </thead>
@@ -140,39 +139,20 @@ export default function Order({ order }: { order: Order }) {
                 </td>
                 <td>{order.customerId}</td>
                 <td>{order.statusOrder}</td>
-                <td>{order.paymentMethod}</td>
-                <td>{order.amountPaid}</td>
-                <td>
-                  <Link
-                    href={`/dashbord/order/product-order/${order.id}`}
-                    className="flex items-center justify-center"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1.5em"
-                      height="1.5em"
-                      viewBox="0 0 24 24"
-                    >
-                      <g fill="none" stroke="currentColor" strokeWidth="2">
-                        <path
-                          d="M3.275 15.296C2.425 14.192 2 13.639 2 12c0-1.64.425-2.191 1.275-3.296C4.972 6.5 7.818 4 12 4s7.028 2.5 8.725 4.704C21.575 9.81 22 10.361 22 12c0 1.64-.425 2.191-1.275 3.296C19.028 17.5 16.182 20 12 20s-7.028-2.5-8.725-4.704Z"
-                          opacity="0.5"
-                        />
-                        <path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z" />
-                      </g>
-                    </svg>
-                  </Link>
-                </td>
+                <td>{order.amountPaid ? order.amountPaid : "-"}</td>
+                <td>{order.paymentMethod ? order.paymentMethod : "-"}</td>
                 <td>{order.orderDate}</td>
               </tr>
             </tbody>
           </table>
-          <div className="p-4 m-4 border border-zinc-700 rounded-2xl">
-            <div className="flex items-center gap-x-2">
-              <span className="block">آدرس :</span>
-              <p>{order.deliveryAddress}</p>
-            </div>
+        </div>
+        <div className="mt-4 text-zinc-100 bg-green-500/10 p-8 rounded-3xl">
+          <div className="flex items-center gap-x-1 mb-4">
+            <span>زمان ارسال :</span>
+            {/* <p>{order.deliveryDate}</p> */}
           </div>
+          <span className="block mb-4">آدرس :</span>
+          <p className="mx-4 leading-7">{order.deliveryAddress}</p>
         </div>
       </div>
     </>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Prisma from "@/lib/prisma";
 import axios from "axios";
 
 export default async function AdminOrderList() {
@@ -7,7 +6,7 @@ export default async function AdminOrderList() {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`
   );
 
-  const orders = JSON.parse(ordersFetch.data.orders);
+  const orders = ordersFetch.data.orders;
 
   return (
     <>
@@ -15,12 +14,13 @@ export default async function AdminOrderList() {
         <table className="w-full">
           <thead>
             <tr className="text-blue-500 text-xs md:text-base text-center">
-              <td>کد</td>
+              <td>کد سفارش</td>
               <td>کد مشتری</td>
-              <td>وضعیت</td>
+              <td>وضعیت سفارش</td>
+              <td>مبلغ پرداختی</td>
               <td>روش پرداخت</td>
               <td>تاریخ</td>
-              <td>تغیرات</td>
+              <td>جزئیات سفارش</td>
             </tr>
           </thead>
           <tbody className="w-full">
@@ -34,7 +34,8 @@ export default async function AdminOrderList() {
                 <td className="p-4">{order.id}</td>
                 <td>{order.customerId}</td>
                 <td>{order.statusOrder}</td>
-                <td>{order.paymentMethod}</td>
+                <td>{order.amountPaid ? order.amountPaid : "-"}</td>
+                <td>{order.paymentMethod ? order.paymentMethod : "-"}</td>
                 <td>{order.orderDate}</td>
                 <td>
                   <Link

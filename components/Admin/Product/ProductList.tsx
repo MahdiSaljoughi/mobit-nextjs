@@ -24,7 +24,7 @@ export default async function AdminProducst() {
           <span className="flex-1 text-center">ایجاد شده توسط</span>
           <span className="flex-1 text-center">تاریخ</span>
           <span className="flex-1 text-center">زمان</span>
-          <span className="flex- 1 text-center">تغیرات</span>
+          <span className="flex- 1 text-center">جزئیات</span>
         </div>
         <div className="flex flex-col items-center justify-center w-full">
           {products.map((product, index) => (

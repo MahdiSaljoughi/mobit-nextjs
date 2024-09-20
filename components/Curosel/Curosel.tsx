@@ -40,7 +40,7 @@ export function Curosel() {
       alt: "poster5",
     },
     {
-      src: "/images/poster/6.webp",
+      src: "/images/poster/6.gif",
       src_mobile: "/images/poster/6mobile.webp",
       alt: "poster6",
     },

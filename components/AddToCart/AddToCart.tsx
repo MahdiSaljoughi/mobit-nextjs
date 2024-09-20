@@ -40,7 +40,7 @@ export default function AddToCart({
   const removeFromCartHandler = () => {
     dispatch(removeFromCart(id));
     cartItems.find((item) => {
-      if (item.id === id) return item.qunatity > 1;
+      if (item.id === id) return item.quantity > 1;
     })
       ? null
       : toast.success("کالا از سبدخرید حذف شد", {
@@ -77,13 +77,13 @@ export default function AddToCart({
           <span>
             {cartItems.map((x) => {
               if (x.id === id) {
-                return x.qunatity;
+                return x.quantity;
               }
             })}
           </span>
           <button onClick={removeFromCartHandler} className="text-red-500">
             {cartItems.find((item) => {
-              if (item.id === id) return item.qunatity > 1;
+              if (item.id === id) return item.quantity > 1;
             }) ? (
               <>
                 <svg

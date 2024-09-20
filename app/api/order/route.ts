@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const orders = await prismadb.order.findMany();
     return NextResponse.json({
-      orders: JSON.stringify(orders),
+      orders: orders,
       msg: "Order Api GET",
       status: 200,
     });
