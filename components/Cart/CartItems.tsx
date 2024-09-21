@@ -11,7 +11,6 @@ export default function CartItems() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const router = useRouter();
-
   return (
     <div className={cartItems.length === 0 ? "" : "contain min-h-[900px]"}>
       {cartItems.length === 0 ? (
@@ -66,8 +65,8 @@ export default function CartItems() {
               ))}
             </div>
             <div>
-              <div className="bg-zinc-100 sticky top-24 rounded-2xl lg:w-96 flex flex-col gap-y-4 justify-between p-4">
-                <span className="text-zinc-600 block">اطلاعات پرداخت</span>
+              <div className="bg-zinc-100 sticky top-24 rounded-2xl lg:w-96 flex flex-col gap-y-4 justify-between p-4 mb-20 lg:mb-0">
+                <span className="text-zinc-500 block">اطلاعات پرداخت</span>
                 <div className="flex items-center justify-between w-full text-sm">
                   <span className="block">مبلغ کالاها</span>
                   <span>
@@ -75,7 +74,7 @@ export default function CartItems() {
                       .reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
                       .toLocaleString()}
 
-                    <span className="text-gray-500 text-xs mr-0.5">تومان</span>
+                    <span className="text-zinc-500 text-xs mr-0.5">تومان</span>
                   </span>
                 </div>
                 <div className="flex items-center justify-between w-full">
@@ -90,7 +89,7 @@ export default function CartItems() {
                     {cartItems
                       .reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
                       .toLocaleString()}
-                    <span className="text-gray-500 text-xs mr-0.5">تومان</span>
+                    <span className="text-zinc-500 text-xs mr-0.5">تومان</span>
                   </span>
                 </div>
                 <button
