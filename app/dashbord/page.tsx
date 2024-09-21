@@ -8,9 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import ProfileUser from "@/components/DashbordUser/ProfileUser";
+import axios from "axios";
 
 export default async function AdminPanel() {
   const session = await getServerSession(authOptions);
+
+  const users = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
+  const user = JSON.parse(users.data.users);
+  const findUser = user.find((x: any) => x.id === session?.user.id);
 
   if (session?.user) {
     if (session?.user.role === "ADMIN") {
@@ -84,7 +90,7 @@ export default async function AdminPanel() {
         <>
           <div className="bg-zinc-50">
             <div className="min-h-screen contain">
-              <div className="flex flex-col lg:flex-row justify-between gap-x-16">
+              <div className="flex flex-col lg:flex-row justify-between gap-x-16 gap-y-4">
                 <div className="w-full lg:w-[500px]">
                   <div className="rounded-2xl bg-white shadow-md">
                     <div className="flex flex-col gap-y-4 p-4">
@@ -260,8 +266,8 @@ export default async function AdminPanel() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full bg-white border rounded-2xl">
-                  <div></div>
+                <div className="w-full bg-white border rounded-2xl mb-20 lg:mb-0">
+                  <ProfileUser user={findUser} />
                 </div>
               </div>
             </div>

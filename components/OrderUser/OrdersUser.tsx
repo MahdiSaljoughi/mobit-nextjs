@@ -22,7 +22,7 @@ export default async function OrdersUser({ ordersId }: any) {
       const product = products.find(
         (product: any) => product.id === orderedProduct.productId
       );
-      return total + (product ? product.price : 0);
+      return total + (product ? product.price : 0) * orderedProduct.quantity;
     },
     0
   );
