@@ -34,7 +34,9 @@ export default async function AdminOrderList() {
                 <td className="p-4">{order.id}</td>
                 <td>{order.customerId}</td>
                 <td>{order.statusOrder}</td>
-                <td>{order.amountPaid ? order.amountPaid : "-"}</td>
+                <td>
+                  {order.amountPaid ? order.amountPaid : "-"}
+                </td>
                 <td>{order.paymentMethod ? order.paymentMethod : "-"}</td>
                 <td>{order.orderDate}</td>
                 <td>

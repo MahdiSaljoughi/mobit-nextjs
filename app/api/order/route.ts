@@ -42,6 +42,7 @@ export async function POST(request: Request) {
         message: "سفارش با موفقیت ثبت شد",
         messageEng: `Order created successfully!`,
         status: 201,
+        orderId: newOrder.id,
       });
     }
   } catch (error) {
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { id, statusOrder, deliveryAddress } = await request.json();
+    const { id, paymentMethod, amountPaid } = await request.json();
 
     if (!id) {
       return NextResponse.json({
@@ -67,7 +68,7 @@ export async function PUT(request: Request) {
       });
     }
 
-    if (!statusOrder || !deliveryAddress) {
+    if (!paymentMethod || !amountPaid) {
       return NextResponse.json({
         message: "لطفا تمام فیلد ها را پر کنید",
         messageEng: "Please fill in all fields",
@@ -80,8 +81,8 @@ export async function PUT(request: Request) {
         id,
       },
       data: {
-        statusOrder,
-        deliveryAddress,
+        paymentMethod,
+        amountPaid,
       },
     });
 

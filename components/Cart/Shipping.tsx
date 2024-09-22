@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -9,12 +8,31 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface Product {
+  productId: number;
+  quantity: number;
+}
 
 export default function Shipping() {
   const { data: session } = useSession();
+
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const router = useRouter();
+  const [orderId, setOrderId] = useState(0);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const productMap = cartItems.map((item: any) => ({
+      productId: item.id,
+      quantity: item.quantity,
+    }));
+    setProducts(productMap);
+  }, [cartItems]);
+
+  const customerId = session?.user.id;
   if (session?.user) {
     return (
       <>
@@ -44,46 +62,67 @@ export default function Shipping() {
                       <span className="block text-lg">آدرس تحویل سفارش</span>
                       <Formik
                         initialValues={{
-                          deliveryAddress: "",
+                          customerId,
+                          statusOrder: "در حال برسی",
+                          deliveryAddress: "وارد نشده",
+                          paymentMethod: "وارد نشده",
+                          amountPaid: String(
+                            cartItems.reduce(
+                              (acc, cur) => acc + cur.price * cur.quantity,
+                              0
+                            )
+                          ),
                         }}
                         validationSchema={Yup.object({
-                          deliveryAddress: Yup.string().required(
-                            "آدرس موبایل الزامی است."
-                          ),
+                          deliveryAddress:
+                            Yup.string().required("آدرس الزامی است."),
                         })}
                         onSubmit={async (values, { setSubmitting }) => {
                           setSubmitting(false);
 
-                          // const signInData = await signIn("credentials", {
-                          //   phone: values.phone,
-                          //   password: values.password,
-                          //   redirect: false,
-                          // });
+                          const postAddress = await axios.post(
+                            `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`,
+                            values
+                          );
 
-                          // if (signInData?.error) {
-                          //   toast.error(
-                          //     "خطا لطفا مقادیر را به درستی وارد کنید.",
-                          //     {
-                          //       style: {
-                          //         borderRadius: "10px",
-                          //         background: "#333",
-                          //         color: "#fff",
-                          //         fontSize: "12px",
-                          //       },
-                          //     }
-                          //   );
-                          // } else {
-                          //   toast.success("با موفقیت وارد شدید", {
-                          //     style: {
-                          //       borderRadius: "10px",
-                          //       background: "#333",
-                          //       color: "#fff",
-                          //       fontSize: "12px",
-                          //     },
-                          //   });
+                          const orderId = postAddress.data.orderId;
+                          setOrderId(orderId);
 
-                          //   router.replace("/dashbord");
-                          // }
+                          if (postAddress?.data.status === 201) {
+                            await Promise.all(
+                              products.map(async (product) => {
+                                await axios.post(
+                                  `${process.env.NEXT_PUBLIC_BASE_URL}/api/order/order-product`,
+                                  {
+                                    orderId,
+                                    productId: product.productId,
+                                    quantity: product.quantity,
+                                  }
+                                );
+                              })
+                            );
+
+                            toast.success("آدرس و سفارش شما با موفقیت ثبت شد", {
+                              style: {
+                                borderRadius: "10px",
+                                background: "#333",
+                                color: "#fff",
+                                fontSize: "12px",
+                              },
+                            });
+                          } else {
+                            toast.error(
+                              "خطا لطفا مقادیر را به درستی وارد کنید",
+                              {
+                                style: {
+                                  borderRadius: "10px",
+                                  background: "#333",
+                                  color: "#fff",
+                                  fontSize: "12px",
+                                },
+                              }
+                            );
+                          }
                         }}
                       >
                         <Form className="w-full mx-auto flex flex-col gap-y-5">
@@ -166,9 +205,9 @@ export default function Shipping() {
                           >
                             <path
                               fill="currentColor"
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14m.75-10.5a.75.75 0 0 0-1.5 0V8a.75.75 0 0 0 .3.6l2 1.5a.75.75 0 1 0 .9-1.2l-1.7-1.275z"
-                              clip-rule="evenodd"
+                              clipRule="evenodd"
                             />
                           </svg>
                           <span className="text-sm text-zinc-600">
@@ -208,7 +247,6 @@ export default function Shipping() {
                             0
                           )
                           .toLocaleString()}
-
                         <span className="text-zinc-500 text-xs mr-0.5">
                           تومان
                         </span>
@@ -233,7 +271,7 @@ export default function Shipping() {
                       </span>
                     </div>
                     <Link
-                      href={"/payment"}
+                      href={`/payment/${orderId}`}
                       className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white p-2.5 w-full transition-colors text-center"
                     >
                       ادامه

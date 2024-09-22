@@ -1,20 +1,24 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import { useSelector } from "react-redux";
+import { Formik, Form } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { clearCart } from "@/store/cart-slice";
 
-export default function Payment() {
+export default function Payment({ orderId }: any) {
   const { data: session } = useSession();
+
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const clearCarthandelr = () => {
+    dispatch(clearCart());
+  };
   if (session?.user) {
     return (
       <>
@@ -49,16 +53,46 @@ export default function Payment() {
                       </span>
                       <Formik
                         initialValues={{
-                          picked: "پرداخت آنلاین",
+                          id: Number(orderId),
+                          paymentMethod: "پرداخت آنلاین",
+                          amountPaid: String(
+                            cartItems.reduce(
+                              (acc, cur) => acc + cur.price * cur.quantity,
+                              0
+                            )
+                          ),
                         }}
                         onSubmit={async (values) => {
-                          await new Promise((r) => setTimeout(r, 500));
-                          alert(JSON.stringify(values, null, 2));
+                          const putPaymentMethod = await axios.put(
+                            `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`,
+                            values
+                          );
+
+                          if (putPaymentMethod?.data.status === 200) {
+                            toast.success("روش پرداخت با موفقیت انتخاب شد", {
+                              style: {
+                                borderRadius: "10px",
+                                background: "#333",
+                                color: "#fff",
+                                fontSize: "12px",
+                              },
+                            });
+                          } else {
+                            toast.error(
+                              "خطا لطفا مقادیر را به درستی وارد کنید",
+                              {
+                                style: {
+                                  borderRadius: "10px",
+                                  background: "#333",
+                                  color: "#fff",
+                                  fontSize: "12px",
+                                },
+                              }
+                            );
+                          }
                         }}
                       >
-                        {(
-                          { values, setFieldValue } // دریافت setFieldValue از props
-                        ) => (
+                        {({ values, setFieldValue }) => (
                           <Form>
                             <div
                               role="group"
@@ -69,13 +103,16 @@ export default function Payment() {
                                 <div
                                   className="flex items-center bg-blue-500/10 ring-4 ring-blue-500/50 p-4 rounded-xl transition-transform transform hover:scale-105 cursor-pointer"
                                   onClick={() =>
-                                    setFieldValue("picked", "پرداخت آنلاین")
-                                  } // انتخاب گزینه
+                                    setFieldValue(
+                                      "paymentMethod",
+                                      "پرداخت آنلاین"
+                                    )
+                                  }
                                 >
                                   <div className="w-5 h-5 border-2 border-blue-500 rounded-full flex items-center justify-center ml-2">
                                     <div
                                       className={`w-3 h-3 rounded-full ${
-                                        values.picked === "پرداخت آنلاین"
+                                        values.paymentMethod === "پرداخت آنلاین"
                                           ? "bg-blue-500"
                                           : "bg-transparent"
                                       }`}
@@ -86,13 +123,17 @@ export default function Payment() {
                                 <div
                                   className="flex items-center bg-red-500/10 ring-4 ring-red-500/50 p-4 rounded-xl transition-transform transform hover:scale-105 cursor-pointer"
                                   onClick={() =>
-                                    setFieldValue("picked", "پرداخت درب منزل")
+                                    setFieldValue(
+                                      "paymentMethod",
+                                      "پرداخت درب منزل"
+                                    )
                                   }
                                 >
                                   <div className="w-5 h-5 border-2 border-red-500 rounded-full flex items-center justify-center ml-2">
                                     <div
                                       className={`w-3 h-3 rounded-full ${
-                                        values.picked === "پرداخت درب منزل"
+                                        values.paymentMethod ===
+                                        "پرداخت درب منزل"
                                           ? "bg-red-500"
                                           : "bg-transparent"
                                       }`}
@@ -104,7 +145,7 @@ export default function Payment() {
                                 </div>
                               </div>
                               <div className="mt-4 text-gray-700 ">
-                                انتخاب شده: {values.picked}
+                                انتخاب شده: {values.paymentMethod}
                               </div>
                             </div>
 
@@ -158,6 +199,7 @@ export default function Payment() {
                     </div>
                     <Link
                       href={"/dashbord/order"}
+                      onClick={clearCarthandelr}
                       className="rounded-xl bg-blue-500 hover:bg-blue-600 text-white p-2.5 w-full transition-colors text-center"
                     >
                       پرداخت و تایید نهایی سفارش

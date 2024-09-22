@@ -17,40 +17,40 @@ export async function GET() {
   }
 }
 
-// export async function POST(request: Request) {
-//   try {
-//     const {
-//       customerId,
-//       statusOrder,
-//       deliveryAddress,
-//       paymentMethod,
-//       amountPaid,
-//     } = await request.json();
+export async function POST(request: Request) {
+  try {
+    const { orderId, productId, quantity } = await request.json();
 
-//     const newOrder = await prismadb.order.create({
-//       data: {
-//         customerId,
-//         statusOrder,
-//         deliveryAddress,
-//         paymentMethod,
-//         amountPaid,
-//       },
-//     });
+    if (!orderId || !productId || !quantity) {
+      return NextResponse.json({
+        message: "تمام فیل ها را پر کنید",
+        messageEng: "Product created successfully!",
+        status: 400,
+      });
+    }
 
-//     if (newOrder) {
-//       return NextResponse.json({
-//         message: "سفارش با موفقیت ثبت شد",
-//         messageEng: `Order created successfully!`,
-//         status: 201,
-//       });
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     return NextResponse.json(
-//       { message: "Internal Server Error" },
-//       { status: 500 }
-//     );
-//   } finally {
-//     await prismadb.$disconnect();
-//   }
-// }
+    const newOrderProduct = await prismadb.orderProduct.create({
+      data: {
+        orderId,
+        productId,
+        quantity,
+      },
+    });
+
+    if (newOrderProduct) {
+      return NextResponse.json({
+        message: "کالاها با موفقیت ثبت شد",
+        messageEng: "Product created successfully!",
+        status: 201,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  } finally {
+    await prismadb.$disconnect();
+  }
+}
