@@ -15,6 +15,7 @@ export default function RootLayout({
     <html lang="en" dir="rtl">
       <head>
         <title>فروشگاه اینترنتی مبیت</title>
+        <link rel="manifest" href="manifest.json" />
         <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
       </head>
       <body>
