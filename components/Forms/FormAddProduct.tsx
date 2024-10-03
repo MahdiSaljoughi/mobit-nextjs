@@ -8,7 +8,7 @@ import * as Yup from "yup";
 export default function FormAddProduct({ userName }: any) {
   const router = useRouter();
   return (
-    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl text-zinc-100">
+    <div className="w-full border p-4 md:p-8 rounded-3xl">
       <span className="block md:text-xl text-blue-500">فرم افزودن محصول</span>
       <Formik
         initialValues={{
@@ -99,7 +99,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="title"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="title"
@@ -111,7 +111,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="titleEng"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="title"
@@ -123,7 +123,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="price"
               type="number"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="price"
@@ -135,7 +135,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="cat"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="cat"
@@ -147,7 +147,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="slug"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="slug"
@@ -159,7 +159,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="count"
               type="number"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="count"
@@ -172,7 +172,7 @@ export default function FormAddProduct({ userName }: any) {
               name="description"
               as="textarea"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800 min-h-96"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100 min-h-96"
             />
             <ErrorMessage
               name="description"
@@ -184,7 +184,7 @@ export default function FormAddProduct({ userName }: any) {
             <Field
               name="image"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />
             <ErrorMessage
               name="image"

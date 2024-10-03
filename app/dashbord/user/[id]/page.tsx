@@ -23,7 +23,7 @@ export default async function page({ params }: { params: { id: number } }) {
     } else {
       return (
         <>
-          <div className="bg-zinc-900 min-h-screen">
+          <div className="min-h-screen">
             <AdminUser user={user} />
           </div>
         </>

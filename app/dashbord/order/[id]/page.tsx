@@ -24,7 +24,7 @@ export default async function page({ params }: { params: { id: number } }) {
     } else {
       return (
         <>
-          <div className="bg-zinc-900 min-h-screen">
+          <div className="min-h-screen">
             <AdminOrder order={order} />
             <ProductOrder ordersId={order.id} />
           </div>

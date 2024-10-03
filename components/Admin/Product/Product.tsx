@@ -69,14 +69,7 @@ export default function Product({ product }: any) {
 
   return (
     <>
-      <div className="p-4 pb-0">
-        <img
-          src="/images/logos/mobit.png"
-          alt="logo-mobit"
-          className="w-40 mx-auto"
-        />
-      </div>
-      <div className="p-4 text-zinc-100">
+      <div className="p-4">
         <div className="flex items-center justify-between mb-4">
           <button
             onClick={handelDeleteProduct}
@@ -185,8 +178,8 @@ export default function Product({ product }: any) {
           }}
         >
           <Form>
-            <div className="flex items-center flex-col gap-8 border border-zinc-700 p-8 rounded-2xl">
-              <div className="flex items-center justify-between w-full border-b border-zinc-700 pb-4">
+            <div className="flex items-center flex-col gap-8 border p-8 rounded-2xl">
+              <div className="flex items-center justify-between w-full border-b pb-4">
                 <div>
                   <span className="block mb-1 text-blue-500">کد محصول</span>
                   <span className="block">{product?.id}</span>
@@ -215,7 +208,7 @@ export default function Product({ product }: any) {
               </div>
               <div className="flex items-center justify-between w-full">
                 <div className="flex items-center justify-center gap-10">
-                  <div className="bg-zinc-800 p-4 rounded-xl">
+                  <div className="bg-zinc-100 p-4 rounded-xl">
                     <span className="block">تصویر</span>
                     <Image
                       src={product.image}
@@ -226,7 +219,7 @@ export default function Product({ product }: any) {
                     <Field
                       name="image"
                       type="text"
-                      className="outline-none py-2 px-4 rounded-xl bg-zinc-700 focus:ring-4 ring-blue-500/50 transition-all mb-2"
+                      className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all mb-2"
                       placeholder="/images/products/..."
                     />
                   </div>
@@ -238,7 +231,7 @@ export default function Product({ product }: any) {
                         name="title"
                         as="textarea"
                         type="text"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                       />
                     </div>
                     <div className="w-full">
@@ -247,7 +240,7 @@ export default function Product({ product }: any) {
                         name="titleEng"
                         as="textarea"
                         type="text"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                       />
                     </div>
 
@@ -257,7 +250,7 @@ export default function Product({ product }: any) {
                         name="slug"
                         as="textarea"
                         type="text"
-                        className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
+                        className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"
                       />
                     </div>
                   </div>
@@ -269,7 +262,7 @@ export default function Product({ product }: any) {
                     <Field
                       name="price"
                       type="number"
-                      className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
+                      className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
                     />
                   </div>
 
@@ -278,7 +271,7 @@ export default function Product({ product }: any) {
                     <Field
                       name="cat"
                       type="text"
-                      className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
+                      className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
                     />
                   </div>
 
@@ -287,7 +280,7 @@ export default function Product({ product }: any) {
                     <Field
                       name="count"
                       type="number"
-                      className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all"
+                      className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all"
                     />
                   </div>
                 </div>
@@ -299,7 +292,7 @@ export default function Product({ product }: any) {
                   as="textarea"
                   name="description"
                   type="textera"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full min-h-96"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full min-h-96"
                 />
               </div>
 

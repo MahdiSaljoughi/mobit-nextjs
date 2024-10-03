@@ -10,7 +10,7 @@ export default async function AdminUserList() {
       <div className="mb-4">
         <FormAddUser />
       </div>
-      <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl w-full text-zinc-100">
+      <div className="border py-4 md:py-8 rounded-3xl w-full text-zinc-700">
         <table className="w-full">
           <thead>
             <tr className="text-blue-500">

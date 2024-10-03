@@ -6,7 +6,7 @@ import * as Yup from "yup";
 
 export default function FormAddUser() {
   return (
-    <div className="w-full border border-zinc-700 p-4 md:p-8 rounded-3xl text-zinc-100">
+    <div className="w-full border p-4 md:p-8 rounded-3xl text-zinc-700">
       <span className="block md:text-xl text-blue-500">فرم افزودن کاربر</span>
       <Formik
         initialValues={{
@@ -76,7 +76,7 @@ export default function FormAddUser() {
             <Field
               name="email"
               type="email"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-100"
             />
             <ErrorMessage
               name="email"
@@ -88,7 +88,7 @@ export default function FormAddUser() {
             <Field
               name="password"
               type="password"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-100"
             />
             <ErrorMessage
               name="password"
@@ -100,7 +100,7 @@ export default function FormAddUser() {
             <Field
               name="userName"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-100"
             />
             <ErrorMessage
               name="userName"
@@ -112,7 +112,7 @@ export default function FormAddUser() {
             <Field
               name="phone"
               type="text"
-              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-800"
+              className="outline-none py-3 px-4 rounded-2xl focus:ring-2 ring-blue-500 bg-zinc-100"
             />
             <ErrorMessage
               name="phone"

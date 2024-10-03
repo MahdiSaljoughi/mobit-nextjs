@@ -22,9 +22,7 @@ export default async function page({ params }: { params: { id: number } }) {
     } else {
       return (
         <>
-          <div className="bg-zinc-900">
-            <AdminProducst product={product} />
-          </div>
+          <AdminProducst product={product} />
         </>
       );
     }

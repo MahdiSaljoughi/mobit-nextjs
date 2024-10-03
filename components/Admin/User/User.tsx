@@ -68,14 +68,7 @@ export default function User({ user }: any) {
 
   return (
     <>
-      <div className="p-4 pb-0">
-        <img
-          src="/images/logos/mobit.png"
-          alt="logo-mobit"
-          className="w-40 mx-auto"
-        />
-      </div>
-      <div className="p-4 text-zinc-100">
+      <div className="p-4">
         <div className="w-full flex items-center justify-between mb-4">
           <button
             onClick={handelDeleteUser}
@@ -183,8 +176,8 @@ export default function User({ user }: any) {
           }}
         >
           <Form>
-            <div className="flex items-center flex-col gap-8 border border-zinc-700 p-8 rounded-2xl shadow-sm">
-              <div className="flex items-center justify-between w-full border-b border-zinc-700 pb-4">
+            <div className="flex items-center flex-col gap-8 border p-8 rounded-2xl shadow-sm">
+              <div className="flex items-center justify-between w-full border-b pb-4">
                 <div>
                   <span className="block mb-1 text-blue-500">کد کاربر</span>
                   <span className="block">{user?.id}</span>
@@ -216,49 +209,49 @@ export default function User({ user }: any) {
                 <Field
                   name="userName"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">نام</span>
                 <Field
                   name="firstName"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">نام خانوادگی</span>
                 <Field
                   name="lastName"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">ایمیل</span>
                 <Field
                   name="email"
                   type="email"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">شماره موبایل</span>
                 <Field
                   name="phone"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">سطح دسترسی</span>
                 <Field
                   name="role"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
 
                 <span className="block">تاییده ایمیل</span>
                 <Field
                   name="emailVerified"
                   type="text"
-                  className="outline-none py-2 px-4 rounded-xl bg-zinc-800 focus:ring-4 ring-blue-500/50 transition-all w-full"
+                  className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-full"
                 />
               </div>
               <button

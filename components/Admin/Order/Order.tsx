@@ -61,13 +61,6 @@ export default function Order({ order }: { order: Order }) {
 
   return (
     <>
-      <div className="p-4 pb-0">
-        <img
-          src="/images/logos/mobit.png"
-          alt="logo-mobit"
-          className="w-40 mx-auto"
-        />
-      </div>
       <div className="p-4">
         <div className="flex items-center justify-between mb-4">
           <button
@@ -109,7 +102,7 @@ export default function Order({ order }: { order: Order }) {
             </svg>
           </Link>
         </div>
-        <div className="py-4 md:py-8 rounded-3xl text-zinc-100 bg-slate-950">
+        <div className="py-4 md:py-8 rounded-2xl bg-zinc-100">
           <table className="w-full">
             <thead>
               <tr className="text-blue-500 text-xs md:text-base text-center">
@@ -146,7 +139,7 @@ export default function Order({ order }: { order: Order }) {
             </tbody>
           </table>
         </div>
-        <div className="mt-4 text-zinc-100 bg-green-500/10 p-8 rounded-3xl">
+        <div className="mt-4 bg-blue-500/10 p-8 rounded-2xl">
           <div className="flex items-center gap-x-1 mb-4">
             <span>زمان ارسال :</span>
             {/* <p>{order.deliveryDate}</p> */}

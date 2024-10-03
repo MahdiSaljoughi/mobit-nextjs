@@ -10,7 +10,7 @@ export default async function AdminOrderList() {
 
   return (
     <>
-      <div className="border border-zinc-700 py-4 md:py-8 rounded-3xl text-zinc-100">
+      <div className="border py-4 md:py-8 rounded-3xl">
         <table className="w-full">
           <thead>
             <tr className="text-blue-500 text-xs md:text-base text-center">

@@ -14,7 +14,7 @@ export default async function AdminProducst() {
       <div className="mb-4">
         <FormAddProduct userName={session?.user.username} />
       </div>
-      <div className="border border-zinc-700 text-zinc-100 rounded-3xl w-full overflow-auto">
+      <div className="border rounded-3xl w-full overflow-auto">
         <div className="flex items-center w-full justify-between p-4 text-blue-500">
           <span className="flex- 1 text-center mr-4">کد</span>
           <span className="flex- 1 text-center mr-6">تصویر</span>

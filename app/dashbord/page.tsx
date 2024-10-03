@@ -22,10 +22,10 @@ export default async function AdminPanel() {
     if (session?.user.role === "ADMIN") {
       return (
         <>
-          <div className="bg-zinc-950 text-zinc-100 flex relative min-h-screen">
-            <div className="w-80 bg-zinc-900 fixed right-0 inset-y-0 z-10 lg:static">
+          <div className="bg-white text-zinc-100 flex relative min-h-screen">
+            <div className="w-80 bg-zinc-100 fixed right-0 inset-y-0 z-10 lg:static text-zinc-700">
               <div className="mt-32 lg:mt-0 flex flex-col gap-4 p-4">
-                <div className="-my-2">
+                <div className="bg-blue-800 rounded-xl">
                   <img
                     src="/images/logos/mobit.png"
                     alt="logo-mobit"
@@ -34,19 +34,19 @@ export default async function AdminPanel() {
                 </div>
                 <Link
                   href="/dashbord/product"
-                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                  className="bg-zinc-200 hover:bg-zinc-300 p-4 rounded-xl transition-colors"
                 >
                   محصولات
                 </Link>
                 <Link
                   href="/dashbord/order"
-                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                  className="bg-zinc-200 hover:bg-zinc-300 p-4 rounded-xl transition-colors"
                 >
                   سفارشات
                 </Link>
                 <Link
                   href="/dashbord/user"
-                  className="bg-zinc-700/50 hover:bg-zinc-700 p-4 rounded-xl transition-colors"
+                  className="bg-zinc-200 hover:bg-zinc-300 p-4 rounded-xl transition-colors"
                 >
                   کاربران
                 </Link>
@@ -62,7 +62,7 @@ export default async function AdminPanel() {
               </div>
             </div>
             <div className="p-4 lg:p-8 w-full">
-              <div className="rounded-2xl p-4 bg-zinc-900">
+              <div className="rounded-2xl p-4 bg-zinc-100 text-zinc-700">
                 <div className="flex flex-col gap-y-10">
                   <div>
                     <div className="flex items-center justify-between mb-8 md:mb-4">

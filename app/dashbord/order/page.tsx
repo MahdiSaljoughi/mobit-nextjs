@@ -13,14 +13,7 @@ export default async function page() {
           <div className="py-6 bg-blue-500 text-center text-white">
             <span>سفارشات</span>
           </div>
-          <div className="min-h-screen p-4 lg:p-8 lg:pt-0 bg-zinc-900">
-            <div className="p-4">
-              <img
-                src="/images/logos/mobit.png"
-                alt="logo-mobit"
-                className="w-40 mx-auto"
-              />
-            </div>
+          <div className="min-h-screen p-4">
             <div className="flex items-center justify-end mb-4">
               <Link
                 href={"/dashbord"}
