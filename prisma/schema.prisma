@@ -53,9 +53,7 @@ model Order {
   products        OrderProduct[]
   statusOrder     String
   deliveryAddress String
-  // deliveryDate    String
   paymentMethod   String
-  // amount          String
   amountPaid      String
   orderDate       DateTime       @default(now())
 }

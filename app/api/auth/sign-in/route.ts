@@ -49,7 +49,7 @@ export async function POST(request: Request) {
     response.cookies.set("token", token, {
       httpOnly: true,
       path: "/",
-      maxAge: 86400, // 1 day
+      maxAge: 86400,
     });
 
     return NextResponse.json({

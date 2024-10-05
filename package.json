@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "prisma generate && next dev",
     "build": "next build",
-    "start": "next start",
-    "x": "prisma generate && "
+    "start": "next start"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",

@@ -12,7 +12,6 @@ export async function POST(request: Request) {
   const data: IRegisterBody = await request.json();
 
   try {
-    // Check if required fields are filled
     if (!data.phone || !data.password) {
       return NextResponse.json({
         message: "لطفا تمام فیلد ها را پرکنید",
@@ -21,7 +20,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // Check if the user already exists
     const userPhone = await prisma.user.findUnique({
       where: {
         phone: data.phone,
@@ -33,7 +31,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // If user exists, return a message
     if (userPhone) {
       return NextResponse.json({
         message: "حساب کاربری با این شماره از قبل وجود دارد",
@@ -48,20 +45,18 @@ export async function POST(request: Request) {
         status: 409,
       });
     }
-    // Hash the password before saving
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(data.password, salt);
 
-    // Create a new user in the database
     const newUser = await prisma.user.create({
       data: {
         phone: data.phone,
-        userName: data.userName, // Ensure userName is provided in the request
+        userName: data.userName,
         password: hashedPassword,
       },
     });
 
-    // Return success message with the new user data
     return NextResponse.json({
       message: "حساب کاربری با موفقیت ایجاد شد",
       messageEng: "User create sucssesfull",

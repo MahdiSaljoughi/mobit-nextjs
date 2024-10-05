@@ -130,8 +130,7 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    // استخراج ID از URL یا body درخواست
-    const { id } = await request.json(); // فرض بر این است که ID در بدنه درخواست ارسال می‌شود
+    const { id } = await request.json();
 
     if (!id) {
       return NextResponse.json({
@@ -141,8 +140,6 @@ export async function DELETE(request: Request) {
       });
     }
 
-    // انجام عملیات حذف (مثلاً از پایگاه داده)
-    // فرض کنید که شما یک تابع deleteProduct دارید که محصول را حذف می‌کند
     const result = await Prisma.product.delete({
       where: {
         id,

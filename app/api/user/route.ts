@@ -30,7 +30,6 @@ export async function POST(request: Request) {
       });
     }
 
-    // Check if the user already exists
     const userPhone = await prismadb.user.findUnique({
       where: {
         phone,
@@ -47,7 +46,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // If user exists, return a message
     if (userPhone) {
       return NextResponse.json({
         message: "حساب کاربری با این شماره از قبل وجود دارد",
@@ -104,7 +102,6 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    // استخراج داده‌ها از بدنه درخواست
     const {
       id,
       email,
@@ -116,7 +113,6 @@ export async function PUT(request: Request) {
       emailVerified,
     } = await request.json();
 
-    // بررسی وجود ID
     if (!id) {
       return NextResponse.json({
         message: "آیدی الزامی است",
@@ -133,7 +129,6 @@ export async function PUT(request: Request) {
       });
     }
 
-    // انجام عملیات به‌روزرسانی (مثلاً از پایگاه داده)
     const updatedUser = await prismadb.user.update({
       where: {
         id,
@@ -171,14 +166,13 @@ export async function PUT(request: Request) {
       status: 500,
     });
   } finally {
-    await prismadb.$disconnect(); // قطع اتصال به پایگاه داده
+    await prismadb.$disconnect();
   }
 }
 
 export async function DELETE(request: Request) {
   try {
-    // استخراج ID از URL یا body درخواست
-    const { id } = await request.json(); // فرض بر این است که ID در بدنه درخواست ارسال می‌شود
+    const { id } = await request.json();
 
     if (!id) {
       return NextResponse.json({
@@ -188,8 +182,6 @@ export async function DELETE(request: Request) {
       });
     }
 
-    // انجام عملیات حذف (مثلاً از پایگاه داده)
-    // فرض کنید که شما یک تابع deleteProduct دارید که محصول را حذف می‌کند
     const result = await prismadb.user.delete({
       where: {
         id,
@@ -217,6 +209,6 @@ export async function DELETE(request: Request) {
       status: 500,
     });
   } finally {
-    await prismadb.$disconnect(); // قطع اتصال به پایگاه داده
+    await prismadb.$disconnect();
   }
 }
