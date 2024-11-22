@@ -30,7 +30,7 @@ export default async function AdminUserList() {
                 }
               >
                 <td className="p-4">{user.id}</td>
-                <td>{user.userName ? user.userName : "وارد نشده"}</td>
+                <td>{user.user_name ? user.user_name : "وارد نشده"}</td>
                 <td>{user.email ? user.email : "وارد نشده"}</td>
                 <td>{user.phone ? user.phone : "وارد نشده"}</td>
                 <td>{user.role}</td>

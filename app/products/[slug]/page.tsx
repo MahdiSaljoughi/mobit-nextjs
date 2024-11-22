@@ -1,12 +1,15 @@
-import axios from "axios";
 import AddToCart from "@/components/AddToCart/AddToCart";
 import MainFooter from "@/components/Footer/MainFooter";
 
 export default async function page({ params }: { params: { slug: string } }) {
-  const productsFetch = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+  const productsFetch = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+    {
+      cache: "no-store",
+    }
   );
-  const products = JSON.parse(productsFetch.data.products);
+  const data = await productsFetch.json();
+  const products = data.products;
   const product = products.find((x: any) => x.slug === params.slug);
 
   // product not found

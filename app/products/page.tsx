@@ -1,12 +1,15 @@
-import axios from "axios";
 import MainFooter from "@/components/Footer/MainFooter";
 import Product from "@/components/Product/Product";
 
 export default async function ProducstPage() {
-  const productsFetch = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+    {
+      cache: "no-store",
+    }
   );
-  const products = JSON.parse(productsFetch.data.products);
+  const data = await response.json();
+  const products = data.products;
 
   return (
     <>
@@ -19,6 +22,7 @@ export default async function ProducstPage() {
           ))}
         </div>
       </div>
+
       <MainFooter />
     </>
   );

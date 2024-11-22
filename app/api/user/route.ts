@@ -2,11 +2,13 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import prismadb from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const users = await prismadb.user.findMany();
     return NextResponse.json({
-      users: JSON.stringify(users),
+      users: users,
       msg: "User Api GET",
       status: 200,
     });
@@ -20,9 +22,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { password, phone, userName, email } = await request.json();
+    const { password, phone, user_name, email } = await request.json();
 
-    if (!password || !phone || !userName || !email) {
+    if (!password || !phone || !user_name || !email) {
       return NextResponse.json({
         message: "لطفا تمام فیلد ها را پرکنید",
         messageEng: "Please fill all the fields",
@@ -42,7 +44,7 @@ export async function POST(request: Request) {
     });
     const UserName = await prismadb.user.findUnique({
       where: {
-        userName,
+        user_name,
       },
     });
 
@@ -76,7 +78,7 @@ export async function POST(request: Request) {
         password: hashedPassword,
         phone,
         email,
-        userName,
+        user_name,
       },
     });
 
@@ -105,12 +107,12 @@ export async function PUT(request: Request) {
     const {
       id,
       email,
-      userName,
-      firstName,
-      lastName,
+      user_name,
+      last_name,
+      first_name,
       phone,
       role,
-      emailVerified,
+      email_verified,
     } = await request.json();
 
     if (!id) {
@@ -121,13 +123,13 @@ export async function PUT(request: Request) {
       });
     }
 
-    if (!email || !userName || !firstName || !lastName || !phone || !role) {
-      return NextResponse.json({
-        message: "لطفا تمام فیلد ها را پر کنید",
-        messageEng: "Please fill in all fields",
-        status: 400,
-      });
-    }
+    // if (!email || !user_name || !first_name || !last_name || !phone || !role) {
+    //   return NextResponse.json({
+    //     message: "لطفا تمام فیلد ها را پر کنید",
+    //     messageEng: "Please fill in all fields",
+    //     status: 400,
+    //   });
+    // }
 
     const updatedUser = await prismadb.user.update({
       where: {
@@ -136,12 +138,12 @@ export async function PUT(request: Request) {
       data: {
         id,
         email,
-        userName,
-        firstName,
-        lastName,
+        user_name,
+        first_name,
+        last_name,
         phone,
         role,
-        emailVerified: Boolean(emailVerified),
+        email_verified: Boolean(email_verified),
       },
     });
 

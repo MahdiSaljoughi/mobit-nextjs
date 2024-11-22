@@ -1,4 +1,3 @@
-import axios from "axios";
 import Link from "next/link";
 import { Curosel } from "@/components/Curosel/Curosel";
 import Item8 from "@/components/Item8/Item8";
@@ -6,14 +5,18 @@ import Carosel from "@/components/Product/Carosel";
 import MainFooter from "@/components/Footer/MainFooter";
 
 export default async function Home() {
-  const productsFetch = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+    {
+      cache: "no-store",
+    }
   );
-  const product = JSON.parse(productsFetch.data.products);
+  const data = await response.json();
+  const product = data.products;
 
   return (
     <>
-      <main className="min-h-[900px] flex flex-col gap-y-2">
+      <main className="min-h-screen flex flex-col gap-y-2">
         <Curosel />
         <section className="py-10 mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 2xl:mx-32 flex flex-col gap-y-10">
           <Item8 />

@@ -9,13 +9,18 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import ProfileUser from "@/components/DashbordUser/ProfileUser";
-import axios from "axios";
 
 export default async function AdminPanel() {
   const session = await getServerSession(authOptions);
 
-  const users = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
-  const user = JSON.parse(users.data.users);
+  const users = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await users.json();
+  const user = data.users;
   const findUser = user.find((x: any) => x.id === session?.user.id);
 
   if (session?.user) {

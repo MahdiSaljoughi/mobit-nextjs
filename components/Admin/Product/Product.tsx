@@ -33,7 +33,7 @@ export default function Product({ product }: any) {
 
         router.replace("/dashbord/product");
 
-        setInterval(() => window.location.reload(), 2000);
+        setTimeout(() => window.location.reload(), 2000);
       }
       if (data.status === 404) {
         toast.error(data.message, {
@@ -114,7 +114,7 @@ export default function Product({ product }: any) {
           initialValues={{
             id: product.id,
             title: product.title,
-            titleEng: product.titleEng,
+            title_eng: product.title_eng,
             slug: product.slug,
             price: product.price,
             count: product.count,
@@ -189,20 +189,20 @@ export default function Product({ product }: any) {
                   <span className="block mb-1 text-blue-500">
                     ایجاد شده توسط
                   </span>
-                  <span className="block">{product?.createdBy}</span>
+                  <span className="block">{product?.created_by}</span>
                 </div>
 
                 <div>
                   <span className="block mb-1 text-blue-500">تاریخ ایجاد</span>
                   <span className="block">
-                    {product?.createdAt.toLocaleDateString()}
+                    {product?.created_at.toLocaleDateString()}
                   </span>
                 </div>
 
                 <div>
                   <span className="block mb-1 text-blue-500">زمان ایجاد</span>
-                  <span className="block">
-                    {product?.createdAt.toLocaleTimeString()}
+                  <span dir="ltr" className="block">
+                    {product?.created_at.toLocaleTimeString()}
                   </span>
                 </div>
               </div>
@@ -237,7 +237,7 @@ export default function Product({ product }: any) {
                     <div className="w-full">
                       <span className="block mb-2 mt-4">عنوان انگلیسی</span>
                       <Field
-                        name="titleEng"
+                        name="title_eng"
                         as="textarea"
                         type="text"
                         className="outline-none py-2 px-4 rounded-xl bg-zinc-100 focus:ring-4 ring-blue-500/50 transition-all w-[600px] h-20"

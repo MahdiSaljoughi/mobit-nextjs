@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import Prisma from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const products = await Prisma.product.findMany();
     return NextResponse.json({
-      products: JSON.stringify(products),
+      products: products,
       msg: "Product Api GET",
       status: 200,
     });
@@ -27,10 +29,25 @@ export async function POST(request: Request) {
       description,
       cat,
       image,
-      createdBy,
-      titleEng,
+      created_by,
+      title_eng,
     } = await request.json();
 
+    if (
+      !title ||
+      !slug ||
+      !price ||
+      !count ||
+      !description ||
+      !cat ||
+      !image ||
+      !created_by ||
+      !title_eng
+    ) {
+      return NextResponse.json({
+        message: "All fild is requaird",
+      });
+    }
     const newProduct = await Prisma.product.create({
       data: {
         title,
@@ -40,13 +57,15 @@ export async function POST(request: Request) {
         description,
         cat,
         image,
-        createdBy,
-        titleEng,
+        created_by,
+        title_eng,
       },
     });
 
     return NextResponse.json({
-      message: `Product ${newProduct.title} with price ${newProduct.price} created successfully!`,
+      msg: `Product ${newProduct.title} with price ${newProduct.price} created successfully!`,
+      message: "محصول جدید با موفقیت ایجاد شد",
+      status: 201,
     });
   } catch (error) {
     console.error(error);
@@ -61,8 +80,17 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { id, title, titleEng, slug, count, price, cat, description, image } =
-      await request.json();
+    const {
+      id,
+      title,
+      title_eng,
+      slug,
+      count,
+      price,
+      cat,
+      description,
+      image,
+    } = await request.json();
 
     if (!id) {
       return NextResponse.json({
@@ -74,7 +102,7 @@ export async function PUT(request: Request) {
 
     if (
       !title ||
-      !titleEng ||
+      !title_eng ||
       !slug ||
       !price ||
       !cat ||
@@ -94,7 +122,7 @@ export async function PUT(request: Request) {
       },
       data: {
         title,
-        titleEng,
+        title_eng,
         slug,
         price,
         count,

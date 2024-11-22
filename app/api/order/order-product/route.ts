@@ -19,9 +19,9 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const { orderId, productId, quantity } = await request.json();
+    const { order_id, product_id, quantity } = await request.json();
 
-    if (!orderId || !productId || !quantity) {
+    if (!order_id || !product_id || !quantity) {
       return NextResponse.json({
         message: "تمام فیل ها را پر کنید",
         messageEng: "Product created successfully!",
@@ -31,8 +31,8 @@ export async function POST(request: Request) {
 
     const newOrderProduct = await prismadb.orderProduct.create({
       data: {
-        orderId,
-        productId,
+        order_id,
+        product_id,
         quantity,
       },
     });

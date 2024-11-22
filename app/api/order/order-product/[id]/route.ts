@@ -8,7 +8,7 @@ export async function GET(req: Request) {
 
     const orderProduct = await prismadb.orderProduct.findMany({
       where: {
-        orderId: Number(id),
+        order_id: Number(id),
       },
     });
     return NextResponse.json({

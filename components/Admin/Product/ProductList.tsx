@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import prismadb from "@/lib/prisma";
 import FormAddProduct from "@/components/Forms/FormAddProduct";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 export default async function AdminProducst() {
   const session = await getServerSession(authOptions);
-  const products = await prismadb.product.findMany();
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+  const products = data.products;
 
   return (
     <>
@@ -27,7 +33,7 @@ export default async function AdminProducst() {
           <span className="flex- 1 text-center">جزئیات</span>
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          {products.map((product, index) => (
+          {products.map((product: any, index: any) => (
             <div
               key={index}
               className={
@@ -55,13 +61,9 @@ export default async function AdminProducst() {
                 {product.price.toLocaleString()}
               </div>
               <div className="flex-1 text-center">{product.count}</div>
-              <div className="flex-1 text-center">{product.createdBy}</div>
-              <div className="flex-1 text-center">
-                {product.createdAt.toLocaleDateString()}
-              </div>
-              <div className="flex-1 text-center">
-                {product.createdAt.toLocaleTimeString()}
-              </div>
+              <div className="flex-1 text-center">{product.created_by}</div>
+              <div className="flex-1 text-center">{product.created_at}</div>
+              <div className="flex-1 text-center">{product.created_at}</div>
               <Link
                 href={`/dashbord/product/${product.id}`}
                 className="flex- 1 flex justify-center hover:scale-110 transition-transform"

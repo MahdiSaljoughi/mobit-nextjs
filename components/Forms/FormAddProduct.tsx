@@ -13,7 +13,7 @@ export default function FormAddProduct({ userName }: any) {
       <Formik
         initialValues={{
           title: "",
-          titleEng: "",
+          title_eng: "",
           price: "",
           slug: "",
           count: "",
@@ -35,7 +35,7 @@ export default function FormAddProduct({ userName }: any) {
 
           // تبدیل price و count به عدد
           const productData = {
-            createdBy: userName,
+            created_by: userName,
             ...values,
             price: Number(values.price),
             count: Number(values.count),
@@ -66,7 +66,7 @@ export default function FormAddProduct({ userName }: any) {
                 },
               });
 
-              setInterval(() => window.location.reload(), 2000);
+              setTimeout(() => window.location.reload(), 2000);
             }
 
             if (data.status === 409) {
@@ -109,7 +109,7 @@ export default function FormAddProduct({ userName }: any) {
 
             <label htmlFor="title">عنوان محصول انگلیسی</label>
             <Field
-              name="titleEng"
+              name="title_eng"
               type="text"
               className="outline-none py-3 px-4 rounded-2xl focus:ring-4 ring-blue-500/50 bg-zinc-100"
             />

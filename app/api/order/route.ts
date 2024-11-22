@@ -20,20 +20,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const {
-      customerId,
-      statusOrder,
-      deliveryAddress,
-      paymentMethod,
-      amountPaid,
+      customer_id,
+      status_order,
+      delivery_address,
+      payment_method,
+      amount_paid,
     } = await request.json();
 
     const newOrder = await prismadb.order.create({
       data: {
-        customerId,
-        statusOrder,
-        deliveryAddress,
-        paymentMethod,
-        amountPaid,
+        customer_id,
+        status_order,
+        delivery_address,
+        payment_method,
+        amount_paid,
       },
     });
 
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { id, paymentMethod, amountPaid } = await request.json();
+    const { id, payment_method, amount_paid } = await request.json();
 
     if (!id) {
       return NextResponse.json({
@@ -68,7 +68,7 @@ export async function PUT(request: Request) {
       });
     }
 
-    if (!paymentMethod || !amountPaid) {
+    if (!payment_method || !amount_paid) {
       return NextResponse.json({
         message: "لطفا تمام فیلد ها را پر کنید",
         messageEng: "Please fill in all fields",
@@ -81,8 +81,8 @@ export async function PUT(request: Request) {
         id,
       },
       data: {
-        paymentMethod,
-        amountPaid,
+        payment_method,
+        amount_paid,
       },
     });
 

@@ -43,19 +43,19 @@ export const authOptions: NextAuthOptions = {
         if (!passwordMatch) {
           return null;
         }
-        if (existingUser.role === "ADMIN") {
+        if (existingUser.role === "USER") {
           return {
             id: existingUser.id,
             email: existingUser.email,
-            username: existingUser.userName,
-            role: "ADMIN",
+            username: existingUser.user_name,
+            role: "USER",
           };
         } else {
           return {
             id: existingUser.id,
             email: existingUser.email,
-            username: existingUser.userName,
-            role: "USER",
+            username: existingUser.user_name,
+            role: "ADMIN",
           };
         }
       },
