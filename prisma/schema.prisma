@@ -3,10 +3,10 @@ generator client {
 }
 
 datasource db {
-  // provider = "postgresql"
-  // url      = env("NEXT_PUBLIC_DATABASE_URL")
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("NEXT_PUBLIC_DATABASE_URL")
+  // provider = "sqlite"
+  // url      = "file:./dev.db"
 }
 
 // enum Role {
