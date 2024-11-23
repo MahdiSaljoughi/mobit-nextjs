@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import Install from "../Pwa/Install";
 
 export default function MainHeader() {
   const { data: session } = useSession();
@@ -175,6 +176,7 @@ export default function MainHeader() {
           <div className="items-center lg:mx-0 hidden lg:flex">
             <Link href="/">
               <span className="2xl:ml-10 xl:ml-7 lg:ml-5 flex items-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/logos/LogoType.png"
                   className="2xl:w-[94px] xl:w-[70px] lg:w-[50px] w-20"
@@ -216,6 +218,7 @@ export default function MainHeader() {
                           key={index}
                           className="flex items-center gap-x-2 group/list border-y-[1px] border-white/0 hover:border-zinc-700/10 px-3 py-1.5 hover:bg-gray-50 hover:text-[#377DFF]"
                         >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={item.img}
                             alt={item.title}
@@ -361,30 +364,33 @@ export default function MainHeader() {
             </div>
           </div>
           <div className="hidden lg:flex items-center gap-x-5 ml-5">
-            <div>
-              <Link
-                href={session?.user ? "/dashbord" : "/sign-in"}
-                className="flex items-center gap-x-2"
-              >
-                <span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1.4rem"
-                    height="1.4rem"
-                  >
-                    <circle cx="12" cy="6" r="4" fill="currentColor" />
-                    <path
-                      fill="currentColor"
-                      d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
-                    />
-                  </svg>
-                </span>
-                <span>
-                  {session?.user ? session.user.username : "ورود / ثبت نام"}
-                </span>
-              </Link>
+            <div className="hidden 2xl:block">
+              <Install />
             </div>
+
+            <Link
+              href={session?.user ? "/dashbord" : "/sign-in"}
+              className="flex items-center gap-x-2"
+            >
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="1.4rem"
+                  height="1.4rem"
+                >
+                  <circle cx="12" cy="6" r="4" fill="currentColor" />
+                  <path
+                    fill="currentColor"
+                    d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                  />
+                </svg>
+              </span>
+              <span>
+                {session?.user ? session.user.username : "ورود / ثبت نام"}
+              </span>
+            </Link>
+
             <Link
               href="/cart"
               className={
@@ -446,6 +452,7 @@ export default function MainHeader() {
             </div>
             <div className="mx-auto">
               <Link href="/">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/images/logos/mobit.png" width="110" alt="logo" />
               </Link>
             </div>
@@ -538,6 +545,7 @@ export default function MainHeader() {
 
           <Link href="/" className="w-40 mr-14">
             <span className="block">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/logos/LogoType.png"
                 className="w-[70px]"
@@ -607,48 +615,46 @@ export default function MainHeader() {
             <span className="text-zinc-500">دسته بندی ها</span>
           </Link>
         </div>
-        <div>
-          <Link
-            href="/cart"
-            className="flex flex-col items-center justify-center gap-y-1"
+
+        <Link
+          href="/cart"
+          className="flex flex-col items-center justify-center gap-y-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[20px] sm:w-[26px]"
+            viewBox="0 0 24 24"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[20px] sm:w-[26px]"
-              viewBox="0 0 24 24"
-            >
-              <g fill="none">
-                <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                <path
-                  fill="currentColor"
-                  d="M18.06 3a2 2 0 0 1 1.98 1.719l.017.156l.875 14a2 2 0 0 1-1.847 2.12l-.15.005H5.066a2 2 0 0 1-2-1.976l.003-.149l.875-14a2 2 0 0 1 1.84-1.869L5.94 3zM15 7a1 1 0 0 0-.993.883L14 8a2 2 0 1 1-4 0a1 1 0 0 0-2 0a4 4 0 0 0 8 0a1 1 0 0 0-1-1"
-                />
-              </g>
-            </svg>
-            <span className="text-zinc-500">سبد خرید</span>
-          </Link>
-        </div>
-        <div>
-          <Link
-            href={session?.user ? "/dashbord" : "/sign-in"}
-            className="flex flex-col items-center justify-center gap-y-1"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-[20px] sm:w-[26px]"
-              viewBox="0 0 24 24"
-            >
-              <circle cx="12" cy="6" r="4" fill="currentColor" />
+            <g fill="none">
+              <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
               <path
                 fill="currentColor"
-                d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+                d="M18.06 3a2 2 0 0 1 1.98 1.719l.017.156l.875 14a2 2 0 0 1-1.847 2.12l-.15.005H5.066a2 2 0 0 1-2-1.976l.003-.149l.875-14a2 2 0 0 1 1.84-1.869L5.94 3zM15 7a1 1 0 0 0-.993.883L14 8a2 2 0 1 1-4 0a1 1 0 0 0-2 0a4 4 0 0 0 8 0a1 1 0 0 0-1-1"
               />
-            </svg>
-            <span className="text-zinc-500">
-              {session?.user ? "پروفایل" : "ورود"}
-            </span>
-          </Link>
-        </div>
+            </g>
+          </svg>
+          <span className="text-zinc-500">سبد خرید</span>
+        </Link>
+
+        <Link
+          href={session?.user ? "/dashbord" : "/sign-in"}
+          className="flex flex-col items-center justify-center gap-y-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-[20px] sm:w-[26px]"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="6" r="4" fill="currentColor" />
+            <path
+              fill="currentColor"
+              d="M20 17.5c0 2.485 0 4.5-8 4.5s-8-2.015-8-4.5S7.582 13 12 13s8 2.015 8 4.5"
+            />
+          </svg>
+          <span className="text-zinc-500">
+            {session?.user ? "پروفایل" : "ورود"}
+          </span>
+        </Link>
       </div>
     </>
   );

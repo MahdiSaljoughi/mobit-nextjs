@@ -1,18 +1,26 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import withPWAInit from "@ducanh2912/next-pwa";
 
-export default nextConfig;
+const nextConfig = {
+    env: {
+        NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+        NEXT_PUBLIC_DATABASE_URL: process.env.NEXT_PUBLIC_DATABASE_URL,
+        NEXT_PUBLIC_NEXTAUTH_SECRET: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    },
+};
 
-// /** @type {import('next').NextConfig} */
-// import withPWA from "next-pwa";
+const withPWA = withPWAInit({
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+    reloadOnOnline: true,
+    cacheOnFrontEndNav: true,
+    aggressiveFrontEndNavCaching: true,
+    swcMinify: true,
+    disable: false,
+    workboxOptions: {
+        disableDevLogs: true
+    }
+});
 
-// const nextConfig = {};
-
-// export default withPWA({
-//   ...nextConfig,
-//   pwa: {
-//     dest: "/public",
-//     register: true,
-//     skipWaiting: true,
-//   },
-// });
+export default withPWA(nextConfig);
