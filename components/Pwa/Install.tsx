@@ -51,16 +51,7 @@ export default function Install() {
 
   return (
     <>
-      <div>
-        {isInstallable && (
-          <button
-            onClick={handleInstallClick}
-            style={{ padding: "10px 20px", fontSize: "16px" }}
-          >
-            نصب PWA
-          </button>
-        )}
-      </div>
+      {isInstallable && <button onClick={handleInstallClick}>نصب PWA</button>}
     </>
   );
 }

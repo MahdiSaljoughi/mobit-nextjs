@@ -9,11 +9,6 @@ datasource db {
   // url      = "file:./dev.db"
 }
 
-// enum Role {
-//   USER
-//   ADMIN
-// }
-
 model User {
   id             Int       @id @default(autoincrement())
   user_name      String?   @unique
