@@ -4,24 +4,25 @@ import Link from "next/link";
 
 export default async function Orders({ userId }: any) {
   const ordersFetch = await axios.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/order/`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/order`
   );
+
   const orders = ordersFetch.data.orders;
-  const userOrders = orders.filter((x: any) => userId === x.customerId);
+  const userOrders = orders.filter((x: any) => userId === x.customer_id);
 
   return (
     <>
       <div>
         {userOrders.map((order: any, index: any) => (
           <div key={index}>
-            {userId === order.customerId && (
+            {userId === order.customer_id && (
               <>
                 <OrdersUser ordersId={order.id} />
               </>
             )}
           </div>
         ))}
-        {orders.every((order: any) => order.customerId !== userId) && (
+        {orders.every((order: any) => order.customer_id !== userId) && (
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +46,10 @@ export default async function Orders({ userId }: any) {
             <span className="block text-center text-zinc-500">
               مبیت دسته‌ بندی و کالاهای زیادی دارد که شما دوست خواهید داشت !!
             </span>
-            <Link href={"/"} className="text-blue-500 w-full block text-center mt-4">
+            <Link
+              href={"/"}
+              className="text-blue-500 w-full block text-center mt-4"
+            >
               بازگشت به صفحه اصلی
             </Link>
           </div>

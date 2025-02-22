@@ -22,11 +22,11 @@ export default async function ProductOrder({ ordersId }: any) {
   const productsFetch = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
   );
-  const products = JSON.parse(productsFetch.data.products);
+  const products = productsFetch.data.products;
 
   const users = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`);
-  const user: User[] = JSON.parse(users.data.users);
-  const findUser = user.find((x) => x.id === order.customerId);
+  const user: User[] = users.data.users;
+  const findUser = user.find((x) => x.id === order.customer_id);
 
   const totalPrice = orderedProduct.reduce(
     (total: any, orderedProduct: any) => {
@@ -167,7 +167,7 @@ export default async function ProductOrder({ ordersId }: any) {
             <div key={productOrder.id}>
               {products.map(
                 (product: any) =>
-                  productOrder.productId === product.id && (
+                  productOrder.product_id === product.id && (
                     <div
                       key={product.id}
                       className="border-b py-2 pt-4 lg:py-4 flex flex-col lg:flex-row lg:items-center justify-between w-full gap-y-8"

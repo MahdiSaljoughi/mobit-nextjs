@@ -26,7 +26,7 @@ export default async function Home() {
                 پیشنهاد ویژه مبیت
               </p>
             </Link>
-            {/* <Carosel product={product} /> */}
+            <Carosel product={product} />
           </div>
 
           <div className="flex flex-col md:flex-row gap-x-2">
@@ -44,7 +44,7 @@ export default async function Home() {
                 پربازدید های ماه
               </p>
             </Link>
-            {/* <Carosel product={product} /> */}
+            <Carosel product={product} />
           </div>
 
           <div className="flex flex-col md:flex-row gap-2 items-center w-full">
@@ -68,7 +68,7 @@ export default async function Home() {
                 جدید ترین محصولات
               </p>
             </Link>
-            {/* <Carosel product={product} /> */}
+            <Carosel product={product} />
           </div>
         </section>
       </main>

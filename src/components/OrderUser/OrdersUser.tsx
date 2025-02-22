@@ -15,7 +15,8 @@ export default async function OrdersUser({ ordersId }: any) {
   const productsFetch = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
   );
-  const products = JSON.parse(productsFetch.data.products);
+
+  const products = productsFetch.data.products;
 
   const totalPrice = orderedProducts.reduce(
     (total: any, orderedProduct: any) => {
@@ -75,7 +76,6 @@ export default async function OrdersUser({ ordersId }: any) {
             </div>
           </Link>
 
-          {/* mobile */}
           <Link
             href={`/dashbord/order/${order.id}`}
             className="flex flex-col gap-y-8 lg:hidden gap-x-32 border rounded-2xl px-3 py-6 mb-4"
