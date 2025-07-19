@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/src/lib/prisma";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 
 interface IRegisterBody {
   phone: string;
@@ -46,14 +46,15 @@ export async function POST(request: Request) {
       });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(data.password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(data.password, salt);
 
     const newUser = await prisma.user.create({
       data: {
         phone: data.phone,
         user_name: data.userName,
-        password: hashedPassword,
+        // password: hashedPassword,
+        password: data.password,
       },
     });
 

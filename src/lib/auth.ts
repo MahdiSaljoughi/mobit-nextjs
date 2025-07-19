@@ -2,7 +2,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/src/lib/prisma";
-import { compare } from "bcrypt";
+// import { compare } from "bcrypt";
+
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
@@ -36,13 +37,13 @@ export const authOptions: NextAuthOptions = {
         if (!existingUser) {
           return null;
         }
-        const passwordMatch = await compare(
-          credentials.password,
-          existingUser.password
-        );
-        if (!passwordMatch) {
-          return null;
-        }
+        // const passwordMatch = await compare(
+        //   credentials.password,
+        //   existingUser.password
+        // );
+        // if (!passwordMatch) {
+        //   return null;
+        // }
         if (existingUser.role === "USER") {
           return {
             id: existingUser.id,

@@ -10,8 +10,8 @@ export default async function ProductOrder({ ordersId }: any) {
   const productsFetch = await axios.get(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/product`
   );
-  const products = JSON.parse(productsFetch.data.products);
-
+  const products = productsFetch.data.products
+console.log(orderedProduct);
   return (
     <>
       <span className="block text-center mb-2">کالا ها</span>
@@ -34,12 +34,12 @@ export default async function ProductOrder({ ordersId }: any) {
             <tbody className="w-full">
               <tr className="text-center">
                 <td className="p-4">{productOrder.id}</td>
-                <td>{productOrder.orderId}</td>
-                <td>{productOrder.productId}</td>
+                <td>{productOrder.order_id}</td>
+                <td>{productOrder.product_id}</td>
                 <td>
                   {products.map(
                     (product: any) =>
-                      productOrder.productId === product.id && (
+                      productOrder.product_id === product.id && (
                         <div
                           key={product.id}
                           className="flex flex-col items-center justify-center gap-y-4 mt-4"
@@ -55,7 +55,7 @@ export default async function ProductOrder({ ordersId }: any) {
                 <td>{productOrder.quantity} عدد</td>
                 <td>
                   <Link
-                    href={`/dashbord/product/${productOrder.productId}`}
+                    href={`/dashbord/product/${productOrder.product_id}`}
                     className="flex items-center justify-center"
                   >
                     <svg

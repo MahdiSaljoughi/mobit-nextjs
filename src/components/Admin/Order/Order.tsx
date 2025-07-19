@@ -8,17 +8,17 @@ import { useRouter } from "next/navigation";
 
 interface User {
   id: number;
-  userName: string;
+  user_name: string;
 }
 
 interface Order {
   id: number;
-  customerId: number;
-  statusOrder: string;
-  paymentMethod: string;
-  amountPaid: number;
-  orderDate: string;
-  deliveryAddress: string;
+  customer_id: number;
+  status_order: string;
+  payment_method: string;
+  amount_paid: number;
+  order_date: string;
+  delivery_address: string;
 }
 
 export default function Order({ order }: { order: Order }) {
@@ -29,9 +29,11 @@ export default function Order({ order }: { order: Order }) {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user`
       );
-      const data: User[] = JSON.parse(response.data.users);
-      const foundUser = data.find((x) => x.id === order.customerId);
-      setUser(foundUser || null);
+
+      const data: User[] = response.data.users;
+      const foundUser = data.find((x) => x.id === order.customer_id);
+
+      setUser(foundUser ? foundUser : null);
     } catch (error) {
       console.error("Error fetching orders:", error);
       toast.error("خطا در دریافت اطلاعات کاربر");
@@ -54,9 +56,9 @@ export default function Order({ order }: { order: Order }) {
       },
     });
 
-    router.replace("/dashbord/order");
+    // router.replace("/dashbord/order");
 
-    setInterval(() => window.location.reload(), 2000);
+    // setInterval(() => window.location.reload(), 2000);
   };
 
   return (
@@ -124,17 +126,17 @@ export default function Order({ order }: { order: Order }) {
                       href={`/dashbord/user/${user.id}`}
                       className="text-blue-400 hover:text-blue-500 transition-colors"
                     >
-                      <span>{user.userName}</span>
+                      <span>{user.user_name}</span>
                     </Link>
                   ) : (
                     <span>کاربر پیدا نشد</span>
                   )}
                 </td>
-                <td>{order.customerId}</td>
-                <td>{order.statusOrder}</td>
-                <td>{order.amountPaid ? order.amountPaid : "-"}</td>
-                <td>{order.paymentMethod ? order.paymentMethod : "-"}</td>
-                <td>{order.orderDate}</td>
+                <td>{order.customer_id}</td>
+                <td>{order.status_order}</td>
+                <td>{order.amount_paid ? order.amount_paid : "-"}</td>
+                <td>{order.payment_method ? order.payment_method : "-"}</td>
+                <td>{order.order_date}</td>
               </tr>
             </tbody>
           </table>
@@ -142,10 +144,10 @@ export default function Order({ order }: { order: Order }) {
         <div className="mt-4 bg-blue-500/10 p-8 rounded-2xl">
           <div className="flex items-center gap-x-1 mb-4">
             <span>زمان ارسال :</span>
-            {/* <p>{order.deliveryDate}</p> */}
+            <p>{order.order_date}</p>
           </div>
           <span className="block mb-4">آدرس :</span>
-          <p className="mx-4 leading-7">{order.deliveryAddress}</p>
+          <p className="mx-4 leading-7">{order.delivery_address}</p>
         </div>
       </div>
     </>

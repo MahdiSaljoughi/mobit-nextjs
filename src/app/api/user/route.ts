@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import prismadb from "@/src/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -70,12 +70,13 @@ export async function POST(request: Request) {
       });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // const salt = await bcrypt.genSalt(10);
+    // const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = await prismadb.user.create({
       data: {
-        password: hashedPassword,
+        // password: hashedPassword,
+        password,
         phone,
         email,
         user_name,

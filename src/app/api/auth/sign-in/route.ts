@@ -1,6 +1,7 @@
-import bcrypt from "bcrypt";
+// import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 import prismadb from "@/src/lib/prisma";
+
 const jwt = require("jsonwebtoken");
 
 interface ILoginBody {
@@ -25,13 +26,13 @@ export async function POST(request: Request) {
 
     if (!user)
       return NextResponse.json({ message: "user not found", status: 404 });
-    const valid = await bcrypt.compare(data.password, user.password);
+    // const valid = await bcrypt.compare(data.password, user.password);
 
-    if (!valid)
-      return NextResponse.json({
-        message: "hashedPassword not valid",
-        status: 404,
-      });
+    // if (!valid)
+    //   return NextResponse.json({
+    //     message: "hashedPassword not valid",
+    //     status: 404,
+    //   });
 
     const tokenData = {
       id: user.id,

@@ -32,13 +32,13 @@ export default async function AdminOrderList() {
                 }
               >
                 <td className="p-4">{order.id}</td>
-                <td>{order.customerId}</td>
-                <td>{order.statusOrder}</td>
+                <td>{order.customer_id}</td>
+                <td>{order.status_order}</td>
                 <td>
-                  {order.amountPaid ? order.amountPaid : "-"}
+                  {order.amount_paid ? order.amount_paid : "-"}
                 </td>
-                <td>{order.paymentMethod ? order.paymentMethod : "-"}</td>
-                <td>{order.orderDate}</td>
+                <td>{order.payment_method ? order.payment_method : "-"}</td>
+                <td>{order.order_date}</td>
                 <td>
                   <Link
                     href={`/dashbord/order/${order.id}`}

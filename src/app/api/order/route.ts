@@ -20,20 +20,20 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const {
-      customer_id,
-      status_order,
-      delivery_address,
-      payment_method,
-      amount_paid,
+      customerId,
+      statusOrder,
+      deliveryAddress,
+      paymentMethod,
+      amountPaid,
     } = await request.json();
 
     const newOrder = await prismadb.order.create({
       data: {
-        customer_id,
-        status_order,
-        delivery_address,
-        payment_method,
-        amount_paid,
+        customer_id: customerId,
+        status_order: statusOrder,
+        delivery_address: deliveryAddress,
+        payment_method: paymentMethod,
+        amount_paid: amountPaid,
       },
     });
 
